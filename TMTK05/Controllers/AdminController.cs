@@ -10,8 +10,14 @@ namespace TMTK05.Controllers
     {
         //
         // GET: /Home/
-
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Home/
+        public ActionResult Settings()
         {
             return View();
         }
