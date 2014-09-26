@@ -121,6 +121,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Classes\Cookies.cs" />
+    <Compile Include="Classes\Crypt.cs" />
+    <Compile Include="Classes\Message.cs" />
+    <Compile Include="Classes\SqlInjection.cs" />
+    <Compile Include="Classes\StringManipulation.cs" />
+    <Compile Include="Classes\TimeConvert.cs" />
+    <Compile Include="Classes\TwoLevelViewCache.cs" />
+    <Compile Include="Classes\ValidateEmail.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,7 +139,6 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\plugins\morris.css" />
