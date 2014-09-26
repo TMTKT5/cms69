@@ -1,14 +1,8 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@section Title {
-    Dashboard
-}
-
-@section Subheading {
-    Overview
+    ViewBag.HeaderTitle = "Dashboard";
+    ViewBag.HeaderSubHeading = "Overview";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
 }
 
 @section Breadcrumb {

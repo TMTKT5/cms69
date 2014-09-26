@@ -1,0 +1,86 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> @ViewBag.Title </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    @Styles.Render("~/Bundles/WebsiteStyles")
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderHead" runat="server" />
+</head>
+
+<body id="body" class="black">
+    <div id="top" data-magellan-expedition="fixed" style="z-index: 999;" data-headroom>
+        <div class="row">
+            <div class="large-12 columns">
+                <nav id="navigation" class="top-bar">
+                    <ul class="title-area">
+                        <!--<li class="name logo">
+                            <a href="http://tmtj-03.ict-lab.nl/Home/">
+                                <img src="http://tmtj-03.ict-lab.nl/Img/logo.png" width="118" height="39" alt="" />
+                            </a>
+                        </li>-->
+                        <li class="toggle-topbar menu-icon"><a id="menutoggle" href="#" onclick=" menuClick(); "><span>Menu</span></a></li>
+                    </ul>
+
+                    <section class="top-bar-section">
+                        <ul class="right">
+                            <li>
+                                <a href="#">Placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#">Placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#">Placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#">Placeholder</a>
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <header id="header">
+        <div class="row">
+            <div class="columns">
+                <div style="text-align: center">
+                    <h1> @ViewBag.HeaderTitle </h1>
+                    <div class="subheading quote" style="margin-bottom: -10px; margin-top: -25px;">
+                        <blockquote style="color: white;">@ViewBag.HeaderSubHeading </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="Content" class="section gray">
+       @RenderBody()
+    </div>
+    <footer>
+        <div class="row">
+            <div class="large-6 columns">
+                <ul class="inline-list">
+                    <li>&#169; @DateTime.Now.Year - @ViewBag.FooterCopyright</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    @Scripts.Render("~/Bundles/WebsiteScripts")
+    <script type="text/javascript">
+            window.onload = function () {
+                var myElement = document.getElementById("top");
+                var headroom = new Headroom(myElement);
+                headroom.init();
+            };
+    </script>
+    <%: Scripts.Render("~/bundles/foundation") %>
+    <script type="text/javascript">
+            $(document).foundation();
+    </script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderScripts" runat="server" />
+</body>
+</html>
