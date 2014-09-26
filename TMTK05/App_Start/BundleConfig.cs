@@ -1,9 +1,9 @@
 ﻿#region
 
-using System.Web.Optimization;
 using BundleTransformer.Core.Bundles;
 using BundleTransformer.Core.Orderers;
 using BundleTransformer.Core.Resolvers;
+using System.Web.Optimization;
 
 #endregion
 

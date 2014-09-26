@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿#region
+
 using System.Web.Mvc;
+
+#endregion
 
 namespace TMTK05.Controllers
 {
@@ -15,6 +15,5 @@ namespace TMTK05.Controllers
         {
             return View();
         }
-
     }
 }
