@@ -25,7 +25,7 @@ namespace TMTK05
 
             var adminPanelStylesBundle = new CustomStyleBundle("~/Bundles/AdminPanelStyles");
             adminPanelStylesBundle.Include(
-                "~/Css/bootstrap.min.css",
+                "~/Css/bootstrap.css",
                 "~/Css/sb-admin.css",
                 "~/font-awesome-4.1.0/css/font-awesome.min.css");
             adminPanelStylesBundle.Orderer = nullOrderer;

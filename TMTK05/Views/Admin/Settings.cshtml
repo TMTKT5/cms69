@@ -1,4 +1,4 @@
-﻿
+﻿@model TMTK05.Models.SettingsModel
 @{
     ViewBag.Title = "Settings";
     ViewBag.HeaderTitle = "Settings";
@@ -15,4 +15,63 @@
             <i class="fa fa-wrench"></i> Settings
         </li>
     </ol>
+}
+@using (Html.BeginForm("Settings", "Admin", FormMethod.Post))
+{
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Header)
+        </p>
+        <p class="col-lg-1">
+            @Html.RadioButtonFor(model => model.Header, 0, new { @id = "Header0" }) @Html.LabelFor(model => model.Header, "On", new { @for = "Header0" }) <br />
+            @Html.RadioButtonFor(model => model.Header, 1, new { @id = "Header1" }) @Html.LabelFor(model => model.Header, "Off", new { @for = "Header1" })
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Footer)
+        </p>
+        <p class="col-lg-1">
+            @Html.RadioButtonFor(model => model.Footer, 0, new { @id = "Footer0" }) @Html.LabelFor(model => model.Footer, "On", new { @for = "Footer0" }) <br />
+            @Html.RadioButtonFor(model => model.Footer, 1, new { @id = "Footer1" }) @Html.LabelFor(model => model.Footer, "Off", new { @for = "Footer1" })
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.FooterText)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.FooterText, new { @class = "form-control" })
+        </p>
+        <p id="footerText" class="col-lg-1">
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.ColorScheme)
+        </p>
+        <p class="col-lg-6">
+            @Html.HiddenFor(model => model.ColorScheme)
+            <span class="switch-color" style="background: #663300;" onclick="headerColorSwitch('brown')"></span>
+            <span class="switch-color" style="background: #fcb040;" onclick="headerColorSwitch('orange')"></span>
+            <span class="switch-color" style="background: #8FA411;" onclick="headerColorSwitch('olive')"></span>
+            <span class="switch-color" style="background: #7ab800;" onclick="headerColorSwitch('green')"></span>
+            <span class="switch-color" style="background: #cccc33;" onclick="headerColorSwitch('lime')"></span>
+            <span class="switch-color" style="background: #66cccc;" onclick="headerColorSwitch('cyan')"></span>
+            <span class="switch-color" style="background: #21aded;" onclick="headerColorSwitch('blue')"></span>
+            <span class="switch-color" style="background: #993399;" onclick="headerColorSwitch('purple')"></span>
+            <span class="switch-color" style="background: #ea4c88;" onclick="headerColorSwitch('pink')"></span>
+            <span class="switch-color" style="background: #E97c5f;" onclick="headerColorSwitch('red')"></span>
+            <span class="switch-color" style="background: #990000;" onclick="headerColorSwitch('winered')"></span>
+            <span class="switch-color" style="background: #000000;" onclick="headerColorSwitch('black')"></span>
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <button type="submit" name="submit" class="btn btn-primary" disabled>Save</button>
+        </div>
+    </div>
 }
