@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     @Styles.Render("~/Bundles/WebsiteStyles")
-    <asp:ContentPlaceHolder ID="ContentPlaceHolderHead" runat="server" />
+    @RenderSection("Styles", false)
 </head>
 
 <body id="body" class="black">
@@ -77,10 +77,10 @@
                 headroom.init();
             };
     </script>
-    <%: Scripts.Render("~/bundles/foundation") %>
+    @Scripts.Render("~/bundles/foundation")
     <script type="text/javascript">
-            $(document).foundation();
+        $(document).foundation();
     </script>
-    <asp:ContentPlaceHolder ID="ContentPlaceHolderScripts" runat="server" />
+    @RenderSection("Scripts", false)
 </body>
 </html>
