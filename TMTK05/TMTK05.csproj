@@ -160,8 +160,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Content Include="Css\alertify.core.css" />
-    <Content Include="Css\alertify.default.css" />
+    <Content Include="Css\alertify.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\border-anim-h.gif" />
     <Content Include="Css\border-anim-v.gif" />
@@ -174,6 +173,7 @@
     <Content Include="Css\plugins\morris.css" />
     <Content Include="Css\sb-admin.css" />
     <Content Include="Css\style.css" />
+    <Content Include="Css\themes\default.css" />
     <Content Include="Font-awesome-4.1.0\css\font-awesome.css" />
     <Content Include="Font-awesome-4.1.0\css\font-awesome.min.css" />
     <Content Include="Font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />

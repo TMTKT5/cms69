@@ -85,18 +85,18 @@ namespace TMTK05
             websiteStylesBundle.Orderer = nullOrderer;
             bundles.Add(websiteStylesBundle);
 
-            var websiteAlertifyBundle = new CustomStyleBundle("~/Bundles/WebsiteAlertifyStyles");
-            websiteAlertifyBundle.Include(
-                "~/Css/alertify.core.css",
-                "~/Css/alertify.default.css");
-            websiteAlertifyBundle.Orderer = nullOrderer;
-            bundles.Add(websiteAlertifyBundle);
+            var websiteAlertifyStyleBundle = new CustomStyleBundle("~/Bundles/WebsiteAlertifyStyles");
+            websiteAlertifyStyleBundle.Include(
+                "~/Css/alertify.css",
+                "~/Css/themes/default.css");
+            websiteAlertifyStyleBundle.Orderer = nullOrderer;
+            bundles.Add(websiteAlertifyStyleBundle);
 
-            var websiteCropBundle = new CustomStyleBundle("~/Bundles/WebsiteCropStyles");
-            websiteCropBundle.Include(
+            var websiteCropStyleBundle = new CustomStyleBundle("~/Bundles/WebsiteCropStyles");
+            websiteCropStyleBundle.Include(
                 "~/Css/imgareaselect-animated.css");
-            websiteCropBundle.Orderer = nullOrderer;
-            bundles.Add(websiteCropBundle);
+            websiteCropStyleBundle.Orderer = nullOrderer;
+            bundles.Add(websiteCropStyleBundle);
         }
 
         #endregion Public Methods
