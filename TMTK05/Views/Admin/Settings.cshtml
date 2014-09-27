@@ -87,48 +87,48 @@
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+        $('#footerTextError').hide();
+
+        if ($("input:radio[id=Footer1]").is(":checked")) {
+            $("#textFooter").hide();
+        }
+
+        $('#radioButtonFooter input:radio').click(function() {
+            if ($(this).val() === '0') {
+                footer(0);
+            } else if ($(this).val() === '1') {
+                footer(1);
+            }
+        });
+
+        $("#settingsForm").submit(function(event) {
+            if ($("input:radio[id=Footer0]").is(":checked")) {
+                if ($('#FooterText').val() == "") {
+                    event.preventDefault();
+                    $('#footerTextError').show(500);
+                }
+            } else {
+                $('#settingsForm').submit();
+            }
+        });
+
+        function headerColorSwitch(color) {
+            $('#ColorScheme').val(color);
+        }
+
+        function footer(value) {
+            if (value == 0) {
+                $('#textFooter').show(500);
+            } else if (value == 1) {
+                $('#textFooter').hide(500);
+            }
+        }
+    </script>
     @if (Model.Done)
     {
         <script type="text/javascript">
             alertify.success('The settings have been saved!');
         </script>
     }
-    <script type="text/javascript">
-        $('#footerTextError').hide();
-
-            if ($("input:radio[id=Footer1]").is(":checked")) {
-                $("#textFooter").hide();
-            }
-
-            $('#radioButtonFooter input:radio').click(function () {
-                if ($(this).val() === '0') {
-                    footer(0);
-                } else if ($(this).val() === '1') {
-                    footer(1);
-                }
-            });
-
-            $("#settingsForm").submit(function (event) {
-                if ($("input:radio[id=Footer0]").is(":checked")) {
-                    if ($('#FooterText').val() == "") {
-                        event.preventDefault();
-                        $('#footerTextError').show(500);
-                    }
-                } else {
-                    $('#settingsForm').submit();
-                }
-            });
-
-            function headerColorSwitch(color) {
-                $('#ColorScheme').val(color);
-            }
-
-            function footer(value) {
-                if (value == 0) {
-                    $('#textFooter').show(500);
-                } else if (value == 1) {
-                    $('#textFooter').hide(500);
-                }
-            }
-        </script>
-    }
+}
