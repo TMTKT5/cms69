@@ -48,11 +48,11 @@ namespace TMTK05.Controllers
             }*/
 
             if (!ModelState.IsValid) return View(model);
-            if (model.SaveSettings())
+            /*if (model.SaveSettings())
             {
                 ViewBag.Error = "Het boek is toegevoegd!";
                 return View(model);
-            }
+            }*/
             ViewBag.Error = "Het boek is niet toegevoegd, probeer het later nog eens!";
             return View(model);
         }

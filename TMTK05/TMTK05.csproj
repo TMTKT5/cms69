@@ -266,6 +266,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutWebsite.cshtml" />
     <Content Include="Views\Admin\Settings.cshtml" />
+    <None Include="Properties\PublishProfiles\Thuis.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
