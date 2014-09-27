@@ -1,24 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
+using MySql.Data.MySqlClient;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using MySql.Data.MySqlClient;
 using TMTK05.Classes;
+
+#endregion
 
 namespace TMTK05.Models
 {
     public class SettingsModel
     {
+        #region Public Constructors
+
         public SettingsModel()
         {
             Done = false;
         }
 
-        [Display(Name = "Header:")]
-        public int Header { get; set; }
+        #endregion Public Constructors
+
+        #region Public Properties
+
+        [Display(Name = "Color scheme:")]
+        public string ColorScheme { get; set; }
+
+        public bool Done { get; set; }
 
         [Display(Name = "Footer:")]
         public int Footer { get; set; }
@@ -26,14 +34,15 @@ namespace TMTK05.Models
         [Display(Name = "Footer text:")]
         public string FooterText { get; set; }
 
-        [Display(Name = "Color scheme:")]
-        public string ColorScheme { get; set; }
+        [Display(Name = "Header:")]
+        public int Header { get; set; }
 
-        public bool Done { get; set; }
+        #endregion Public Properties
 
+        #region Public Methods
 
         // <summary>
-        // Fetch website settings
+        // Fetch website settings 
         // </summary>
         public void LoadSettings()
         {
@@ -75,7 +84,7 @@ namespace TMTK05.Models
         }
 
         // <summary>
-        // Update website settings
+        // Update website settings 
         // </summary>
         public bool SaveSettings()
         {
@@ -118,5 +127,7 @@ namespace TMTK05.Models
             Done = true;
             return true;
         }
+
+        #endregion Public Methods
     }
 }

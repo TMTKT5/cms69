@@ -1,7 +1,7 @@
 ﻿#region
 
-using System.Web.Mvc;
 using Bibliotheek.Attributes;
+using System.Web.Mvc;
 using TMTK05.Models;
 
 #endregion
@@ -10,8 +10,12 @@ namespace TMTK05.Controllers
 {
     public class AdminController : Controller
     {
+        #region Public Methods
+
+        #region Public Methods
+
         //
-        // GET: /Home/
+        // GET: /Home/ 
         public ActionResult Index()
         {
             // Redirect is the user isn't an admin 
@@ -24,7 +28,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Settings/
+        // GET: /Settings/ 
         [EnableCompression]
         public ActionResult Settings()
         {
@@ -58,5 +62,9 @@ namespace TMTK05.Controllers
             ViewBag.Return = 1;
             return View(model);
         }
+
+        #endregion Public Methods
+
+        #endregion Public Methods
     }
 }

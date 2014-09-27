@@ -94,7 +94,7 @@
             $("#textFooter").hide();
         }
 
-        $('#radioButtonFooter input:radio').click(function() {
+        $('#radioButtonFooter input:radio').click(function () {
             if ($(this).val() === '0') {
                 footer(0);
             } else if ($(this).val() === '1') {
@@ -102,7 +102,7 @@
             }
         });
 
-        $("#settingsForm").submit(function(event) {
+        $("#settingsForm").submit(function (event) {
             if ($("input:radio[id=Footer0]").is(":checked")) {
                 if ($('#FooterText').val() == "") {
                     event.preventDefault();

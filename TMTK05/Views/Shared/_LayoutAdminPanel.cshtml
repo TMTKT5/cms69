@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+
                 @Html.ActionLink("CMS69", "Index", "Admin", null, new { @class = "navbar-brand" })
             </div>
             <!-- Top Menu Items -->
@@ -92,8 +92,8 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="@((string) ViewContext.RouteData.Values["Action"] == "Index" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Admin")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <li class="@((string) ViewContext.RouteData.Values["action"] =="Index" ? "active" : "")">
+                        <a href="@Url.Action("Index", "Admin" )"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
@@ -124,8 +124,8 @@
                         </ul>
                     </li>
 
-                    <li class="@((string) ViewContext.RouteData.Values["Action"] == "Settings" ? "active" : "")">
-                        <a href="@Url.Action("Settings", "Admin")"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+                    <li class="@((string) ViewContext.RouteData.Values[" action"] == "Settings" ? "active" : "")">
+                        <a href="@Url.Action("Settings", "Admin" )"><i class="fa fa-fw fa-wrench"></i> Settings</a>
                     </li>
                     <li>
                 </ul>
@@ -148,7 +148,6 @@
                     </div>
                 </div>
                 <!-- /.row -->
-
                 @RenderBody()
 
             </div>
@@ -159,7 +158,6 @@
 
     </div>
     <!-- /#wrapper -->
-    
     @Scripts.Render("~/Bundles/AdminPanelScripts")
     @RenderSection("Scripts", false)
 </body>

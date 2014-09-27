@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿#region
+
 using System.Web.Mvc;
+
+#endregion
 
 namespace TMTK05.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+
+        #region Public Methods
+
+        // GET: Home 
         public ActionResult Index()
         {
             return View();
         }
+
+        #endregion Public Methods
+
     }
 }
