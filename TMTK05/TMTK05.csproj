@@ -46,6 +46,12 @@
     <Reference Include="BundleTransformer.Core">
       <HintPath>..\packages\BundleTransformer.Core.1.9.22\lib\net40\BundleTransformer.Core.dll</HintPath>
     </Reference>
+    <Reference Include="BundleTransformer.Less">
+      <HintPath>..\packages\BundleTransformer.Less.1.9.20\lib\net40\BundleTransformer.Less.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Core">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.1.3\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MinifierLibrary">
       <HintPath>..\packages\MinifierLibrary.1.0.3\lib\net45\MinifierLibrary.dll</HintPath>
