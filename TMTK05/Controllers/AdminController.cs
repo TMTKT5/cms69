@@ -47,13 +47,12 @@ namespace TMTK05.Controllers
                 return RedirectToAction("Index", "Home");
             }*/
 
-            if (!ModelState.IsValid) return View(model);
-            /*if (model.SaveSettings())
+            if (model.SaveSettings())
             {
-                ViewBag.Error = "Het boek is toegevoegd!";
+                ViewBag.Return = 0;
                 return View(model);
-            }*/
-            ViewBag.Error = "Het boek is niet toegevoegd, probeer het later nog eens!";
+            }
+            ViewBag.Return = 1;
             return View(model);
         }
     }

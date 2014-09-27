@@ -1,9 +1,14 @@
-﻿@model TMTK05.Models.SettingsModel
+﻿@using System.Web.Optimization
+@model TMTK05.Models.SettingsModel
 @{
     ViewBag.Title = "Settings";
     ViewBag.HeaderTitle = "Settings";
     ViewBag.HeaderSubHeading = "Personalization";
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
 }
 
 @section Breadcrumb {
@@ -16,7 +21,10 @@
         </li>
     </ol>
 }
-@using (Html.BeginForm("Settings", "Admin", FormMethod.Post))
+
+@using (Html.BeginForm("Settings", "Admin",
+        new { ViewBag.ReturnUrl },
+        FormMethod.Post, new { @id = "settingsForm" }))
 {
     <div class="row">
         <p class="col-lg-1">
@@ -31,19 +39,20 @@
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Footer)
         </p>
-        <p class="col-lg-1">
+        <p class="col-lg-1" id="radioButtonFooter">
             @Html.RadioButtonFor(model => model.Footer, 0, new { @id = "Footer0" }) @Html.LabelFor(model => model.Footer, "On", new { @for = "Footer0" }) <br />
             @Html.RadioButtonFor(model => model.Footer, 1, new { @id = "Footer1" }) @Html.LabelFor(model => model.Footer, "Off", new { @for = "Footer1" })
         </p>
     </div>
-    <div class="row">
+    <div class="row" id="textFooter">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.FooterText)
         </p>
         <p class="col-lg-2">
             @Html.TextBoxFor(model => model.FooterText, new { @class = "form-control" })
         </p>
-        <p id="footerText" class="col-lg-1">
+        <p id="footerTextError" class="col-lg-2 alert-small alert-danger">
+            Footer text is required
         </p>
     </div>
     <div class="row">
@@ -71,7 +80,55 @@
             <!-- Boo hoo, so bad, so sad -->
         </p>
         <div class="col-lg-1">
-            <button type="submit" name="submit" class="btn btn-primary" disabled>Save</button>
+            <input type="submit" name="submit" value="Save" class="btn btn-primary">
         </div>
     </div>
 }
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            alertify.success('The settings have been saved!');
+        </script>
+    }
+    <script type="text/javascript">
+        $('#footerTextError').hide();
+
+            if ($("input:radio[id=Footer1]").is(":checked")) {
+                $("#textFooter").hide();
+            }
+
+            $('#radioButtonFooter input:radio').click(function () {
+                if ($(this).val() === '0') {
+                    footer(0);
+                } else if ($(this).val() === '1') {
+                    footer(1);
+                }
+            });
+
+            $("#settingsForm").submit(function (event) {
+                if ($("input:radio[id=Footer0]").is(":checked")) {
+                    if ($('#FooterText').val() == "") {
+                        event.preventDefault();
+                        $('#footerTextError').show(500);
+                    }
+                } else {
+                    $('#settingsForm').submit();
+                }
+            });
+
+            function headerColorSwitch(color) {
+                $('#ColorScheme').val(color);
+            }
+
+            function footer(value) {
+                if (value == 0) {
+                    $('#textFooter').show(500);
+                } else if (value == 1) {
+                    $('#textFooter').hide(500);
+                }
+            }
+        </script>
+    }

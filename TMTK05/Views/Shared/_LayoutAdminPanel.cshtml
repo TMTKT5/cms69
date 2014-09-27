@@ -13,6 +13,7 @@
     <title> @ViewBag.Title - CMS69 </title>
 
     @Styles.Render("~/Bundles/AdminPanelStyles")
+    @RenderSection("Styles", false)
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -160,7 +161,7 @@
     <!-- /#wrapper -->
     
     @Scripts.Render("~/Bundles/AdminPanelScripts")
-
+    @RenderSection("Scripts", false)
 </body>
 
 </html>

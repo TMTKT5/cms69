@@ -12,6 +12,11 @@ namespace TMTK05.Models
 {
     public class SettingsModel
     {
+        public SettingsModel()
+        {
+            Done = false;
+        }
+
         [Display(Name = "Header:")]
         public int Header { get; set; }
 
@@ -24,6 +29,12 @@ namespace TMTK05.Models
         [Display(Name = "Color scheme:")]
         public string ColorScheme { get; set; }
 
+        public bool Done { get; set; }
+
+
+        // <summary>
+        // Fetch website settings
+        // </summary>
         public void LoadSettings()
         {
             // MySQL query Select book in the database 
@@ -61,6 +72,51 @@ namespace TMTK05.Models
                     }
                 }
             }
+        }
+
+        // <summary>
+        // Update website settings
+        // </summary>
+        public bool SaveSettings()
+        {
+            // MySQL query 
+            const string result = "UPDATE site " +
+                                  "SET " +
+                                  "Header = ?, " +
+                                  "Footer = ?, " +
+                                  "FooterText = ?, " +
+                                  "ColorScheme = ? " +
+                                  "WHERE id = 1";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var showresult = new MySqlCommand(result, empConnection))
+                {
+                    // Bind parameters 
+                    showresult.Parameters.Add("Header", MySqlDbType.Int16).Value = Header;
+                    showresult.Parameters.Add("Footer", MySqlDbType.Int16).Value = Footer;
+                    showresult.Parameters.Add("FooterText", MySqlDbType.VarChar).Value = SqlInjection.SafeSqlLiteral(FooterText);
+                    showresult.Parameters.Add("ColorScheme", MySqlDbType.VarChar).Value = ColorScheme;
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        showresult.ExecuteNonQuery();
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                        return false;
+                    }
+                    finally
+                    {
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            Done = true;
+            return true;
         }
     }
 }
