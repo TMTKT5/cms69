@@ -1,6 +1,7 @@
 ﻿#region
 
 using System.Web.Mvc;
+using Bibliotheek.Attributes;
 using TMTK05.Models;
 
 #endregion
@@ -24,6 +25,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Settings/
+        [EnableCompression]
         public ActionResult Settings()
         {
             // Redirect is the user isn't an admin 
@@ -39,6 +41,7 @@ namespace TMTK05.Controllers
 
         // POST: /Settings/ 
         [HttpPost]
+        [EnableCompression]
         public ActionResult Settings(SettingsModel model)
         {
             // Redirect is the user isn't an admin 
