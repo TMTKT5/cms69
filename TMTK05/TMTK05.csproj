@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Attributes\EnableCompressionAttribute.cs" />
     <Compile Include="Classes\Cookies.cs" />
     <Compile Include="Classes\Crypt.cs" />
     <Compile Include="Classes\DatabaseConnection.cs" />
