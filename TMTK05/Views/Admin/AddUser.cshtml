@@ -1,0 +1,179 @@
+﻿@using System.Web.Optimization
+@model TMTK05.Models.UserModel
+@{
+    ViewBag.Title = "Add User";
+    ViewBag.HeaderTitle = "Add User";
+    ViewBag.HeaderSubHeading = "The more, the better, right?";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> Users
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> Add User
+        </li>
+    </ol>
+}
+
+@using (Html.BeginForm("AddUser", "Admin",
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "newUserForm"}))
+{
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Name)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+        </p>
+        <p id="fullNameError" class="col-lg-2 alert-small alert-danger">
+            Full name is required
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Username)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Username, new {@class = "form-control"})
+        </p>
+        <p id="usernameError" class="col-lg-2 alert-small alert-danger">
+            Username is required
+        </p>
+        <p id="usernameTakenError" class="col-lg-2 alert-small alert-danger">
+            Username is already taken
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Password)
+        </p>
+        <p class="col-lg-2">
+            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
+        </p>
+        <p id="passwordError" class="col-lg-2 alert-small alert-danger">
+            Password is required
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Password)
+        </p>
+        <p class="col-lg-2">
+            @Html.PasswordFor(model => model.Password, new {@id = "Password2", @class = "form-control"})
+        </p>
+        <p id="passwordMismatchError" class="col-lg-2 alert-small alert-danger">
+            Passwords are not the same
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Add user" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+        $('#fullNameError').hide();
+        $('#usernameError').hide();
+        $('#usernameTakenError').hide();
+        $('#passwordError').hide();
+        $('#passwordMismatchError').hide();
+
+        var taken = false;
+
+        function checkUsername() {
+            var url = "/Admin/UsernameCheck";
+            var username = $('#Username').val();
+            $.get(url, { input: username }, function(data) {
+                if (data == "taken") {
+                    taken = true;
+                    $('#usernameTakenError').show(500);
+                } else {
+                    taken = false;
+                    $('#usernameTakenError').hide(500);
+                }
+            });
+        }
+
+        function passwordCheck() {
+            var password = $('#Password').val();
+            var password2 = $('#Password2').val();
+
+            if (password != "" && password2 != "") {
+                if (password == password2) {
+                    $('#passwordMismatchError').hide(500);
+                } else {
+                    $('#passwordMismatchError').show(500);
+                }
+            }
+        }
+
+        $("#newUserForm").submit(function(event) {
+            var error = false;
+            if ($('#Name').val() == "") {
+                error = true;
+                $('#fullNameError').show(500);
+            }
+            if ($('#Username').val() == "") {
+                error = true;
+                $('#usernameError').show(500);
+            }
+            if ($('#Password').val() == "") {
+                error = true;
+                $('#passwordError').show(500);
+            }
+            if (error || taken) {
+                event.preventDefault();
+            } else {
+                $('#newUserForm').submit();
+            }
+        });
+
+        $('#Username').keyup(function() {
+            checkUsername();
+        });
+
+        $('#Username').change(function() {
+            checkUsername();
+        });
+
+        $('#Password').keyup(function() {
+            passwordCheck();
+        });
+
+        $('#Password').change(function() {
+            passwordCheck();
+        });
+
+        $('#Password2').keyup(function() {
+            passwordCheck();
+        });
+
+        $('#Password2').change(function() {
+            passwordCheck();
+        });
+    </script>
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            $('#Name').val("");
+            $('#Username').val("");
+            alertify.success('The new user has been added!');
+        </script>
+    }
+}

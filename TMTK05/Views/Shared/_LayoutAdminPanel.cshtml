@@ -92,7 +92,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="@((string) ViewContext.RouteData.Values["action"] =="Index" ? "active" : "")">
+                    <li class="@((string) ViewContext.RouteData.Values["action"] == "Index" ? "active" : "")">
                         <a href="@Url.Action("Index", "Admin" )"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -123,8 +123,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="@((string) ViewContext.RouteData.Values["action"] == "AddUser" ? "active" : "" )">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="users" class="collapse">
+                            <li>
+                                <a href="#">All Users</a>
+                            </li>
+                            <li>
+                                @Html.ActionLink("Add User", "AddUser", "Admin")
+                            </li>
+                        </ul>
+                    </li>
 
-                    <li class="@((string) ViewContext.RouteData.Values[" action"] == "Settings" ? "active" : "")">
+                    <li class="@((string) ViewContext.RouteData.Values["action"] == "Settings" ? "active" : "")">
                         <a href="@Url.Action("Settings", "Admin" )"><i class="fa fa-fw fa-wrench"></i> Settings</a>
                     </li>
                     <li>

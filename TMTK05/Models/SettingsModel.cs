@@ -133,7 +133,7 @@ namespace TMTK05.Models
         // <summary>
         // Update website settings 
         // </summary>
-        public bool SaveSettings()
+        public void SaveSettings()
         {
             // MySQL query 
             const string result = "UPDATE site " +
@@ -163,7 +163,7 @@ namespace TMTK05.Models
                     catch (MySqlException)
                     {
                         // MySqlException bail out 
-                        return false;
+                        return;
                     }
                     finally
                     {
@@ -172,7 +172,6 @@ namespace TMTK05.Models
                 }
             }
             Done = true;
-            return true;
         }
 
         #endregion Public Methods

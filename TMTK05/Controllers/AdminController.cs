@@ -1,7 +1,9 @@
 ﻿#region
 
+using System;
 using Bibliotheek.Attributes;
 using System.Web.Mvc;
+using TMTK05.Classes;
 using TMTK05.Models;
 
 #endregion
@@ -12,7 +14,33 @@ namespace TMTK05.Controllers
     {
         #region Public Methods
 
-        #region Public Methods
+        //
+        // GET: /AddUser/ 
+        public ActionResult AddUser()
+        {
+            // Redirect is the user isn't an admin 
+            /*if (!IdentityModel.CurrentUserAdmin)
+            {
+                return RedirectToAction("Index", "Home");
+            }*/
+
+            return View(new UserModel());
+        }
+
+        //
+        // POST: /AddUser/ 
+        [HttpPost]
+        public ActionResult AddUser(UserModel model)
+        {
+            // Redirect is the user isn't an admin 
+            /*if (!IdentityModel.CurrentUserAdmin)
+            {
+                return RedirectToAction("Index", "Home");
+            }*/
+
+            model.AddUser();
+            return View(model);
+        }
 
         //
         // GET: /Home/ 
@@ -43,6 +71,7 @@ namespace TMTK05.Controllers
             return View(model);
         }
 
+        //
         // POST: /Settings/ 
         [HttpPost]
         [EnableCompression]
@@ -54,16 +83,17 @@ namespace TMTK05.Controllers
                 return RedirectToAction("Index", "Home");
             }*/
 
-            if (model.SaveSettings())
-            {
-                ViewBag.Return = 0;
-                return View(model);
-            }
-            ViewBag.Return = 1;
+            model.SaveSettings();
             return View(model);
         }
 
-        #endregion Public Methods
+        //
+        // AJAX:
+        // GET: UsernameCheck
+        public string UsernameCheck(string input)
+        {
+            return UserModel.UsernameCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0 ? "taken" : String.Empty;
+        }
 
         #endregion Public Methods
     }
