@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Web.Security;
 using Bibliotheek.Attributes;
 using System.Web.Mvc;
 using TMTK05.Classes;
@@ -108,8 +109,16 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /SignOut/ 
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Admin");
+        }
+
+        //
         // AJAX:
-        // GET: UsernameCheck
+        // GET: /UsernameCheck/
         public string UsernameCheck(string input)
         {
             return UserModel.UsernameCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0 ? "taken" : String.Empty;
