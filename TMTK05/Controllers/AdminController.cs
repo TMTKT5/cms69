@@ -110,6 +110,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /SignOut/ 
+        [EnableCompression]
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
@@ -119,6 +120,7 @@ namespace TMTK05.Controllers
         //
         // AJAX:
         // GET: /UsernameCheck/
+        [EnableCompression]
         public string UsernameCheck(string input)
         {
             return UserModel.UsernameCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0 ? "taken" : String.Empty;
