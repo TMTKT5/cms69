@@ -124,6 +124,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/ViewProfile/ 
+        [EnableCompression]
         public ActionResult ViewProfile()
         {
             // Redirect if the user isn't logged in 
@@ -137,6 +138,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Admin/ViewProfile/ 
         [HttpPost]
+        [EnableCompression]
         public ActionResult ViewProfile(UserModel model)
         {
             // Redirect if the user isn't logged in 
