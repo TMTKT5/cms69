@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace TMTK05
 {
-    public class FilterConfig
+    public static class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
