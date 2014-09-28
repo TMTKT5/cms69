@@ -24,7 +24,7 @@
 
 @using (Html.BeginForm("ViewProfile", "Admin",
     new { ViewBag.ReturnUrl },
-    FormMethod.Post, new { @id = "newUserForm" }))
+    FormMethod.Post, new { @id = "updateUserForm" }))
 {
     <div class="row">
         <p class="col-lg-1">
@@ -81,7 +81,7 @@
             }
         }
 
-        $("#ViewProfile").submit(function(event) {
+        $("#updateUserForm").submit(function (event) {
             var error = false;
             if ($('#Password').val() == "") {
                 error = true;
@@ -90,7 +90,7 @@
             if (error) {
                 event.preventDefault();
             } else {
-                $('#ViewProfile').submit();
+                $('#updateUserForm').submit();
             }
         });
 
@@ -110,10 +110,10 @@
             passwordCheck();
         });
     </script>
-    @if (Model.Error)
+    @if (Model.Done)
     {
         <script type="text/javascript">
-            alertify.error('You have entered an invalid username or password!');
+            alertify.success('Your password has been changed!');
         </script>
     }
 }

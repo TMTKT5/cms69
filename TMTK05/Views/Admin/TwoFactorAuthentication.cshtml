@@ -1,0 +1,80 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Classes
+@using TMTK05.Models
+@model UserModel
+@{
+    ViewBag.Title = "Two Factor Authentication";
+    ViewBag.HeaderTitle = "Two Factor Authentication";
+    ViewBag.HeaderSubHeading = "Scared to get hacked, huh?";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-lock"></i> two factor authentication
+        </li>
+    </ol>
+}
+
+@using (Html.BeginForm("TwoFactorAuthentication", "Admin",
+    new { ViewBag.ReturnUrl },
+    FormMethod.Post, new { @id = "tfaForm" }))
+{
+    <div class="row">
+        <p class="col-lg-2">
+            @Html.LabelFor(model => model.TwoFactorEnabled)
+        </p>
+        <p class="col-lg-2" id="radioBttonTfa">
+            @Html.RadioButtonFor(model => model.TwoFactorEnabled, 0, new { @id = "TwoFactor0" }) @Html.LabelFor(model => model.TwoFactorEnabled, "On", new { @for = "TwoFactor0" }) <br />
+            @Html.RadioButtonFor(model => model.TwoFactorEnabled, 1, new { @id = "TwoFactor1" }) @Html.LabelFor(model => model.TwoFactorEnabled, "Off", new { @for = "TwoFactor1" })
+        </p>
+    </div>
+    <div class="row" id="tfaImage">
+        <p class="col-lg-2">
+            Add to an authentication app
+        </p>
+        <p class="col-lg-1">
+            @Html.QrCode(String.Format("otpauth://totp/{0}?secret={1}&issuer=CMS69", IdentityModel.CurrentUserName.CaptalizeFirstLetter(), Model.TwoFactorCode))
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-2">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Save" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+        $('#tfaImage').hide();
+
+        if ($("input:radio[id=TwoFactor0]").is(":checked")) {
+            $("#tfaImage").show();
+        }
+
+        $('#radioBttonTfa input:radio').click(function () {
+            if ($(this).val() == '0') {
+                $("#tfaImage").show(500);
+            } else if ($(this).val() == '1') {
+                $("#tfaImage").hide(500);
+            }
+        });
+    </script>
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            alertify.success('Your settings have been saved!');
+        </script>
+    }
+}

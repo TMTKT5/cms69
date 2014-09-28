@@ -38,10 +38,21 @@
             @Html.LabelFor(model => model.Password)
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
         </p>
         <p id="passwordError" class="col-lg-2 alert-small alert-danger">
             Password is required
+        </p>
+    </div>
+    <div class="row" id="tfaCode">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.TwoFactorCode)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.TwoFactorCode, new { @class = "form-control" })
+        </p>
+        <p id="tfaError" class="col-lg-2 alert-small alert-danger">
+            Code is required
         </p>
     </div>
     <div class="row">
@@ -59,9 +70,33 @@
     <script type="text/javascript">
         $('#usernameError').hide();
         $('#passwordError').hide();
+        $('#tfaCode').hide();
+
+        var tfa = false;
+
+        function checkTfa() {
+            var url = "/Admin/TfaCheck";
+            var username = $('#Username').val();
+            $.get(url, { input: username }, function(data) {
+                if (data == "tfa") {
+                    tfa = true;
+                    $('#tfaCode').show(500);
+                    $('#tfaError').hide();
+                } else {
+                    tfa = false;
+                    $('#tfaCode').hide(500);
+                }
+            });
+        }
 
         $("#loginForm").submit(function(event) {
             var error = false;
+            if (tfa) {
+                if ($('#TwoFactorCode').val() == "") {
+                    error = true;
+                    $('#tfaError').show(500);
+                }
+            }
             if ($('#Username').val() == "") {
                 error = true;
                 $('#usernameError').show(500);
@@ -76,8 +111,22 @@
                 $('#newUserForm').submit();
             }
         });
+
+        $('#Username').keyup(function() {
+            checkTfa();
+        });
+
+        $('#Username').change(function() {
+            checkTfa();
+        });
     </script>
-    @if (Model.Error)
+    @if (Model.ErrorCode)
+    {
+        <script type="text/javascript">
+            alertify.error('You have entered an invalid code!');
+        </script>
+    }
+    else if (Model.Error)
     {
         <script type="text/javascript">
             alertify.error('You have entered an invalid username or password!');

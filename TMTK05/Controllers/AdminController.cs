@@ -1,6 +1,8 @@
 ﻿#region
 
 using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Security;
 using Bibliotheek.Attributes;
 using System.Web.Mvc;
@@ -123,6 +125,33 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/TwoFactorAuthentication/ 
+        public ActionResult TwoFactorAuthentication()
+        {
+            var model = new UserModel();
+            model.LoadTfaSettings();
+            return View(model);
+        }
+
+        //
+        // POST: /Admin/TwoFactorAuthentication/ 
+        [HttpPost]
+        public ActionResult TwoFactorAuthentication(UserModel model)
+        {
+            model.SaveTfaSettings();
+            return View(model);
+        }
+
+        //
+        // AJAX:
+        // GET: /Admin/TfaCheck/
+        [EnableCompression]
+        public string TfaCheck(string input)
+        {
+            return UserModel.TfaCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0 ? String.Empty : "tfa";
+        }
+
+        //
         // GET: /Admin/ViewProfile/ 
         [EnableCompression]
         public ActionResult ViewProfile()
@@ -132,7 +161,8 @@ namespace TMTK05.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
-            return View();
+
+            return View(new UserModel());
         }
 
         //
