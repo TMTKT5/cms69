@@ -45,7 +45,7 @@ namespace TMTK05.Models
         // <summary>
         // Fetch website settings and return the values in a list
         // </summary>
-        public List<String> FetchSettings()
+        public static List<String> FetchSettings()
         {
             // Initial vars
             var list = new List<String>();
