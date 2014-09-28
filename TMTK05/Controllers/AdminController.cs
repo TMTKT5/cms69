@@ -20,11 +20,11 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public ActionResult AddUser()
         {
-            // Redirect is the user isn't an admin 
-            /*if (!IdentityModel.CurrentUserAdmin)
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
             {
-                return RedirectToAction("Index", "Home");
-            }*/
+                return RedirectToAction("Login", "Admin");
+            }
 
             return View(new UserModel());
         }
@@ -35,11 +35,11 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public ActionResult AddUser(UserModel model)
         {
-            // Redirect is the user isn't an admin 
-            /*if (!IdentityModel.CurrentUserAdmin)
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
             {
-                return RedirectToAction("Index", "Home");
-            }*/
+                return RedirectToAction("Login", "Admin");
+            }
 
             model.AddUser();
             return View(model);
@@ -49,11 +49,11 @@ namespace TMTK05.Controllers
         // GET: /Home/ 
         public ActionResult Index()
         {
-            // Redirect is the user isn't an admin 
-            /*if (!IdentityModel.CurrentUserAdmin)
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
             {
-                return RedirectToAction("Index", "Home");
-            }*/
+                return RedirectToAction("Login", "Admin");
+            }
 
             return View();
         }
@@ -63,6 +63,11 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public ActionResult Login()
         {
+            // Redirect if the user is logged in 
+            if (IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return View(new UserModel());
         }
 
@@ -81,11 +86,11 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public ActionResult Settings()
         {
-            // Redirect is the user isn't an admin 
-            /*if (!IdentityModel.CurrentUserAdmin)
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Index", "Home");
-            }*/
+            }
 
             var model = new SettingsModel();
             model.LoadSettings();
@@ -98,11 +103,11 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public ActionResult Settings(SettingsModel model)
         {
-            // Redirect is the user isn't an admin 
-            /*if (!IdentityModel.CurrentUserAdmin)
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
             {
-                return RedirectToAction("Index", "Home");
-            }*/
+                return RedirectToAction("Login", "Admin");
+            }
 
             model.SaveSettings();
             return View(model);
