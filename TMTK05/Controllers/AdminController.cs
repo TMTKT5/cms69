@@ -72,11 +72,7 @@ namespace TMTK05.Controllers
         public ActionResult Login(UserModel model)
         {
             model.Login();
-            if (model.Done)
-            {
-                return RedirectToAction("Index", "Admin");
-            }
-            return View(model);
+            return model.Done ? View("LoggedIn") : View(model);
         }
 
         //

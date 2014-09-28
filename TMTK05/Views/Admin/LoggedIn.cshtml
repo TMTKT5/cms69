@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Logged in";
+    ViewBag.HeaderTitle = "Logged in";
+    ViewBag.HeaderSubHeading = "Redirect";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li class="active">
+            <i class="fa fa-arrow-right"></i> login
+        </li>
+        <li class="active">
+            <i class="fa fa-arrow-right"></i> logged in
+        </li>
+    </ol>
+}
+
+<div id="countdown">
+    You're logged in! You'll be redirected in <span id="seconds">3</span> seconds.
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var sTime = new Date().getTime();
+        var countDown = 3;
+
+        function UpdateTime() {
+            var cTime = new Date().getTime();
+            var diff = cTime - sTime;
+            var seconds = countDown - Math.floor(diff / 1000);
+            if (seconds >= 0) {
+                var minutes = Math.floor(seconds / 60);
+                seconds -= minutes * 60;
+                $("#seconds").text(seconds);
+            } else {
+                window.location.replace("/Admin/Index");
+            }
+        }
+
+        UpdateTime();
+        var counter = setInterval(UpdateTime, 500);
+    </script>
+}
