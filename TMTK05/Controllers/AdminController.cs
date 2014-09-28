@@ -113,7 +113,7 @@ namespace TMTK05.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Admin");
+            return View();
         }
 
         //
