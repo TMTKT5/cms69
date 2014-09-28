@@ -59,6 +59,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Login/ 
+        [EnableCompression]
         public ActionResult Login()
         {
             return View(new UserModel());
@@ -67,6 +68,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Login/ 
         [HttpPost]
+        [EnableCompression]
         public ActionResult Login(UserModel model)
         {
             model.Login();
