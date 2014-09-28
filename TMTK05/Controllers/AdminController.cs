@@ -1,8 +1,6 @@
 ﻿#region
 
 using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web.Security;
 using Bibliotheek.Attributes;
 using System.Web.Mvc;
@@ -126,6 +124,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/TwoFactorAuthentication/ 
+        [EnableCompression]
         public ActionResult TwoFactorAuthentication()
         {
             var model = new UserModel();
@@ -136,6 +135,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Admin/TwoFactorAuthentication/ 
         [HttpPost]
+        [EnableCompression]
         public ActionResult TwoFactorAuthentication(UserModel model)
         {
             model.SaveTfaSettings();
