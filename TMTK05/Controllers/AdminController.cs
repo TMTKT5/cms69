@@ -16,6 +16,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /AddUser/ 
+        [EnableCompression]
         public ActionResult AddUser()
         {
             // Redirect is the user isn't an admin 
@@ -30,6 +31,7 @@ namespace TMTK05.Controllers
         //
         // POST: /AddUser/ 
         [HttpPost]
+        [EnableCompression]
         public ActionResult AddUser(UserModel model)
         {
             // Redirect is the user isn't an admin 
