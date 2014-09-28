@@ -18,7 +18,7 @@ namespace TMTK05
         protected void Application_Start()
         {
             ViewEngines.Engines.Clear();
-            var viewEngine = new RazorViewEngine();
+            var viewEngine = new CSharpRazorViewEngine();
             viewEngine.ViewLocationCache = new TwoLevelViewCache(viewEngine.ViewLocationCache);
             ViewEngines.Engines.Add(viewEngine);
 
