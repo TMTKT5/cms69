@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -42,7 +43,53 @@ namespace TMTK05.Models
         #region Public Methods
 
         // <summary>
-        // Fetch website settings 
+        // Fetch website settings and return the values in a list
+        // </summary>
+        public List<String> FetchSettings()
+        {
+            // Initial vars
+            var list = new List<String>();
+
+            // MySQL query Select book in the database 
+            const string result = "SELECT Header, Footer, FooterText, ColorScheme " +
+                                  "FROM site " +
+                                  "Where id = 1";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var showresult = new MySqlCommand(result, empConnection))
+                {
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = showresult.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                list.Add(myDataReader.GetString(0));
+                                list.Add(myDataReader.GetString(1));
+                                list.Add(myDataReader.GetString(2));
+                                list.Add(myDataReader.GetString(3));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException 
+                    }
+                    finally
+                    {
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return list;
+        }
+
+        // <summary>
+        // Fetch website settings and save the values to the model 
         // </summary>
         public void LoadSettings()
         {

@@ -1,4 +1,8 @@
 ﻿@using System.Web.Optimization
+@using TMTK05.Models
+@{
+    var layoutPreferences = SettingsModel.FetchSettings();
+}
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,7 +14,7 @@
     @RenderSection("Styles", false)
 </head>
 
-<body id="body" class="black">
+<body id="body" class="@layoutPreferences[3]">
     <div id="top" data-magellan-expedition="fixed" style="z-index: 999;" data-headroom>
         <div class="row">
             <div class="large-12 columns">
@@ -56,26 +60,36 @@
             </div>
         </div>
     </header>
+
     <div id="Content" class="section gray">
-       @RenderBody()
+        @RenderBody()
     </div>
-    <footer>
-        <div class="row">
-            <div class="large-6 columns">
-                <ul class="inline-list">
-                    <li>&#169; @DateTime.Now.Year - @ViewBag.FooterCopyright</li>
-                </ul>
+    @if (layoutPreferences[1] == "0")
+    {
+        <footer>
+            <div class="row">
+                <div class="large-6 columns">
+                    <ul class="inline-list">
+                        <li>&#169; @DateTime.Now.Year - @layoutPreferences[2]</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    }
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    @if (layoutPreferences[0] == "1")
+    {
+    <script type="text/javascript">
+        $('#header').hide();
+    </script>
+    }
     @Scripts.Render("~/Bundles/WebsiteScripts")
     <script type="text/javascript">
-            window.onload = function () {
-                var myElement = document.getElementById("top");
-                var headroom = new Headroom(myElement);
-                headroom.init();
-            };
+        window.onload = function () {
+            var myElement = document.getElementById("top");
+            var headroom = new Headroom(myElement);
+            headroom.init();
+        };
     </script>
     @Scripts.Render("~/bundles/foundation")
     <script type="text/javascript">
