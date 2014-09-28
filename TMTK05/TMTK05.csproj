@@ -272,6 +272,7 @@
     <None Include="Properties\PublishProfiles\Thuis.pubxml" />
     <Content Include="Views\Admin\AddUser.cshtml" />
     <Content Include="Views\Shared\_AdminPanelProfile.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

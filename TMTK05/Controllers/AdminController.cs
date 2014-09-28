@@ -58,6 +58,26 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Login/ 
+        public ActionResult Login()
+        {
+            return View(new UserModel());
+        }
+
+        //
+        // POST: /Login/ 
+        [HttpPost]
+        public ActionResult Login(UserModel model)
+        {
+            model.Login();
+            if (model.Done)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            return View(model);
+        }
+
+        //
         // GET: /Settings/ 
         [EnableCompression]
         public ActionResult Settings()

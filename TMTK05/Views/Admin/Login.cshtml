@@ -1,0 +1,86 @@
+﻿@using System.Web.Optimization
+@model TMTK05.Models.UserModel
+@{
+    ViewBag.Title = "Log in";
+    ViewBag.HeaderTitle = "Log in";
+    ViewBag.HeaderSubHeading = String.Empty;
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li class="active">
+            <i class="fa fa-arrow-right"></i> login
+        </li>
+    </ol>
+}
+
+@using (Html.BeginForm("Login", "Admin",
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "loginForm"}))
+{
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Username)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Username, new {@class = "form-control"})
+        </p>
+        <p id="usernameError" class="col-lg-2 alert-small alert-danger">
+            Username is required
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Password)
+        </p>
+        <p class="col-lg-2">
+            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
+        </p>
+        <p id="passwordError" class="col-lg-2 alert-small alert-danger">
+            Password is required
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Login" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+        $('#usernameError').hide();
+        $('#passwordError').hide();
+
+        $("#loginForm").submit(function(event) {
+            var error = false;
+            if ($('#Username').val() == "") {
+                error = true;
+                $('#usernameError').show(500);
+            }
+            if ($('#Password').val() == "") {
+                error = true;
+                $('#passwordError').show(500);
+            }
+            if (error) {
+                event.preventDefault();
+            } else {
+                $('#newUserForm').submit();
+            }
+        });
+    </script>
+    @if (Model.Error)
+    {
+        <script type="text/javascript">
+            alertify.error('You have entered an invalid username or password!');
+        </script>
+    }
+}

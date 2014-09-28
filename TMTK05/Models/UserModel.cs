@@ -1,7 +1,9 @@
 ﻿#region
 
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq.Expressions;
+using System.Security.Permissions;
 using MySql.Data.MySqlClient;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +21,7 @@ namespace TMTK05.Models
         public UserModel()
         {
             Done = false;
+            Error = false;
         }
 
         #endregion Public Constructors
@@ -35,7 +38,11 @@ namespace TMTK05.Models
         public string Password { get; set; }
 
         public string Salt { get; set; }
+
         public bool Done { get; set; }
+        public bool Error { get; set; }
+
+        public int Owner { get; set; }
 
         #endregion Public Properties
 
@@ -85,6 +92,66 @@ namespace TMTK05.Models
                 }
             }
             Done = true;
+        }
+        
+        // <summary>
+        // Check if the username and password are the same as in the database
+        // </summery>
+        public void Login()
+        {
+            // Run model through sql injection prevention
+            var username = SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(Username));
+            var savedPassword = String.Empty;
+            var savedSalt = String.Empty;
+            var savedId = String.Empty;
+
+            // MySql query
+            const string result = "SELECT Id, Password, Salt, Owner " +
+                                  "FROM users " +
+                                  "WHERE Username = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var showResult = new MySqlCommand(result, empConnection))
+                {
+                    // Bind parameters
+                    showResult.Parameters.Add("Username", MySqlDbType.VarChar).Value = username;
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command
+                        using (var myDataReader = showResult.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                savedId = myDataReader.GetValue(0).ToString();
+                                savedPassword = myDataReader.GetString(1);
+                                savedSalt = myDataReader.GetString(2);
+                                Owner = Convert.ToInt16(myDataReader.GetValue(3));
+                            }
+                        }
+
+                        // Hash the password and check if the hash is the same as the saved password
+                        if (Crypt.ValidatePassword(Password, savedPassword, savedSalt))
+                        {
+                            Cookies.MakeCookie(username, savedId, Owner.ToString(CultureInfo.InvariantCulture));
+                            Done = true;
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out
+                        Error = true;
+                    }
+                    finally
+                    {
+                        // Always close the connection
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            Error = true;
         }
 
         // <summary>

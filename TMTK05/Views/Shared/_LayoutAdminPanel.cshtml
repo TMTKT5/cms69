@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@using TMTK05.Models
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,53 +76,60 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="@((string) ViewContext.RouteData.Values["action"] == "Index" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Admin" )"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    @if (IdentityModel.CurrentUserLoggedIn)
+                    {
+                        <li class="@((string) ViewContext.RouteData.Values["action"] == "Index" ? "active" : "")">
+                            <a href="@Url.Action("Index", "Admin")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="pages" class="collapse">
+                                <li>
+                                    <a href="#">New Page</a>
+                                </li>
+                                <li>
+                                    <a href="#">Edit Page</a>
+                                </li>
+                                <li>
+                                    <a href="#">Upload Media</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-edit"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="posts" class="collapse">
+                                <li>
+                                    <a href="#">New Post</a>
+                                </li>
+                                <li>
+                                    <a href="#">Edit Post</a>
+                                </li>
+                                <li>
+                                    <a href="#">Upload Media</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="@((string) ViewContext.RouteData.Values["action"] == "AddUser" ? "active" : "" )">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="users" class="collapse">
+                                <li>
+                                    <a href="#">All Users</a>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Add User", "AddUser", "Admin")
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="@((string) ViewContext.RouteData.Values["action"] == "Settings" ? "active" : "")">
+                            <a href="@Url.Action("Settings", "Admin")"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+                        </li>
+                    }
+                    else
+                    {
+                    <li class="@((string) ViewContext.RouteData.Values["action"] == "Login" ? "active" : "")">
+                        <a href="@Url.Action("Login", "Admin" )"><i class="fa fa-fw fa-arrow-right"></i> Login</a>
                     </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="pages" class="collapse">
-                            <li>
-                                <a href="#">New Page</a>
-                            </li>
-                            <li>
-                                <a href="#">Edit Page</a>
-                            </li>
-                            <li>
-                                <a href="#">Upload Media</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-edit"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="posts" class="collapse">
-                            <li>
-                                <a href="#">New Post</a>
-                            </li>
-                            <li>
-                                <a href="#">Edit Post</a>
-                            </li>
-                            <li>
-                                <a href="#">Upload Media</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="@((string) ViewContext.RouteData.Values["action"] == "AddUser" ? "active" : "" )">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="users" class="collapse">
-                            <li>
-                                <a href="#">All Users</a>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Add User", "AddUser", "Admin")
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="@((string) ViewContext.RouteData.Values["action"] == "Settings" ? "active" : "")">
-                        <a href="@Url.Action("Settings", "Admin" )"><i class="fa fa-fw fa-wrench"></i> Settings</a>
-                    </li>
-                    <li>
+                    }
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
