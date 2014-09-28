@@ -1,0 +1,53 @@
+﻿@using System.Web.Optimization
+@model TMTK05.Models.UserModel
+@{
+    ViewBag.Title = "All Users";
+    ViewBag.HeaderTitle = "All Users";
+    ViewBag.HeaderSubHeading = "Gotta catch 'em all";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> Users
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> All User
+        </li>
+    </ol>
+}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>Testing von test</td>
+                <td>Test</td>
+                <td>Test</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+
+    </script>
+}

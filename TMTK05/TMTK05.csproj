@@ -148,6 +148,7 @@
     <Compile Include="Classes\Base32Encoder.cs" />
     <Compile Include="Classes\Cookies.cs" />
     <Compile Include="Classes\Crypt.cs" />
+    <Compile Include="Classes\CSharpRazorViewEngine.cs" />
     <Compile Include="Classes\DatabaseConnection.cs" />
     <Compile Include="Classes\HashedOneTimePassword.cs" />
     <Compile Include="Classes\Message.cs" />
@@ -286,6 +287,7 @@
     <Content Include="Views\Admin\SignOut.cshtml" />
     <Content Include="Views\Admin\ViewProfile.cshtml" />
     <Content Include="Views\Admin\TwoFactorAuthentication.cshtml" />
+    <Content Include="Views\Admin\AllUsers.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

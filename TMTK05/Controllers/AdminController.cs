@@ -30,6 +30,19 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/AllUsers/ 
+        public ActionResult AllUsers()
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View();
+        }
+
+        //
         // POST: /Admin/AddUser/ 
         [HttpPost]
         [EnableCompression]
