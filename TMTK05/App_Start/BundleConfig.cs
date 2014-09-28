@@ -11,6 +11,7 @@ namespace TMTK05
 {
     public static class BundleConfig
     {
+
         #region Public Methods
 
         public static void RegisterBundles(BundleCollection bundles)
@@ -100,5 +101,6 @@ namespace TMTK05
         }
 
         #endregion Public Methods
+
     }
 }

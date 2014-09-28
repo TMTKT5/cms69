@@ -9,6 +9,8 @@ namespace TMTK05
 {
     public static class RouteConfig
     {
+        #region Public Methods
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -17,5 +19,7 @@ namespace TMTK05
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional}
                 );
         }
+
+        #endregion Public Methods
     }
 }

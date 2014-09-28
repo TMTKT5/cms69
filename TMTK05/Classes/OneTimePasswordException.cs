@@ -1,12 +1,17 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Runtime.Serialization;
+
+#endregion
 
 namespace TMTK05.Classes
 {
     public class OneTimePasswordException : Exception
     {
+        #region Public Constructors
+
         public OneTimePasswordException()
-            : base()
         {
         }
 
@@ -24,5 +29,7 @@ namespace TMTK05.Classes
             : base(info, context)
         {
         }
+
+        #endregion Public Constructors
     }
 }

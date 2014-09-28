@@ -1,10 +1,10 @@
 ﻿#region
 
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using MySql.Data.MySqlClient;
 using TMTK05.Classes;
 
 #endregion
@@ -43,11 +43,11 @@ namespace TMTK05.Models
         #region Public Methods
 
         // <summary>
-        // Fetch website settings and return the values in a list
+        // Fetch website settings and return the values in a list 
         // </summary>
         public static List<String> FetchSettings()
         {
-            // Initial vars
+            // Initial vars 
             var list = new List<String>();
 
             // MySQL query Select book in the database 
@@ -151,7 +151,8 @@ namespace TMTK05.Models
                     // Bind parameters 
                     showresult.Parameters.Add("Header", MySqlDbType.Int16).Value = Header;
                     showresult.Parameters.Add("Footer", MySqlDbType.Int16).Value = Footer;
-                    showresult.Parameters.Add("FooterText", MySqlDbType.VarChar).Value = SqlInjection.SafeSqlLiteral(FooterText);
+                    showresult.Parameters.Add("FooterText", MySqlDbType.VarChar).Value =
+                        SqlInjection.SafeSqlLiteral(FooterText);
                     showresult.Parameters.Add("ColorScheme", MySqlDbType.VarChar).Value = ColorScheme;
 
                     try
