@@ -153,6 +153,49 @@ namespace TMTK05.Models
             }
             Error = true;
         }
+        
+        // <summary>
+        // Update saved password
+        // </summery>
+        public void UpdateUser()
+        {
+            var salt = Crypt.GetRandomSalt();
+
+            // MySql query
+            const string updateStatement = "UPDATE users " +
+                                           "SET Password = ?, " +
+                                           "Salt = ? " +
+                                           "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var updateCommand = new MySqlCommand(updateStatement, empConnection))
+                {
+                    // Bind parameters
+                    updateCommand.Parameters.Add("Password", MySqlDbType.VarChar).Value = Crypt.HashPassword(Password, salt);
+                    updateCommand.Parameters.Add("Salt", MySqlDbType.VarChar).Value = salt;
+                    updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = IdentityModel.CurrentUserId;
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command
+                        updateCommand.ExecuteNonQuery();
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out
+                        return;
+                    }
+                    finally
+                    {
+                        // Always close the connection
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            Done = true;
+        }
 
         // <summary>
         // Check if there is already an user with this username

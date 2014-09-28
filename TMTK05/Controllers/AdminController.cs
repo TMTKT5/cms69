@@ -16,7 +16,7 @@ namespace TMTK05.Controllers
         #region Public Methods
 
         //
-        // GET: /AddUser/ 
+        // GET: /Admin/AddUser/ 
         [EnableCompression]
         public ActionResult AddUser()
         {
@@ -30,7 +30,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /AddUser/ 
+        // POST: /Admin/AddUser/ 
         [HttpPost]
         [EnableCompression]
         public ActionResult AddUser(UserModel model)
@@ -46,7 +46,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Home/ 
+        // GET: /Admin/Home/ 
         public ActionResult Index()
         {
             // Redirect if the user isn't logged in 
@@ -59,7 +59,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Login/ 
+        // GET: /Admin/Login/ 
         [EnableCompression]
         public ActionResult Login()
         {
@@ -72,7 +72,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /Login/ 
+        // POST: /Admin/Login/ 
         [HttpPost]
         [EnableCompression]
         public ActionResult Login(UserModel model)
@@ -82,7 +82,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Settings/ 
+        // GET: /Admin/Settings/ 
         [EnableCompression]
         public ActionResult Settings()
         {
@@ -98,7 +98,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /Settings/ 
+        // POST: /Admin/Settings/ 
         [HttpPost]
         [EnableCompression]
         public ActionResult Settings(SettingsModel model)
@@ -114,7 +114,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /SignOut/ 
+        // GET: /Admin/SignOut/ 
         [EnableCompression]
         public ActionResult SignOut()
         {
@@ -123,8 +123,34 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/ViewProfile/ 
+        public ActionResult ViewProfile()
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            return View();
+        }
+
+        //
+        // POST: /Admin/ViewProfile/ 
+        [HttpPost]
+        public ActionResult ViewProfile(UserModel model)
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            model.UpdateUser();
+            return View(model);
+        }
+
+        //
         // AJAX:
-        // GET: /UsernameCheck/
+        // GET: /Admin/UsernameCheck/
         [EnableCompression]
         public string UsernameCheck(string input)
         {

@@ -1,0 +1,119 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Models
+@model UserModel
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.HeaderTitle = "Profile";
+    ViewBag.HeaderSubHeading = "Is it me you're looking for?";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> Profile
+        </li>
+    </ol>
+}
+
+@using (Html.BeginForm("ViewProfile", "Admin",
+    new { ViewBag.ReturnUrl },
+    FormMethod.Post, new { @id = "newUserForm" }))
+{
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Password)
+        </p>
+        <p class="col-lg-2">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        </p>
+        <p id="passwordError" class="col-lg-2 alert-small alert-danger">
+            Password is required
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Password, new { @for = "Password2" })
+        </p>
+        <p class="col-lg-2">
+            @Html.PasswordFor(model => model.Password, new { @id = "Password2", @class = "form-control" })
+        </p>
+        <p id="passwordMismatchError" class="col-lg-2 alert-small alert-danger">
+            Passwords are not the same
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Change password" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+        $('#passwordError').hide();
+        $('#passwordMismatchError').hide();
+
+        var error = false;
+
+        function passwordCheck() {
+            var password = $('#Password').val();
+            var password2 = $('#Password2').val();
+
+            if (password != "" && password2 != "") {
+                if (password == password2) {
+                    error = false;
+                    $('#passwordMismatchError').hide(500);
+                } else {
+                    error = true;
+                    $('#passwordMismatchError').show(500);
+                }
+            }
+        }
+
+        $("#ViewProfile").submit(function(event) {
+            var error = false;
+            if ($('#Password').val() == "") {
+                error = true;
+                $('#passwordError').show(500);
+            }
+            if (error) {
+                event.preventDefault();
+            } else {
+                $('#ViewProfile').submit();
+            }
+        });
+
+        $('#Password').keyup(function() {
+            passwordCheck();
+        });
+
+        $('#Password').change(function() {
+            passwordCheck();
+        });
+
+        $('#Password2').keyup(function() {
+            passwordCheck();
+        });
+
+        $('#Password2').change(function() {
+            passwordCheck();
+        });
+    </script>
+    @if (Model.Error)
+    {
+        <script type="text/javascript">
+            alertify.error('You have entered an invalid username or password!');
+        </script>
+    }
+}
