@@ -62,7 +62,7 @@ namespace TMTK05.Models
         // </summary>
         public static int TfaCheck(string username)
         {
-            var tfa = 0;
+            var tfa = 1;
 
             // MySQL query 
             const string selectStatment = "SELECT Tfa " +
