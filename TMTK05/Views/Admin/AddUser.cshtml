@@ -66,7 +66,7 @@
     </div>
     <div class="row">
         <p class="col-lg-1">
-            @Html.LabelFor(model => model.Password)
+            @Html.LabelFor(model => model.Password, new {@for = "Password2"})
         </p>
         <p class="col-lg-2">
             @Html.PasswordFor(model => model.Password, new {@id = "Password2", @class = "form-control"})
