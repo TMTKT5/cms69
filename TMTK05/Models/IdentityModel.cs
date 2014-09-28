@@ -17,7 +17,6 @@ namespace TMTK05.Models
         {
             get
             {
-                if (!HttpContext.Current.Request.IsAuthenticated) return false;
                 var user = HttpContext.Current.User.Identity as FormsIdentity;
                 // ReSharper disable PossibleNullReferenceException 
                 var ticket = user.Ticket;
@@ -30,14 +29,23 @@ namespace TMTK05.Models
         {
             get
             {
-                var userId = String.Empty;
+                var user = HttpContext.Current.User.Identity as FormsIdentity;
+                // ReSharper disable PossibleNullReferenceException 
+                var ticket = user.Ticket;
+                // ReSharper restore PossibleNullReferenceException 
+                return ticket.UserData.Split('|')[0];
+            }
+        }
 
-                if (HttpContext.Current.Request.IsAuthenticated)
-                {
-                    userId = HttpContext.Current.User.Identity.Name.Split('|')[0];
-                }
-
-                return userId.ToString(CultureInfo.InvariantCulture);
+        public static string CurrentUserName
+        {
+            get
+            {
+                var user = HttpContext.Current.User.Identity as FormsIdentity;
+                // ReSharper disable PossibleNullReferenceException 
+                var ticket = user.Ticket;
+                // ReSharper restore PossibleNullReferenceException 
+                return ticket.Name;
             }
         }
 
