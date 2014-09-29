@@ -112,17 +112,26 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="@(((string) ViewContext.RouteData.Values["action"] == "AddUser" || (string) ViewContext.RouteData.Values["action"] == "AllUsers") ? "active" : "" )">
-                            <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="users" class="collapse">
-                                <li>
-                                    @Html.ActionLink("All User", "AllUsers", "Admin")
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Add User", "AddUser", "Admin")
-                                </li>
-                            </ul>
-                        </li>
+                        if (IdentityModel.CurrentUserOwner)
+                        {
+                            <li class="@(((string) ViewContext.RouteData.Values["action"] == "AddUser" || (string) ViewContext.RouteData.Values["action"] == "AllUsers") ? "active" : "" )">
+                                <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="users" class="collapse">
+                                    <li>
+                                        @Html.ActionLink("All User", "AllUsers", "Admin")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Add User", "AddUser", "Admin")
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="@((string) ViewContext.RouteData.Values["action"] == "AllUsers" ? "active" : "")">
+                                <a href="@Url.Action("AllUsers", "Admin")"><i class="fa fa-fw fa-user"></i> Users</a>
+                            </li>
+                        }
                         <li class="@((string) ViewContext.RouteData.Values["action"] == "Settings" ? "active" : "")">
                             <a href="@Url.Action("Settings", "Admin")"><i class="fa fa-fw fa-wrench"></i> Settings</a>
                         </li>
