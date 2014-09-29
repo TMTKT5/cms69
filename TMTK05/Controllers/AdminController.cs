@@ -31,6 +31,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/AllUsers/ 
+        [EnableCompression]
         public ActionResult AllUsers()
         {
             // Redirect if the user isn't logged in 
@@ -61,6 +62,7 @@ namespace TMTK05.Controllers
         //
         // AJAX:
         // GET: /Admin/DeleteUser/
+        [EnableCompression]
         public bool DeleteUser(int input)
         {
             return UserModel.DeleteUser(input);
