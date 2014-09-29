@@ -28,7 +28,7 @@
 }
 
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-hover sortable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -75,6 +75,8 @@
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    @Scripts.Render("~/Bundles/SortableScripts")
+
     <script type="text/javascript">
         function confirmDelete(accountId, fullName) {
             alertify.confirm("Delete", "Are you sure you want to delete " + fullName + "?",

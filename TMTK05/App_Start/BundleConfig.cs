@@ -77,6 +77,13 @@ namespace TMTK05
             websiteTabsScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteTabsScriptsBundle);
 
+            var sortableScriptsBundle = new CustomScriptBundle("~/Bundles/SortableScripts");
+            sortableScriptsBundle.Include(
+                "~/Js/sorttable.js");
+
+            sortableScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(sortableScriptsBundle);
+
             var websiteStylesBundle = new CustomStyleBundle("~/Bundles/WebsiteStyles");
             websiteStylesBundle.Include(
                 "~/Css/normalize.css",
