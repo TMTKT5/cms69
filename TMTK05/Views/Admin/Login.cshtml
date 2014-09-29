@@ -20,14 +20,14 @@
 
 @using (Html.BeginForm("Login", "Admin",
     new {ViewBag.ReturnUrl},
-    FormMethod.Post, new {@id = "loginForm"}))
+    FormMethod.Post, new { @id = "loginForm", @autocomplete = "off" }))
 {
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Username)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Username, new {@class = "form-control"})
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
         </p>
         <p id="usernameError" class="col-lg-2 alert-small alert-danger">
             Username is required
