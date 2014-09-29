@@ -112,11 +112,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="@((string) ViewContext.RouteData.Values["action"] == "AddUser" ? "active" : "" )">
+                        <li class="@(((string) ViewContext.RouteData.Values["action"] == "AddUser" || (string) ViewContext.RouteData.Values["action"] == "AllUsers") ? "active" : "" )">
                             <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="users" class="collapse">
                                 <li>
-                                    <a href="#">All Users</a>
+                                    @Html.ActionLink("All User", "AllUsers", "Admin")
                                 </li>
                                 <li>
                                     @Html.ActionLink("Add User", "AddUser", "Admin")
