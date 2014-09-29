@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "All Users";
     ViewBag.HeaderTitle = "All Users";
-    ViewBag.HeaderSubHeading = "Gotta catch 'em all";
+    ViewBag.HeaderSubHeading = "Overview";
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
 
     var userInfo = UserModel.AllUsers();
@@ -35,7 +35,10 @@
                 <th>Name</th>
                 <th>Username</th>
                 <th>Function</th>
-                <th>Delete</th>
+                @if (IdentityModel.CurrentUserOwner)
+                {
+                    <th>Delete</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -61,12 +64,15 @@
                             <span>Owner</span>
                         }
                     </td>
-                    <td>
-                        @if (@userInfo[i * 4 - 1] == "0")
-                        {
+                    @if (IdentityModel.CurrentUserOwner)
+                    {
+                        <td>
+                            @if (@userInfo[i * 4 - 1] == "0")
+                            {
                             <button class="btn btn-danger" onclick="confirmDelete(@userInfo[i * 4 - 4], '@userInfo[i * 4 - 3]') ">Delete user</button>
-                        }
-                    </td>
+                            }
+                        </td>
+                    }
                 </tr>
             }
         </tbody>
@@ -76,21 +82,23 @@
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
     @Scripts.Render("~/Bundles/SortableScripts")
-
-    <script type="text/javascript">
-        function confirmDelete(accountId, fullName) {
-            alertify.confirm("Delete", "Are you sure you want to delete " + fullName + "?",
-                function () {
-                    var url = "/Admin/DeleteUser";
-                    $.get(url, { input: accountId }, function (data) {
-                        if (data == "True") {
-                            alertify.success(fullName + " deleted!");
-                            $('#' + accountId).hide(500);
-                        } else {
-                            alertify.error("Oops something went wrong!");
-                        }
-                    });
-                }, null).setting({ 'labels': { ok: 'Yes', cancel: 'No' }, 'movable': false });
-        }
-    </script>
+    @if (IdentityModel.CurrentUserOwner)
+    {
+        <script type="text/javascript">
+            function confirmDelete(accountId, fullName) {
+                alertify.confirm("Delete", "Are you sure you want to delete " + fullName + "?",
+                    function() {
+                        var url = "/Admin/DeleteUser";
+                        $.get(url, { input: accountId }, function(data) {
+                            if (data == "True") {
+                                alertify.success(fullName + " deleted!");
+                                $('#' + accountId).hide(500);
+                            } else {
+                                alertify.error("Oops something went wrong!");
+                            }
+                        });
+                    }, null).setting({ 'labels': { ok: 'Yes', cancel: 'No' }, 'movable': false });
+            }
+        </script>
+    }
 }
