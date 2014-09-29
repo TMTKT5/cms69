@@ -59,6 +59,14 @@ namespace TMTK05.Controllers
         }
 
         //
+        // AJAX:
+        // GET: /Admin/DeleteUser/
+        public bool DeleteUser(int input)
+        {
+            return UserModel.DeleteUser(input);
+        }
+
+        //
         // GET: /Admin/Home/ 
         public ActionResult Index()
         {

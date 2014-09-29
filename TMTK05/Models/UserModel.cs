@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -56,6 +57,44 @@ namespace TMTK05.Models
         #endregion Public Properties
 
         #region Public Methods
+
+        // <summary>
+        // Delete user from the database 
+        // </summary>
+        public static bool DeleteUser(int id)
+        {
+            // MySQL query 
+            const string deleteStatment = "DELETE " +
+                                          "FROM users " +
+                                          "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var deleteCommand = new MySqlCommand(deleteStatment, empConnection))
+                {
+                    // Bind parameters 
+                    deleteCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        deleteCommand.ExecuteScalar();
+                        return true;
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException 
+                        return false;
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+        }
 
         // <summary>
         // Check if the is already an user with this username 
@@ -196,6 +235,51 @@ namespace TMTK05.Models
                 }
             }
             Done = true;
+        }
+
+        // <summary> Adds a new user to the database </summery> 
+        public static List<String> AllUsers()
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Id, Name, Username, Owner " +
+                                          "FROM users";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                list.Add(myDataReader.GetString(0));
+                                list.Add(myDataReader.GetString(1));
+                                list.Add(myDataReader.GetString(2));
+                                list.Add(myDataReader.GetString(3));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return list;
         }
 
         // <summary>

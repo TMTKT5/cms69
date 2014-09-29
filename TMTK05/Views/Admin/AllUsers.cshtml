@@ -1,10 +1,13 @@
 ﻿@using System.Web.Optimization
-@model TMTK05.Models.UserModel
+@using TMTK05.Classes
+@using TMTK05.Models
 @{
     ViewBag.Title = "All Users";
     ViewBag.HeaderTitle = "All Users";
     ViewBag.HeaderSubHeading = "Gotta catch 'em all";
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+
+    var userInfo = UserModel.AllUsers();
 }
 @section Styles {
     @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
@@ -31,16 +34,41 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Username</th>
+                <th>Function</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>0</td>
-                <td>Testing von test</td>
-                <td>Test</td>
-                <td>Test</td>
-            </tr>
+            @for (var i = 1; i <= userInfo.Count / 4; i++)
+            {
+                <tr style="height: 51px" id="@userInfo[i * 4 - 4]">
+                    <td style="vertical-align: middle">
+                        @userInfo[i * 4 - 4]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @userInfo[i * 4 - 3]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @userInfo[i * 4 - 2].CaptalizeFirstLetter()
+                    </td>
+                    <td style="vertical-align: middle">
+                        @if (userInfo[i * 4 - 1] == "0")
+                        {
+                            <span>Blogger</span>
+                        }
+                        else
+                        {
+                            <span>Owner</span>
+                        }
+                    </td>
+                    <td>
+                        @if (@userInfo[i * 4 - 1] == "0")
+                        {
+                            <button class="btn btn-danger" onclick="confirmDelete(@userInfo[i * 4 - 4], '@userInfo[i * 4 - 3]') ">Delete user</button>
+                        }
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
@@ -48,6 +76,19 @@
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
     <script type="text/javascript">
-
+        function confirmDelete(accountId, fullName) {
+            alertify.confirm("Delete", "Are you sure you want to delete " + fullName + "?",
+                function () {
+                    var url = "/Admin/DeleteUser";
+                    $.get(url, { input: accountId }, function (data) {
+                        if (data == "True") {
+                            alertify.success(fullName + " deleted!");
+                            $('#' + accountId).hide(500);
+                        } else {
+                            alertify.error("Oops something went wrong!");
+                        }
+                    });
+                }, null).setting({ 'labels': { ok: 'Yes', cancel: 'No' }, 'movable': false });
+        }
     </script>
 }
