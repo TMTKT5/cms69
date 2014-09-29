@@ -1,9 +1,9 @@
 ﻿#region
 
 using System;
+using System.Web.Mvc;
 using System.Web.Security;
 using Bibliotheek.Attributes;
-using System.Web.Mvc;
 using TMTK05.Classes;
 using TMTK05.Models;
 
@@ -30,20 +30,6 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/AllUsers/ 
-        [EnableCompression]
-        public ActionResult AllUsers()
-        {
-            // Redirect if the user isn't logged in 
-            if (!IdentityModel.CurrentUserLoggedIn)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            return View();
-        }
-
-        //
         // POST: /Admin/AddUser/ 
         [HttpPost]
         [EnableCompression]
@@ -60,17 +46,9 @@ namespace TMTK05.Controllers
         }
 
         //
-        // AJAX:
-        // GET: /Admin/DeleteUser/
+        // GET: /Admin/AllUsers/ 
         [EnableCompression]
-        public bool DeleteUser(int input)
-        {
-            return UserModel.DeleteUser(input);
-        }
-
-        //
-        // GET: /Admin/Home/ 
-        public ActionResult Index()
+        public ActionResult AllUsers()
         {
             // Redirect if the user isn't logged in 
             if (!IdentityModel.CurrentUserLoggedIn)
@@ -82,11 +60,33 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/Login/ 
+        // AJAX:
+        // GET: /Admin/DeleteUser/
+        [EnableCompression]
+        public bool DeleteUser(int input)
+        {
+            return UserModel.DeleteUser(input);
+        }
+
+        //
+        // GET: /Admin/Home/
+        public ActionResult Index()
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View();
+        }
+
+        //
+        // GET: /Admin/Login/
         [EnableCompression]
         public ActionResult Login()
         {
-            // Redirect if the user is logged in 
+            // Redirect if the user is logged in
             if (IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Index", "Admin");
@@ -95,7 +95,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /Admin/Login/ 
+        // POST: /Admin/Login/
         [HttpPost]
         [EnableCompression]
         public ActionResult Login(UserModel model)
@@ -105,11 +105,11 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/Settings/ 
+        // GET: /Admin/Settings/
         [EnableCompression]
         public ActionResult Settings()
         {
-            // Redirect if the user isn't logged in 
+            // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Index", "Home");
@@ -121,12 +121,12 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /Admin/Settings/ 
+        // POST: /Admin/Settings/
         [HttpPost]
         [EnableCompression]
         public ActionResult Settings(SettingsModel model)
         {
-            // Redirect if the user isn't logged in 
+            // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Login", "Admin");
@@ -137,7 +137,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/SignOut/ 
+        // GET: /Admin/SignOut/
         [EnableCompression]
         public ActionResult SignOut()
         {
@@ -146,7 +146,18 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/TwoFactorAuthentication/ 
+        // AJAX:
+        // GET: /Admin/TfaCheck/
+        [EnableCompression]
+        public string TfaCheck(string input)
+        {
+            return UserModel.TfaCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0
+                ? String.Empty
+                : "tfa";
+        }
+
+        //
+        // GET: /Admin/TwoFactorAuthentication/
         [EnableCompression]
         public ActionResult TwoFactorAuthentication()
         {
@@ -156,7 +167,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /Admin/TwoFactorAuthentication/ 
+        // POST: /Admin/TwoFactorAuthentication/
         [HttpPost]
         [EnableCompression]
         public ActionResult TwoFactorAuthentication(UserModel model)
@@ -167,19 +178,21 @@ namespace TMTK05.Controllers
 
         //
         // AJAX:
-        // GET: /Admin/TfaCheck/
+        // GET: /Admin/UsernameCheck/
         [EnableCompression]
-        public string TfaCheck(string input)
+        public string UsernameCheck(string input)
         {
-            return UserModel.TfaCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0 ? String.Empty : "tfa";
+            return UserModel.UsernameCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0
+                ? "taken"
+                : String.Empty;
         }
 
         //
-        // GET: /Admin/ViewProfile/ 
+        // GET: /Admin/ViewProfile/
         [EnableCompression]
         public ActionResult ViewProfile()
         {
-            // Redirect if the user isn't logged in 
+            // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Login", "Admin");
@@ -189,27 +202,18 @@ namespace TMTK05.Controllers
         }
 
         //
-        // POST: /Admin/ViewProfile/ 
+        // POST: /Admin/ViewProfile/
         [HttpPost]
         [EnableCompression]
         public ActionResult ViewProfile(UserModel model)
         {
-            // Redirect if the user isn't logged in 
+            // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Login", "Admin");
             }
             model.UpdateUser();
             return View(model);
-        }
-
-        //
-        // AJAX:
-        // GET: /Admin/UsernameCheck/
-        [EnableCompression]
-        public string UsernameCheck(string input)
-        {
-            return UserModel.UsernameCheck(SqlInjection.SafeSqlLiteral(StringManipulation.ToLowerFast(input))) > 0 ? "taken" : String.Empty;
         }
 
         #endregion Public Methods
