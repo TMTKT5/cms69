@@ -28,6 +28,17 @@
 {
     <div class="row">
         <p class="col-lg-1">
+            @Html.LabelFor(model => model.OldPassword)
+        </p>
+        <p class="col-lg-2">
+            @Html.PasswordFor(model => model.OldPassword, new { @class = "form-control" })
+        </p>
+        <p id="oldPasswordError" class="col-lg-2 alert-small alert-danger">
+            Old Password is required
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
             @Html.LabelFor(model => model.Password)
         </p>
         <p class="col-lg-2">
@@ -61,6 +72,7 @@
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
     <script type="text/javascript">
+        $('#oldPasswordError').hide();
         $('#passwordError').hide();
         $('#passwordMismatchError').hide();
 
@@ -86,6 +98,10 @@
             if ($('#Password').val() == "") {
                 error = true;
                 $('#passwordError').show(500);
+            }
+            if ($('#OldPassword').val() == "") {
+                error = true;
+                $('#oldPasswordError').show(500);
             }
             if (error) {
                 event.preventDefault();

@@ -40,10 +40,11 @@ namespace TMTK05.Models
 
         public int Owner { get; set; }
 
+        [Display(Name = "Old password:")]
+        public string OldPassword { get; set; }
+
         [Display(Name = "Password:")]
         public string Password { get; set; }
-
-        public string Salt { get; set; }
 
         [Display(Name = "Code")]
         public string TwoFactorCode { get; set; }
