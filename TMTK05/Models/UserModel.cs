@@ -23,6 +23,7 @@ namespace TMTK05.Models
             Done = false;
             Error = false;
             ErrorCode = false;
+            OldFalse = false;
         }
 
         #endregion Public Constructors
@@ -39,6 +40,8 @@ namespace TMTK05.Models
         public string Name { get; set; }
 
         public int Owner { get; set; }
+
+        public bool OldFalse { get; set; }
 
         [Display(Name = "Old password:")]
         public string OldPassword { get; set; }
@@ -442,34 +445,85 @@ namespace TMTK05.Models
         // <summary> Update saved password </summery> 
         public void UpdateUser()
         {
-            var salt = Crypt.GetRandomSalt();
+            // Run model through sql injection prevention 
+            var savedPassword = String.Empty;
+            var savedSalt = String.Empty;
+            var savedId = String.Empty;
+            var code = String.Empty;
 
             // MySql query 
-            const string updateStatement = "UPDATE users " +
-                                           "SET Password = ?, " +
-                                           "Salt = ? " +
-                                           "WHERE Id = ?";
+            const string result = "SELECT Password, Salt " +
+                                  "FROM users " +
+                                  "WHERE id = ?";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
             {
-                using (var updateCommand = new MySqlCommand(updateStatement, empConnection))
+                using (var showResult = new MySqlCommand(result, empConnection))
                 {
                     // Bind parameters 
-                    updateCommand.Parameters.Add("Password", MySqlDbType.VarChar).Value = Crypt.HashPassword(Password,
-                        salt);
-                    updateCommand.Parameters.Add("Salt", MySqlDbType.VarChar).Value = salt;
-                    updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = IdentityModel.CurrentUserId;
+                    showResult.Parameters.Add("Id", MySqlDbType.Int16).Value = IdentityModel.CurrentUserId;
 
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
                         // Execute command 
-                        updateCommand.ExecuteNonQuery();
+                        using (var myDataReader = showResult.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                savedPassword = myDataReader.GetString(0);
+                                savedSalt = myDataReader.GetString(1);
+                            }
+                        }
+
+                        // Hash the password and check if the hash is the same as the saved password 
+                        if (Crypt.ValidatePassword(OldPassword, savedPassword, savedSalt))
+                        {
+                            var salt = Crypt.GetRandomSalt();
+
+                            // MySql query 
+                            const string updateStatement = "UPDATE users " +
+                                                           "SET Password = ?, " +
+                                                           "Salt = ? " +
+                                                           "WHERE Id = ?";
+
+                            using (var updateCommand = new MySqlCommand(updateStatement, empConnection))
+                            {
+                                // Bind parameters 
+                                updateCommand.Parameters.Add("Password", MySqlDbType.VarChar).Value = Crypt.HashPassword(Password,
+                                    salt);
+                                updateCommand.Parameters.Add("Salt", MySqlDbType.VarChar).Value = salt;
+                                updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = IdentityModel.CurrentUserId;
+
+                                try
+                                {
+                                    DatabaseConnection.DatabaseOpen(empConnection);
+                                    // Execute command 
+                                    updateCommand.ExecuteNonQuery();
+                                }
+                                catch (MySqlException)
+                                {
+                                    // MySqlException bail out 
+                                    return;
+                                }
+                                finally
+                                {
+                                    // Always close the connection 
+                                    DatabaseConnection.DatabaseClose(empConnection);
+                                }
+                            }
+                            
+                        Done = true;
+                        }
+                        else
+                        {
+                            OldFalse = true;
+                        }
                     }
                     catch (MySqlException)
                     {
                         // MySqlException bail out 
-                        return;
+                        Error = true;
                     }
                     finally
                     {
@@ -478,9 +532,7 @@ namespace TMTK05.Models
                     }
                 }
             }
-            Done = true;
         }
-
         #endregion Public Methods
     }
 }

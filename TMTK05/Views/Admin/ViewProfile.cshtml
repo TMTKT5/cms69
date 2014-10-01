@@ -132,4 +132,10 @@
             alertify.success('Your password has been changed!');
         </script>
     }
+    @if (Model.OldFalse)
+    {
+        <script type="text/javascript">
+            alertify.error('The old password is wrong!');
+        </script>
+    }
 }
