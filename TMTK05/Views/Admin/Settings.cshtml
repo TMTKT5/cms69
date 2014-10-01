@@ -61,18 +61,18 @@
         </p>
         <p class="col-lg-6">
             @Html.HiddenFor(model => model.ColorScheme)
-            <span class="switch-color" style="background: #663300;" onclick="headerColorSwitch('brown')"></span>
-            <span class="switch-color" style="background: #fcb040;" onclick="headerColorSwitch('orange')"></span>
-            <span class="switch-color" style="background: #8FA411;" onclick="headerColorSwitch('olive')"></span>
-            <span class="switch-color" style="background: #7ab800;" onclick="headerColorSwitch('green')"></span>
-            <span class="switch-color" style="background: #cccc33;" onclick="headerColorSwitch('lime')"></span>
-            <span class="switch-color" style="background: #66cccc;" onclick="headerColorSwitch('cyan')"></span>
-            <span class="switch-color" style="background: #21aded;" onclick="headerColorSwitch('blue')"></span>
-            <span class="switch-color" style="background: #993399;" onclick="headerColorSwitch('purple')"></span>
-            <span class="switch-color" style="background: #ea4c88;" onclick="headerColorSwitch('pink')"></span>
-            <span class="switch-color" style="background: #E97c5f;" onclick="headerColorSwitch('red')"></span>
-            <span class="switch-color" style="background: #990000;" onclick="headerColorSwitch('winered')"></span>
-            <span class="switch-color" style="background: #000000;" onclick="headerColorSwitch('black')"></span>
+            <span class="switch-color brown" style="background: #663300;" onclick="headerColorSwitch('brown'); active()"></span>
+            <span class="switch-color orange" style="background: #fcb040;" onclick="headerColorSwitch('orange'); active()"></span>
+            <span class="switch-color olive" style="background: #8FA411;" onclick="headerColorSwitch('olive'); active()"></span>
+            <span class="switch-color green" style="background: #7ab800;" onclick="headerColorSwitch('green'); active()"></span>
+            <span class="switch-color lime" style="background: #cccc33;" onclick="headerColorSwitch('lime'); active()"></span>
+            <span class="switch-color cyan" style="background: #66cccc;" onclick="headerColorSwitch('cyan'); active()"></span>
+            <span class="switch-color blue" style="background: #21aded;" onclick="headerColorSwitch('blue'); active()"></span>
+            <span class="switch-color purple" style="background: #993399;" onclick="headerColorSwitch('purple'); active()"></span>
+            <span class="switch-color pink" style="background: #ea4c88;" onclick="headerColorSwitch('pink'); active()"></span>
+            <span class="switch-color red" style="background: #E97c5f;" onclick="headerColorSwitch('red'); active()"></span>
+            <span class="switch-color winered" style="background: #990000;" onclick="headerColorSwitch('winered'); active()"></span>
+            <span class="switch-color black" style="background: #000000;" onclick="headerColorSwitch('black'); active()"></span>
         </p>
     </div>
     <div class="row">
@@ -93,6 +93,10 @@
         if ($("input:radio[id=Footer1]").is(":checked")) {
             $("#textFooter").hide();
         }
+        function active() {
+            $('.' + $('#ColorScheme').val()).css({"border":"solid 2px #222"});
+        }
+        active();
 
         $('#radioButtonFooter input:radio').click(function () {
             if ($(this).val() === '0') {
