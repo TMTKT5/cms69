@@ -1,4 +1,20 @@
-﻿#region
+﻿/*
+ * Copyright (C) 2014 Owain van Brakel.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#region
 
 using System;
 using System.IO;
@@ -14,7 +30,7 @@ namespace TMTK05.Classes
         #region Public Methods
 
         // <summary>
-        // Create MD5 hash 
+        // Create MD5 hash
         // </summary>
         public static String GetMd5Hash(MD5 md5Hash, String input)
         {
@@ -29,7 +45,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Create a random salt 
+        // Create a random salt
         // </summary>
         public static String GetRandomSalt(Int32 size = 12)
         {
@@ -41,7 +57,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Hash a string using a random salt 
+        // Hash a string using a random salt
         // </summary>
         public static String HashPassword(String password, String salt)
         {
@@ -54,7 +70,7 @@ namespace TMTK05.Classes
         }
 
         /// <summary>
-        /// Decrypt a string using rijdeal 
+        /// Decrypt a string using rijdeal
         /// </summary>
         public static string StringDecrypt(string cipherText, string password)
         {
@@ -69,7 +85,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Encrypt a string using rijdeal 
+        // Encrypt a string using rijdeal
         // </summary>
         public static string StringEncrypt(string clearText, string password)
         {
@@ -84,7 +100,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Check is the database hash and the hash of the givin string are the same 
+        // Check is the database hash and the hash of the givin string are the same
         // </summary>
         public static Boolean ValidatePassword(String enteredPassword, String storedHash, String storedSalt)
         {
@@ -94,7 +110,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Check if given hash and a hashed string are the same 
+        // Check if given hash and a hashed string are the same
         // </summary>
         public static Boolean VerifyMd5Hash(MD5 md5Hash, String input, String hash)
         {
@@ -109,7 +125,7 @@ namespace TMTK05.Classes
         #region Private Methods
 
         /// <summary>
-        /// Decrypt a string using rijdeal 
+        /// Decrypt a string using rijdeal
         /// </summary>
         private static byte[] StringDecrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
@@ -126,7 +142,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Encrypt a string using rijdeal 
+        // Encrypt a string using rijdeal
         // </summary>
         private static byte[] StringEncrypt(byte[] clearText, byte[] key, byte[] iv)
         {
