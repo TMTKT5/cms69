@@ -896,4 +896,10 @@ footer a.icon:hover { color: #fcb040 !important; }
     transition: all 0.4s ease-in-out;
 }
 
-textarea { resize: none; }
+textarea {
+    resize: vertical;
+}
+
+textarea#Message {
+    height: 100px !important;
+}
