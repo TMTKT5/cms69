@@ -20,6 +20,20 @@
     </div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/Bundles/WeatherScripts")
-}
+<div class="col-lg-3 col-md-6">
+    <div class="clock">
+        <div id="Date"></div>
+        <ul>
+            <li id="hours"></li>
+            <li id="point">:</li>
+            <li id="min"></li>
+            <li id="point">:</li>
+            <li id="sec"></li>
+        </ul>
+    </div>
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/Bundles/WeatherScripts")
+        @Scripts.Render("~/Bundles/ClockScripts")
+    }

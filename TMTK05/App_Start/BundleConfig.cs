@@ -39,6 +39,12 @@ namespace TMTK05
             adminPanelScriptsBundle.Orderer = nullOrderer;
             bundles.Add(adminPanelScriptsBundle);
 
+            var clockScriptsBundle = new CustomScriptBundle("~/Bundles/ClockScripts");
+            clockScriptsBundle.Include(
+                "~/Js/clockwidget.js");
+            clockScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(clockScriptsBundle);
+
             var weatherScriptsBundle = new CustomScriptBundle("~/Bundles/WeatherScripts");
             weatherScriptsBundle.Include(
                 "~/Js/jquery.simpleWeather.js",

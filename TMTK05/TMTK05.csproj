@@ -199,6 +199,7 @@
     <Content Include="Js\alertify.js" />
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\bootstrap.min.js" />
+    <Content Include="Js\clockwidget.js" />
     <Content Include="Js\custom.modernizr.js" />
     <Content Include="Js\foundation.min.js" />
     <Content Include="Js\foundation.reveal.js" />
