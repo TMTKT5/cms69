@@ -901,5 +901,5 @@ textarea {
 }
 
 textarea#Message {
-    height: 100px !important;
+    min-height: 100px;
 }
