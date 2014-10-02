@@ -38,6 +38,9 @@ namespace TMTK05.Models
         [Display(Name = "Header:")]
         public int Header { get; set; }
 
+        [Display(Name = "Favicon:")]
+        public string Favicon { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods

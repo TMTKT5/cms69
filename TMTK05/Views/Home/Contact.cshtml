@@ -1,0 +1,68 @@
+﻿@model TMTK05.Models.ContactModel
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<h2>Contact</h2>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="large-3 columns end">
+        @Html.TextBoxFor(model => model.Name)
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Email)
+    </div>
+    <div class="large-3 columns end">
+        @Html.TextBoxFor(model => model.Email)
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Subject)
+    </div>
+    <div class="large-3 columns end">
+        @Html.TextBoxFor(model => model.Subject)
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Message)
+    </div>
+    <div class="large-3 columns end">
+        @Html.TextAreaFor(model => model.Message)
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        &nbsp;
+    </div>
+    <div class="large-3 columns end">
+        <input type="submit" value="Versturen" class="button radius" />
+    </div>
+</div>
