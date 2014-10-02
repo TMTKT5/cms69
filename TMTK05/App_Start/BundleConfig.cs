@@ -50,7 +50,7 @@ namespace TMTK05
             websiteScriptsBundle.Include(
                 "~/Js/functions.js",
                 "~/Js/custom.modernizr.js",
-                "~/Js/headroom.js");
+                "~/Js/headroom.min.js");
             websiteScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteScriptsBundle);
 
@@ -68,13 +68,13 @@ namespace TMTK05
 
             var websiteFoundationScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundatationScripts");
             websiteFoundationScriptsBundle.Include(
-                "~/Js/foundation.js");
+                "~/Js/foundation.min.js");
             websiteFoundationScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteFoundationScriptsBundle);
 
             var websiteTabsScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundatationScripts");
             websiteFoundationScriptsBundle.Include(
-                "~/Js/jquery.easytabs.js");
+                "~/Js/jquery.easytabs.min.js");
             websiteTabsScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteTabsScriptsBundle);
 
