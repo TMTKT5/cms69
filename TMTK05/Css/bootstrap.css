@@ -6222,3 +6222,9 @@ button.close {
     border-radius: 3px;
     margin-bottom: 2px;
 }
+
+/* CUSTOM CSS */
+
+.active-border {
+    border: solid 2px #222;
+}

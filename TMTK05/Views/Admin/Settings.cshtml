@@ -94,7 +94,8 @@
             $("#textFooter").hide();
         }
         function active() {
-            $('.' + $('#ColorScheme').val()).css({"border":"solid 2px #222"});
+            $(".switch-color").removeClass("active-border");
+            $('.' + $('#ColorScheme').val()).addClass("active-border");
         }
         active();
 
