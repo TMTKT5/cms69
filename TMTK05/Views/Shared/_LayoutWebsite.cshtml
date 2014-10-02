@@ -84,6 +84,7 @@
     </script>
     }
     @Scripts.Render("~/Bundles/WebsiteScripts")
+    @Scripts.Render("~/Bundles/WebsiteFoundationScripts")
     <script type="text/javascript">
         window.onload = function () {
             var myElement = document.getElementById("top");
@@ -91,7 +92,6 @@
             headroom.init();
         };
     </script>
-    @Scripts.Render("~/bundles/foundation")
     <script type="text/javascript">
         $(document).foundation();
     </script>
