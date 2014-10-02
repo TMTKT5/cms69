@@ -36,51 +36,51 @@ namespace TMTK05
             adminPanelScriptsBundle.Include(
                 "~/Js/jquery-1.11.0.js",
                 "~/Js/bootstrap.min.js");
-
             adminPanelScriptsBundle.Orderer = nullOrderer;
             bundles.Add(adminPanelScriptsBundle);
+
+            var weatherScriptsBundle = new CustomScriptBundle("~/Bundles/WeatherScripts");
+            weatherScriptsBundle.Include(
+                "~/Js/jquery.simpleWeather.js",
+                "~/Js/Weather.js");
+            weatherScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(weatherScriptsBundle);
 
             var websiteScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteScripts");
             websiteScriptsBundle.Include(
                 "~/Js/functions.js",
                 "~/Js/custom.modernizr.js",
                 "~/Js/headroom.js");
-
             websiteScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteScriptsBundle);
 
             var websiteAlertifyScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteAlertifyScripts");
             websiteAlertifyScriptsBundle.Include(
                 "~/Js/alertify.js");
-
             websiteAlertifyScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteAlertifyScriptsBundle);
 
             var websiteImageCropScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteImageCropScripts");
             websiteAlertifyScriptsBundle.Include(
                 "~/Js/jquery.imgareaselect.pack");
-
             websiteImageCropScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteImageCropScriptsBundle);
 
             var websiteFoundationScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundatationScripts");
             websiteFoundationScriptsBundle.Include(
                 "~/Js/foundation.js");
-
             websiteFoundationScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteFoundationScriptsBundle);
 
             var websiteTabsScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundatationScripts");
             websiteFoundationScriptsBundle.Include(
                 "~/Js/jquery.easytabs.js");
-
             websiteTabsScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteTabsScriptsBundle);
 
             var sortableScriptsBundle = new CustomScriptBundle("~/Bundles/SortableScripts");
             sortableScriptsBundle.Include(
                 "~/Js/sorttable.js");
-
             sortableScriptsBundle.Orderer = nullOrderer;
             bundles.Add(sortableScriptsBundle);
 

@@ -206,6 +206,7 @@
     <Content Include="Js\jquery-1.11.0.js" />
     <Content Include="Js\jquery.easytabs.min.js" />
     <Content Include="Js\jquery.imgareaselect.pack.js" />
+    <Content Include="Js\jquery.simpleWeather.js" />
     <Content Include="Js\plugins\flot\excanvas.min.js" />
     <Content Include="Js\plugins\flot\flot-data.js" />
     <Content Include="Js\plugins\flot\jquery.flot.js" />
@@ -217,6 +218,7 @@
     <Content Include="Js\plugins\morris\morris.min.js" />
     <Content Include="Js\plugins\morris\raphael.min.js" />
     <Content Include="Js\sorttable.js" />
+    <Content Include="Js\Weather.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
