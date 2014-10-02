@@ -234,17 +234,18 @@ ul.alert-dropdown {
     font-style: normal;
 }
 
+/* WEATHER WIDGET */
+
 #weather {
   width: auto;
   margin: 0px auto;
   text-align: center;
   text-transform: uppercase;
   background: #d9534f;
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 i {
-  color: #fff;
   font-family: weather;
   font-weight: normal;
   font-style: normal;
@@ -317,9 +318,33 @@ i {
 #weather li {
   padding: 10px;
   display: inline-block;
-    color: #ffffff;
+  color: #ffffff;
 }
 
 #weather .currently {
   margin: 0 20px;
+}
+
+/* CLOCK WIDGET */
+.clock {
+    width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+#Date {
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    text-align: center;
+    text-shadow: 0 0 5px #00c6ff;
+}
+
+#point {
+    position: relative;
+    -moz-animation: mymove 1s ease infinite;
+    -webkit-animation: mymove 1s ease infinite;
+    padding-left: 10px;
+    padding-right: 10px;
 }
