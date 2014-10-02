@@ -54,7 +54,10 @@
                 <div style="text-align: center">
                     <h1> @ViewBag.HeaderTitle </h1>
                     <div class="subheading quote" style="margin-bottom: -10px; margin-top: -25px;">
-                        <blockquote style="color: white;">@ViewBag.HeaderSubHeading </blockquote>
+                        @if (ViewBag.HeaderSubHeading != String.Empty)
+                        {
+                            <blockquote style="color: white;">@ViewBag.HeaderSubHeading </blockquote>
+                        }
                     </div>
                 </div>
             </div>
@@ -84,6 +87,7 @@
     </script>
     }
     @Scripts.Render("~/Bundles/WebsiteScripts")
+    @Scripts.Render("~/Bundles/WebsiteFoundationScripts")
     <script type="text/javascript">
         window.onload = function () {
             var myElement = document.getElementById("top");
@@ -91,7 +95,6 @@
             headroom.init();
         };
     </script>
-    @Scripts.Render("~/bundles/foundation")
     <script type="text/javascript">
         $(document).foundation();
     </script>

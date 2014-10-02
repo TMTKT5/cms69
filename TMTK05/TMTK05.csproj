@@ -165,6 +165,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
@@ -292,6 +293,7 @@
     <Content Include="Views\Admin\ViewProfile.cshtml" />
     <Content Include="Views\Admin\TwoFactorAuthentication.cshtml" />
     <Content Include="Views\Admin\AllUsers.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

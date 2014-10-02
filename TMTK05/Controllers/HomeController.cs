@@ -17,6 +17,11 @@ namespace TMTK05.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
         #endregion Public Methods
 
     }

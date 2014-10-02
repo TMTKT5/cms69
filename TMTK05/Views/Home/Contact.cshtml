@@ -1,0 +1,70 @@
+﻿@model TMTK05.Models.ContactModel
+
+@{
+    ViewBag.Title = "Contact";
+    ViewBag.HeaderTitle = "Placeholder";
+    ViewBag.HeaderSubHeading = String.Empty;
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<h2>Contact</h2>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="large-4 columns end">
+        @Html.TextBoxFor(model => model.Name, new { @placeholder = "Naam"})
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Email)
+    </div>
+    <div class="large-4 columns end">
+        @Html.TextBoxFor(model => model.Email, new { @placeholder = "Email"})
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Subject)
+    </div>
+    <div class="large-4 columns end">
+        @Html.TextBoxFor(model => model.Subject, new { @placeholder = "Onderwerp"})
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        @Html.LabelFor(model => model.Message)
+    </div>
+    <div class="large-4 columns end">
+        @Html.TextAreaFor(model => model.Message, new { @placeholder = "Bericht..."})
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-3 columns">
+        &nbsp;
+    </div>
+    <div class="large-2 columns">
+        &nbsp;
+    </div>
+    <div class="large-4 columns end">
+        <input type="submit" value="Versturen" class="button radius" />
+    </div>
+</div>
