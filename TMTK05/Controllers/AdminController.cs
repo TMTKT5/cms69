@@ -105,7 +105,7 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/Login/
+        // GET: /Admin/Plugins/
         public ActionResult Plugins()
         {
             // Redirect if the user isn't logged in 
@@ -141,9 +141,9 @@ namespace TMTK05.Controllers
         public ActionResult Settings()
         {
             // Redirect if the user isn't logged in
-            if (!IdentityModel.CurrentUserLoggedIn)
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Admin");
             }
 
             var model = new SettingsModel();

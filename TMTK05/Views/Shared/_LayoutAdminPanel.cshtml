@@ -125,6 +125,17 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "Settings" || (string) ViewContext.RouteData.Values["action"] == "Plugins") ? "active" : "")">
+                                    <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-wrench"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
+                                    <ul id="settings" class="collapse">
+                                        <li>
+                                            @Html.ActionLink("Layout settings", "Settings", "Admin")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Plugin settings", "Plugins", "Admin")
+                                        </li>
+                                    </ul>
+                                </li>
                             }
                             else
                             {
@@ -132,17 +143,6 @@
                                     <a href="@Url.Action("AllUsers", "Admin")"><i class="fa fa-fw fa-user"></i> Users</a>
                                 </li>
                             }
-                            <li class="@(((string) ViewContext.RouteData.Values["action"] == "Settings" || (string) ViewContext.RouteData.Values["action"] == "Plugins") ? "active" : "")">
-                                <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-wrench"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
-                                <ul id="settings" class="collapse">
-                                    <li>
-                                        @Html.ActionLink("Layout settings", "Settings", "Admin")
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("Plugin settings", "Plugins", "Admin")
-                                    </li>
-                                </ul>
-                            </li>
                         }
                         else
                         {
