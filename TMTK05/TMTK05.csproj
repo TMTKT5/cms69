@@ -194,12 +194,16 @@
     <Content Include="Font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Img\arrow-left.png" />
+    <Content Include="Img\arrow-right.png" />
     <Content Include="Img\border-anim-h.gif" />
     <Content Include="Img\border-anim-v.gif" />
     <Content Include="Img\empty.png" />
+    <Content Include="Img\tweets.png" />
     <Content Include="Js\alertify.js" />
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\bootstrap.min.js" />
+    <Content Include="Js\clndr.js" />
     <Content Include="Js\clockwidget.js" />
     <Content Include="Js\custom.modernizr.js" />
     <Content Include="Js\foundation.min.js" />
@@ -210,6 +214,7 @@
     <Content Include="Js\jquery.easytabs.min.js" />
     <Content Include="Js\jquery.imgareaselect.pack.js" />
     <Content Include="Js\jquery.simpleWeather.js" />
+    <Content Include="Js\moment-2.2.1.js" />
     <Content Include="Js\plugins\flot\excanvas.min.js" />
     <Content Include="Js\plugins\flot\flot-data.js" />
     <Content Include="Js\plugins\flot\jquery.flot.js" />
@@ -220,7 +225,9 @@
     <Content Include="Js\plugins\morris\morris.js" />
     <Content Include="Js\plugins\morris\morris.min.js" />
     <Content Include="Js\plugins\morris\raphael.min.js" />
+    <Content Include="Js\site.js" />
     <Content Include="Js\sorttable.js" />
+    <Content Include="Js\underscore-min.js" />
     <Content Include="Js\Weather.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

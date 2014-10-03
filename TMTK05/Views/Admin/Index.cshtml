@@ -33,7 +33,35 @@
     </div>
 </div>
 
+<div class="col-lg-3 col-md-6">
+    <div class="tweets">
+        <h3><i><img src="../Img/tweets.png" alt="" /> </i> Latest Tweets</h3>
+        <div class="tweets_list">
+            <ul>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore <a href="#">TEST</a>
+                    <span>10 minutes ago</span>
+                </li>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore eiusmod <a href="#">#Creative Cloud</a>
+                    <span>2 hours ago</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="calender">
+        <div class="cal1"></div>
+    </div> 
+</div>
+
     @section Scripts {
         @Scripts.Render("~/Bundles/WeatherScripts")
         @Scripts.Render("~/Bundles/ClockScripts")
+        <script src="~/Js/underscore-min.js"></script>
+        <script src="~/Js/moment-2.2.1.js"></script>
+        <script src="~/Js/clndr.js"></script>
+        <script src="~/Js/site.js"></script>
     }

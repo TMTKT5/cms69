@@ -305,7 +305,7 @@ i {
 #weather h2 {
   margin: 0 0 8px;
   color: #fff;
-  font-size: 100px;
+    font-size: 7.5em;
   font-weight: 300;
   text-align: center;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
@@ -330,7 +330,7 @@ i {
 .clock {
     width: auto;
     height: 170px;
-    margin: 0px auto;
+    margin-bottom: 25px;
     padding: 10px;
     text-align: center;
     text-transform: uppercase;
@@ -341,7 +341,7 @@ i {
 
 #Date {
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 1.7em;
     text-align: center;
     padding-bottom: 25px;
 }
@@ -364,7 +364,210 @@ i {
 
 .clock ul li {
     display: inline;
-    font-size: 80px;
+    font-size: 5.6em;
     text-align: center;
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+}
+
+/* CLNDR */
+
+.calender{
+  margin: 0px auto;
+	padding:0 0px 1em 0px;
+    background-color: #394264;
+    border-radius: 10px;
+}
+
+.noselect {
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+ */
+}
+.cal1 .clndr .clndr-controls {
+    position: relative;
+  	color: #FFF;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	padding: 10px;
+	text-align: center;
+	background: #3468AF;
+	border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-o-border-radius: 10px 10px 0 0;
+	margin-bottom:10px;
+}
+.cal1 .clndr .clndr-controls .month {
+  text-align: center;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+}
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button { 
+  position:absolute;
+  right:30px;
+  top:10px;
+  width:30px;
+  height:30px;
+  text-indent: -4000px;
+  background: url(../Img/arrow-right.png) no-repeat 0px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+ */
+}
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button.inactive:hover {
+  cursor: default;
+}
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button { 
+   position:absolute;
+   left:30px;
+   width:30px;
+   height:30px;
+  text-indent: -4000px;
+  background: url(../Img/arrow-left.png) no-repeat 0px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+ */
+}
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button.inactive:hover {
+  cursor: default;
+}
+.cal1 .clndr .clndr-table {
+  table-layout: fixed;
+  width:90%;
+  margin:0 auto;
+}
+.cal1 .clndr .clndr-table .header-days {
+   font-size:1em;
+}
+.cal1 .clndr .clndr-table .header-days .header-day {
+  vertical-align: middle;
+  text-align: center;
+  color: #4FC4F6;
+}
+.cal1 .clndr .clndr-table tr {
+    height:50px;
+}
+.cal1 .clndr .clndr-table tr td {
+  vertical-align: top;
+}
+.cal1 .clndr .clndr-table tr .day {
+  width: 100%;
+  height: inherit;
+  color:#FFF;
+  vertical-align:middle;
+}
+.cal1 .clndr .clndr-table tr .day.today {
+  	background: #EC3D68;
+	 color: #FFF;
+	 border-radius: 2em;
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	-o-border-radius: 2em;
+}
+.cal1 .clndr .clndr-table tr .day.today:hover {
+  	color: #FFF;
+}
+.cal1 .clndr .clndr-table tr .day.today.event {
+     background: #EC3D68;
+	 color: #FFF;
+	 border-radius: 2em;
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	-o-border-radius: 2em;
+}
+.day.today.event:hover{
+	color:#FFF;
+}
+.cal1 .clndr .clndr-table tr .day .day-contents {
+  box-sizing: border-box;
+  font-size:1em;
+  text-align:center;
+  cursor:pointer;
+}
+.cal1 .clndr .clndr-table tr .empty,
+.cal1 .clndr .clndr-table tr .adjacent-month {
+  width: 100%;
+  height: inherit;
+  color:#9099B7;
+}
+@media all and (max-width:320px) {
+	.cal1 .clndr .clndr-table{
+		width:90%;
+	}
+	.cal1 .clndr .clndr-table tr {
+		height: 35px;
+	}
+}
+
+
+/* TWEETS */
+
+.tweets {
+    margin-bottom: 25px;
+}
+
+.tweets h3 {
+    
+    margin: 0px auto;
+    color: #FFF;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    padding: 10px;
+    text-align: center;
+    background: #cc324b;
+    border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -o-border-radius: 10px 10px 0 0;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+}
+
+.tweets h3 i img {
+    vertical-align: middle;
+}
+
+.tweets h3{
+	background:#35aadc;
+    height: 55px;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+}
+.tweets_list{
+    
+  margin: 0px auto;
+	background:#394264;
+	border-radius: 0px 0px 10px 10px;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	-moz-border-radius: 0px 0px 10px 10px;
+	-o-border-radius: 0px 0px 10px 10px;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+}
+.tweets_list li{
+	color:#FFF;
+	font-size:1em;
+	line-height:1.6em;
+	padding:2em 2em 1em 2em;
+	border-bottom: 1px solid #1F253D;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+}
+.tweets_list li:last-child{
+	border-bottom:none;
+}
+.tweets_list li a{
+	color:#4fc4f6;
+}
+.tweets_list li span{
+	display:block;
+	color:#9099B7;
+	padding:10px 0;
 }
