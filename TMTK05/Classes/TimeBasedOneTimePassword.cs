@@ -11,13 +11,13 @@ namespace TMTK05.Classes
     {
         #region Public Fields
 
-        public static readonly DateTime UNIX_EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         #endregion Public Fields
 
         #region Private Fields
 
-        private static readonly MemoryCache _cache;
+        private static readonly MemoryCache Cache;
 
         #endregion Private Fields
 
@@ -25,30 +25,16 @@ namespace TMTK05.Classes
 
         static TimeBasedOneTimePassword()
         {
-            _cache = new MemoryCache("TimeBasedOneTimePassword");
+            Cache = new MemoryCache("TimeBasedOneTimePassword");
         }
 
         #endregion Public Constructors
 
         #region Public Methods
 
-        public static string GetPassword(string secret)
+        private static string GetPassword(string secret)
         {
             return GetPassword(secret, GetCurrentCounter());
-        }
-
-        public static string GetPassword(string secret, DateTime epoch, int timeStep)
-        {
-            var counter = GetCurrentCounter(DateTime.UtcNow, epoch, timeStep);
-
-            return GetPassword(secret, counter);
-        }
-
-        public static string GetPassword(string secret, DateTime now, DateTime epoch, int timeStep, int digits)
-        {
-            var counter = GetCurrentCounter(now, epoch, timeStep);
-
-            return GetPassword(secret, counter, digits);
         }
 
         public static bool IsValid(string secret, string password, int checkAdjacentIntervals = 1)
@@ -57,15 +43,15 @@ namespace TMTK05.Classes
             // us to make this a real one time use system. Once a secret/password combination has
             // been tested, it cannot be tested again until after it is no longer valid. See
             // http://tools.ietf.org/html/rfc6238#section-5.2 for more info.
-            var cache_key = string.Format("{0}_{1}", secret, password);
+            var cacheKey = String.Format("{0}_{1}", secret, password);
 
-            if (_cache.Contains(cache_key))
+            if (Cache.Contains(cacheKey))
             {
                 throw new OneTimePasswordException(
                     "You cannot use the same secret/iterationNumber combination more than once.");
             }
 
-            _cache.Add(cache_key, cache_key, new CacheItemPolicy {SlidingExpiration = TimeSpan.FromMinutes(2)});
+            Cache.Add(cacheKey, cacheKey, new CacheItemPolicy {SlidingExpiration = TimeSpan.FromMinutes(2)});
 
             if (password == GetPassword(secret))
                 return true;
@@ -88,7 +74,7 @@ namespace TMTK05.Classes
 
         private static long GetCurrentCounter()
         {
-            return GetCurrentCounter(DateTime.UtcNow, UNIX_EPOCH, 30);
+            return GetCurrentCounter(DateTime.UtcNow, UnixEpoch, 30);
         }
 
         private static long GetCurrentCounter(DateTime now, DateTime epoch, int timeStep)

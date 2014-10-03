@@ -1,20 +1,4 @@
-﻿/*
- * Copyright (C) 2014 Owain van Brakel.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-#region
+﻿#region
 
 using System;
 
@@ -26,9 +10,11 @@ namespace TMTK05.Classes
     {
         #region Public Methods
 
-        // <summary>
-        // Convert dateTime to readable version
-        // </summary>
+        /// <summary>
+        ///     Convert dateTime to readable version
+        /// </summary>
+        /// <param name="strDate"></param>
+        /// <returns></returns>
         public static string GetTimeAgo(DateTime strDate)
         {
             if (!IsDate(Convert.ToString(strDate)))
@@ -38,7 +24,7 @@ namespace TMTK05.Classes
 
             var deltaSeconds = t.TotalSeconds;
 
-            var deltaMinutes = deltaSeconds / 60.0f;
+            var deltaMinutes = deltaSeconds/60.0f;
             int minutes;
 
             if (deltaSeconds < 5)
@@ -66,51 +52,51 @@ namespace TMTK05.Classes
                 return "Een uur geleden";
             }
 
-            if (deltaMinutes < (24 * 60))
+            if (deltaMinutes < (24*60))
             {
-                minutes = (int)Math.Floor(deltaMinutes / 60);
+                minutes = (int) Math.Floor(deltaMinutes/60);
                 return minutes + " uur geleden";
             }
 
-            if (deltaMinutes < (24 * 60 * 2))
+            if (deltaMinutes < (24*60*2))
             {
                 return "Gisteren";
             }
 
-            if (deltaMinutes < (24 * 60 * 7))
+            if (deltaMinutes < (24*60*7))
             {
-                minutes = (int)Math.Floor(deltaMinutes / (60 * 24));
+                minutes = (int) Math.Floor(deltaMinutes/(60*24));
                 return minutes + " dagen geleden";
             }
 
-            if (deltaMinutes < (24 * 60 * 14))
+            if (deltaMinutes < (24*60*14))
             {
                 return "Afgelopen week";
             }
 
-            if (deltaMinutes < (24 * 60 * 31))
+            if (deltaMinutes < (24*60*31))
             {
-                minutes = (int)Math.Floor(deltaMinutes / (60 * 24 * 7));
+                minutes = (int) Math.Floor(deltaMinutes/(60*24*7));
                 return minutes + " weken geleden";
             }
 
-            if (deltaMinutes < (24 * 60 * 61))
+            if (deltaMinutes < (24*60*61))
             {
                 return "Afgelopen maand";
             }
 
-            if (deltaMinutes < (24 * 60 * 365.25))
+            if (deltaMinutes < (24*60*365.25))
             {
-                minutes = (int)Math.Floor(deltaMinutes / (60 * 24 * 30));
+                minutes = (int) Math.Floor(deltaMinutes/(60*24*30));
                 return minutes + " maanden geleden";
             }
 
-            if (deltaMinutes < (24 * 60 * 731))
+            if (deltaMinutes < (24*60*731))
             {
                 return "Afgelopen jaar";
             }
 
-            minutes = (int)Math.Floor(deltaMinutes / (60 * 24 * 365));
+            minutes = (int) Math.Floor(deltaMinutes/(60*24*365));
 
             return minutes + " jaren geleden";
         }
@@ -119,6 +105,11 @@ namespace TMTK05.Classes
 
         #region Private Methods
 
+        /// <summary>
+        ///     Parse DateTime to check if it's a valid date
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         private static bool IsDate(string o)
         {
             DateTime tmp;

@@ -23,16 +23,16 @@
 }
 
 @using (Html.BeginForm("Settings", "Admin",
-        new { ViewBag.ReturnUrl },
-        FormMethod.Post, new { @id = "settingsForm" }))
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "settingsForm"}))
 {
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Header)
         </p>
         <p class="col-lg-1">
-            @Html.RadioButtonFor(model => model.Header, 0, new { @id = "Header0" }) @Html.LabelFor(model => model.Header, "On", new { @for = "Header0" }) <br />
-            @Html.RadioButtonFor(model => model.Header, 1, new { @id = "Header1" }) @Html.LabelFor(model => model.Header, "Off", new { @for = "Header1" })
+            @Html.RadioButtonFor(model => model.Header, 0, new {@id = "Header0"}) @Html.LabelFor(model => model.Header, "On", new {@for = "Header0"}) <br />
+            @Html.RadioButtonFor(model => model.Header, 1, new {@id = "Header1"}) @Html.LabelFor(model => model.Header, "Off", new {@for = "Header1"})
         </p>
     </div>
     <div class="row">
@@ -40,8 +40,8 @@
             @Html.LabelFor(model => model.Footer)
         </p>
         <p class="col-lg-1" id="radioButtonFooter">
-            @Html.RadioButtonFor(model => model.Footer, 0, new { @id = "Footer0" }) @Html.LabelFor(model => model.Footer, "On", new { @for = "Footer0" }) <br />
-            @Html.RadioButtonFor(model => model.Footer, 1, new { @id = "Footer1" }) @Html.LabelFor(model => model.Footer, "Off", new { @for = "Footer1" })
+            @Html.RadioButtonFor(model => model.Footer, 0, new {@id = "Footer0"}) @Html.LabelFor(model => model.Footer, "On", new {@for = "Footer0"}) <br />
+            @Html.RadioButtonFor(model => model.Footer, 1, new {@id = "Footer1"}) @Html.LabelFor(model => model.Footer, "Off", new {@for = "Footer1"})
         </p>
     </div>
     <div class="row" id="textFooter">
@@ -49,7 +49,7 @@
             @Html.LabelFor(model => model.FooterText)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.FooterText, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.FooterText, new {@class = "form-control"})
         </p>
         <p id="footerTextError" class="col-lg-2 alert-small alert-danger">
             Footer text is required
@@ -60,7 +60,7 @@
             @Html.LabelFor(model => model.Favicon)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Favicon, new { @class = "form-control"})
+            @Html.TextBoxFor(model => model.Favicon, new {@class = "form-control"})
         </p>
     </div>
     <div class="row">
@@ -69,18 +69,18 @@
         </p>
         <p class="col-lg-6">
             @Html.HiddenFor(model => model.ColorScheme)
-            <span class="switch-color brown" style="background: #663300;" onclick="headerColorSwitch('brown'); active()"></span>
-            <span class="switch-color orange" style="background: #fcb040;" onclick="headerColorSwitch('orange'); active()"></span>
-            <span class="switch-color olive" style="background: #8FA411;" onclick="headerColorSwitch('olive'); active()"></span>
-            <span class="switch-color green" style="background: #7ab800;" onclick="headerColorSwitch('green'); active()"></span>
-            <span class="switch-color lime" style="background: #cccc33;" onclick="headerColorSwitch('lime'); active()"></span>
-            <span class="switch-color cyan" style="background: #66cccc;" onclick="headerColorSwitch('cyan'); active()"></span>
-            <span class="switch-color blue" style="background: #21aded;" onclick="headerColorSwitch('blue'); active()"></span>
-            <span class="switch-color purple" style="background: #993399;" onclick="headerColorSwitch('purple'); active()"></span>
-            <span class="switch-color pink" style="background: #ea4c88;" onclick="headerColorSwitch('pink'); active()"></span>
-            <span class="switch-color red" style="background: #E97c5f;" onclick="headerColorSwitch('red'); active()"></span>
-            <span class="switch-color winered" style="background: #990000;" onclick="headerColorSwitch('winered'); active()"></span>
-            <span class="switch-color black" style="background: #000000;" onclick="headerColorSwitch('black'); active()"></span>
+            <span class="switch-color brown" style="background: #663300;" onclick=" headerColorSwitch('brown'); active() "></span>
+            <span class="switch-color orange" style="background: #fcb040;" onclick=" headerColorSwitch('orange'); active() "></span>
+            <span class="switch-color olive" style="background: #8FA411;" onclick=" headerColorSwitch('olive'); active() "></span>
+            <span class="switch-color green" style="background: #7ab800;" onclick=" headerColorSwitch('green'); active() "></span>
+            <span class="switch-color lime" style="background: #cccc33;" onclick=" headerColorSwitch('lime'); active() "></span>
+            <span class="switch-color cyan" style="background: #66cccc;" onclick=" headerColorSwitch('cyan'); active() "></span>
+            <span class="switch-color blue" style="background: #21aded;" onclick=" headerColorSwitch('blue'); active() "></span>
+            <span class="switch-color purple" style="background: #993399;" onclick=" headerColorSwitch('purple'); active() "></span>
+            <span class="switch-color pink" style="background: #ea4c88;" onclick=" headerColorSwitch('pink'); active() "></span>
+            <span class="switch-color red" style="background: #E97c5f;" onclick=" headerColorSwitch('red'); active() "></span>
+            <span class="switch-color winered" style="background: #990000;" onclick=" headerColorSwitch('winered'); active() "></span>
+            <span class="switch-color black" style="background: #000000;" onclick=" headerColorSwitch('black'); active() "></span>
         </p>
     </div>
     <div class="row">
@@ -101,13 +101,15 @@
         if ($("input:radio[id=Footer1]").is(":checked")) {
             $("#textFooter").hide();
         }
+
         function active() {
             $(".switch-color").removeClass("active-border");
             $('.' + $('#ColorScheme').val()).addClass("active-border");
         }
+
         active();
 
-        $('#radioButtonFooter input:radio').click(function () {
+        $('#radioButtonFooter input:radio').click(function() {
             if ($(this).val() === '0') {
                 footer(0);
             } else if ($(this).val() === '1') {
@@ -115,7 +117,7 @@
             }
         });
 
-        $("#settingsForm").submit(function (event) {
+        $("#settingsForm").submit(function(event) {
             if ($("input:radio[id=Footer0]").is(":checked")) {
                 if ($('#FooterText').val() == "") {
                     event.preventDefault();

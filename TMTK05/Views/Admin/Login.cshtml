@@ -20,14 +20,14 @@
 
 @using (Html.BeginForm("Login", "Admin",
     new {ViewBag.ReturnUrl},
-    FormMethod.Post, new { @id = "loginForm", @autocomplete = "off" }))
+    FormMethod.Post, new {@id = "loginForm", @autocomplete = "off"}))
 {
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Username)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.Username, new {@class = "form-control"})
         </p>
         <p id="usernameError" class="col-lg-2 alert-small alert-danger">
             Username is required
@@ -38,7 +38,7 @@
             @Html.LabelFor(model => model.Password)
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
         </p>
         <p id="passwordError" class="col-lg-2 alert-small alert-danger">
             Password is required
@@ -49,7 +49,7 @@
             @Html.LabelFor(model => model.TwoFactorCode)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.TwoFactorCode, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.TwoFactorCode, new {@class = "form-control"})
         </p>
         <p id="tfaError" class="col-lg-2 alert-small alert-danger">
             Code is required

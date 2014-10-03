@@ -12,6 +12,13 @@ namespace TMTK05.Classes
     {
         #region Public Methods
 
+        /// <summary>
+        ///     Generate TFA code
+        /// </summary>
+        /// <param name="secret"></param>
+        /// <param name="iterationNumber"></param>
+        /// <param name="digits"></param>
+        /// <returns></returns>
         public static string GeneratePassword(string secret, long iterationNumber, int digits = 6)
         {
             var counter = BitConverter.GetBytes(iterationNumber);

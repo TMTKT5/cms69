@@ -1,20 +1,4 @@
-﻿/*
- * Copyright (C) 2014 Owain van Brakel.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-#region
+﻿#region
 
 using System;
 using System.IO;
@@ -70,13 +54,13 @@ namespace TMTK05.Classes
         }
 
         /// <summary>
-        /// Decrypt a string using rijdeal
+        ///     Decrypt a string using rijdeal
         /// </summary>
         public static string StringDecrypt(string cipherText, string password)
         {
             var cipherBytes = Convert.FromBase64String(cipherText);
             var pdb = new PasswordDeriveBytes(password,
-                new byte[] { 0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36 });
+                new byte[] {0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36});
 #pragma warning disable 618
             var decryptedData = StringDecrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
 #pragma warning restore 618
@@ -91,7 +75,7 @@ namespace TMTK05.Classes
         {
             var clearBytes = Encoding.Unicode.GetBytes(clearText);
             var pdb = new PasswordDeriveBytes(password,
-                new byte[] { 0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36 });
+                new byte[] {0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36});
 #pragma warning disable 618
             var encryptedData = StringEncrypt(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16));
 #pragma warning restore 618
@@ -125,7 +109,7 @@ namespace TMTK05.Classes
         #region Private Methods
 
         /// <summary>
-        /// Decrypt a string using rijdeal
+        ///     Decrypt a string using rijdeal
         /// </summary>
         private static byte[] StringDecrypt(byte[] cipherData, byte[] key, byte[] iv)
         {

@@ -1,6 +1,5 @@
 ﻿@using System.Web.Optimization
-@using TMTK05.Models
-@model UserModel
+@model TMTK05.Models.UserModel
 @{
     ViewBag.Title = "Profile";
     ViewBag.HeaderTitle = "Profile";
@@ -23,15 +22,15 @@
 }
 
 @using (Html.BeginForm("ViewProfile", "Admin",
-    new { ViewBag.ReturnUrl },
-    FormMethod.Post, new { @id = "updateUserForm" }))
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "updateUserForm"}))
 {
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.OldPassword)
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.OldPassword, new { @class = "form-control" })
+            @Html.PasswordFor(model => model.OldPassword, new {@class = "form-control"})
         </p>
         <p id="oldPasswordError" class="col-lg-2 alert-small alert-danger">
             Old Password is required
@@ -42,7 +41,7 @@
             @Html.LabelFor(model => model.Password)
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
         </p>
         <p id="passwordError" class="col-lg-2 alert-small alert-danger">
             Password is required
@@ -50,10 +49,10 @@
     </div>
     <div class="row">
         <p class="col-lg-1">
-            @Html.LabelFor(model => model.Password, new { @for = "Password2" })
+            @Html.LabelFor(model => model.Password, new {@for = "Password2"})
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.Password, new { @id = "Password2", @class = "form-control" })
+            @Html.PasswordFor(model => model.Password, new {@id = "Password2", @class = "form-control"})
         </p>
         <p id="passwordMismatchError" class="col-lg-2 alert-small alert-danger">
             Passwords are not the same
@@ -93,7 +92,7 @@
             }
         }
 
-        $("#updateUserForm").submit(function (event) {
+        $("#updateUserForm").submit(function(event) {
             var error = false;
             if ($('#Password').val() == "") {
                 error = true;

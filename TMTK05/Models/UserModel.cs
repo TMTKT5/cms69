@@ -1,13 +1,13 @@
 ﻿#region
 
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using MySql.Data.MySqlClient;
 using TMTK05.Classes;
 
 #endregion
@@ -255,7 +255,6 @@ namespace TMTK05.Models
             {
                 using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
                 {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -490,10 +489,12 @@ namespace TMTK05.Models
                             using (var updateCommand = new MySqlCommand(updateStatement, empConnection))
                             {
                                 // Bind parameters 
-                                updateCommand.Parameters.Add("Password", MySqlDbType.VarChar).Value = Crypt.HashPassword(Password,
-                                    salt);
+                                updateCommand.Parameters.Add("Password", MySqlDbType.VarChar).Value =
+                                    Crypt.HashPassword(Password,
+                                        salt);
                                 updateCommand.Parameters.Add("Salt", MySqlDbType.VarChar).Value = salt;
-                                updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = IdentityModel.CurrentUserId;
+                                updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value =
+                                    IdentityModel.CurrentUserId;
 
                                 try
                                 {
@@ -512,8 +513,8 @@ namespace TMTK05.Models
                                     DatabaseConnection.DatabaseClose(empConnection);
                                 }
                             }
-                            
-                        Done = true;
+
+                            Done = true;
                         }
                         else
                         {
@@ -533,6 +534,7 @@ namespace TMTK05.Models
                 }
             }
         }
+
         #endregion Public Methods
     }
 }

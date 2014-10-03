@@ -1,7 +1,7 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Classes
 @using TMTK05.Models
-@model UserModel
+@model TMTK05.Models.UserModel
 @{
     ViewBag.Title = "Two Factor Authentication";
     ViewBag.HeaderTitle = "Two Factor Authentication";
@@ -24,16 +24,16 @@
 }
 
 @using (Html.BeginForm("TwoFactorAuthentication", "Admin",
-    new { ViewBag.ReturnUrl },
-    FormMethod.Post, new { @id = "tfaForm" }))
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "tfaForm"}))
 {
     <div class="row">
         <p class="col-lg-2">
             @Html.LabelFor(model => model.TwoFactorEnabled)
         </p>
         <p class="col-lg-2" id="radioBttonTfa">
-            @Html.RadioButtonFor(model => model.TwoFactorEnabled, 0, new { @id = "TwoFactor0" }) @Html.LabelFor(model => model.TwoFactorEnabled, "On", new { @for = "TwoFactor0" }) <br />
-            @Html.RadioButtonFor(model => model.TwoFactorEnabled, 1, new { @id = "TwoFactor1" }) @Html.LabelFor(model => model.TwoFactorEnabled, "Off", new { @for = "TwoFactor1" })
+            @Html.RadioButtonFor(model => model.TwoFactorEnabled, 0, new {@id = "TwoFactor0"}) @Html.LabelFor(model => model.TwoFactorEnabled, "On", new {@for = "TwoFactor0"}) <br />
+            @Html.RadioButtonFor(model => model.TwoFactorEnabled, 1, new {@id = "TwoFactor1"}) @Html.LabelFor(model => model.TwoFactorEnabled, "Off", new {@for = "TwoFactor1"})
         </p>
     </div>
     <div class="row" id="tfaImage">
@@ -63,7 +63,7 @@
             $("#tfaImage").show();
         }
 
-        $('#radioBttonTfa input:radio').click(function () {
+        $('#radioBttonTfa input:radio').click(function() {
             if ($(this).val() == '0') {
                 $("#tfaImage").show(500);
             } else if ($(this).val() == '1') {

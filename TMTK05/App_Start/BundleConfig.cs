@@ -1,9 +1,9 @@
 ﻿#region
 
+using System.Web.Optimization;
 using BundleTransformer.Core.Bundles;
 using BundleTransformer.Core.Orderers;
 using BundleTransformer.Core.Resolvers;
-using System.Web.Optimization;
 
 #endregion
 
@@ -11,7 +11,6 @@ namespace TMTK05
 {
     public static class BundleConfig
     {
-
         #region Public Methods
 
         public static void RegisterBundles(BundleCollection bundles)
@@ -114,6 +113,5 @@ namespace TMTK05
         }
 
         #endregion Public Methods
-
     }
 }

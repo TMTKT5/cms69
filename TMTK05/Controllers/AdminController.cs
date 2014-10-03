@@ -108,7 +108,6 @@ namespace TMTK05.Controllers
         // GET: /Admin/Login/
         public ActionResult Plugins()
         {
-
             // Redirect if the user isn't logged in 
             if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
             {

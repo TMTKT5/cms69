@@ -4,20 +4,20 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @SqlInjection.SafeSqlLiteralRevert(IdentityModel.CurrentUserName).CaptalizeFirstLetter() <b class="caret"></b></a>
     <ul class="dropdown-menu">
         <li>
-            <a href="@Url.Action("ViewProfile", "Admin" )"><i class="fa fa-fw fa-user"></i> Profile</a>
+            <a href="@Url.Action("ViewProfile", "Admin")"><i class="fa fa-fw fa-user"></i> Profile</a>
         </li>
         <li>
             <a href="@Url.Action("TwoFactorAuthentication", "Admin")"><i class="fa fa-fw fa-lock"></i> Security</a>
         </li>
         <!--<li>
-            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-        </li>
-        <li>
-            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-        </li>-->
+                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+            </li>-->
         <li class="divider"></li>
         <li>
-            <a href="@Url.Action("SignOut", "Admin" )"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            <a href="@Url.Action("SignOut", "Admin")"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
         </li>
     </ul>
 </li>

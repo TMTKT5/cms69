@@ -1,20 +1,4 @@
-﻿/*
- * Copyright (C) 2014 Owain van Brakel.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-#region
+﻿#region
 
 using System;
 using System.IO;
@@ -30,9 +14,12 @@ namespace TMTK05.Classes
     {
         #region Public Methods
 
-        // <summary>
-        // Send mail
-        // </summary>
+        /// <summary>
+        ///     Send mail
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static String SendMail(string name, string email)
         {
             const bool error = false;
@@ -48,17 +35,22 @@ namespace TMTK05.Classes
                 var smtpClient = new SmtpClient("145.118.4.13");
                 smtpClient.Send(mailMessage);
             }
-            // ReSharper disable EmptyGeneralCatchClause
+                // ReSharper disable EmptyGeneralCatchClause
             catch (Exception)
-            // ReSharper restore EmptyGeneralCatchClause
+                // ReSharper restore EmptyGeneralCatchClause
             {
             }
             return error.ToString();
         }
 
-        // <summary>
-        // Send mail
-        // </summary>
+        /// <summary>
+        ///     Send mail
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <param name="subject"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static String SendMail(string name, string email, string subject, string message)
         {
             const bool error = false;
@@ -74,9 +66,9 @@ namespace TMTK05.Classes
                 var smtpClient = new SmtpClient("145.118.4.13");
                 smtpClient.Send(mailMessage);
             }
-            // ReSharper disable EmptyGeneralCatchClause
+                // ReSharper disable EmptyGeneralCatchClause
             catch (Exception)
-            // ReSharper restore EmptyGeneralCatchClause
+                // ReSharper restore EmptyGeneralCatchClause
             {
             }
             return error.ToString();
@@ -86,9 +78,12 @@ namespace TMTK05.Classes
 
         #region Private Methods
 
-        // <summary>
-        // Replace placeholders in the email template with vars
-        // </summary>
+        /// <summary>
+        ///     Replace placeholders in the email template with vars
+        /// </summary>
+        /// <param name="naam"></param>
+        /// <param name="mail"></param>
+        /// <returns></returns>
         private static String PopulateBodyActivate(string naam, string mail)
         {
             String body;
@@ -109,9 +104,12 @@ namespace TMTK05.Classes
             return body;
         }
 
-        // <summary>
-        // Replace placeholders in the email template with vars
-        // </summary>
+        /// <summary>
+        ///     Replace placeholders in the email template with vars
+        /// </summary>
+        /// <param name="naam"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private static String PopulateBody(string naam, string message)
         {
             String body;

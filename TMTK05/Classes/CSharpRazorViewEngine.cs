@@ -10,6 +10,9 @@ namespace TMTK05.Classes
     {
         #region Public Constructors
 
+        /// <summary>
+        ///     Use our own View engine to improve the speed of the website
+        /// </summary>
         public CSharpRazorViewEngine()
         {
             AreaViewLocationFormats = new[]

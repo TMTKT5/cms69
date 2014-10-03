@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Remoting.Messaging;
-using TMTK05.Classes;
-using System.Linq;
-using System.Web;
+
+#endregion
 
 namespace TMTK05.Models
 {
