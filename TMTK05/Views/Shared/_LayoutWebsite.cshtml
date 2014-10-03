@@ -30,18 +30,12 @@
 
                         <section class="top-bar-section">
                             <ul class="right">
-                                <li>
-                                    <a href="#">Placeholder</a>
-                                </li>
-                                <li>
-                                    <a href="#">Placeholder</a>
-                                </li>
-                                <li>
-                                    <a href="#">Placeholder</a>
-                                </li>
-                                <li>
-                                    <a href="#">Placeholder</a>
-                                </li>
+                                @if (PluginModel.PluginStatus("2"))
+                                {
+                                    <li>
+                                        @Html.ActionLink("Contact", "Contact", "Home")
+                                    </li>
+                                }
                             </ul>
                         </section>
                     </nav>

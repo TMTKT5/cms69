@@ -71,14 +71,14 @@ namespace TMTK05
             websiteImageCropScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteImageCropScriptsBundle);
 
-            var websiteFoundationScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundatationScripts");
+            var websiteFoundationScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundationScripts");
             websiteFoundationScriptsBundle.Include(
                 "~/Js/foundation.min.js");
             websiteFoundationScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteFoundationScriptsBundle);
 
-            var websiteTabsScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundatationScripts");
-            websiteFoundationScriptsBundle.Include(
+            var websiteTabsScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteTabsScripts");
+            websiteTabsScriptsBundle.Include(
                 "~/Js/jquery.easytabs.min.js");
             websiteTabsScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteTabsScriptsBundle);
