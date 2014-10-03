@@ -1,5 +1,6 @@
-﻿@using TMTK05.Models
-@model TMTK05.Models.SettingsModel
+﻿@using System.Web.Optimization
+@using TMTK05.Models
+@model SettingsModel
 @{
     ViewBag.Title = "Plugin Settings";
     ViewBag.HeaderTitle = "Plugin Settings";
@@ -32,23 +33,23 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 1; i <= pluginInfo.Count/5; i++)
+            @for (var i = 1; i <= pluginInfo.Count / 5; i++)
             {
                 <tr style="height: 51px">
                     <td style="vertical-align: middle">
-                        @pluginInfo[i*5 - 5]
+                        @pluginInfo[i * 5 - 5]
                     </td>
                     <td style="vertical-align: middle">
-                        @pluginInfo[i*5 - 4]
+                        @pluginInfo[i * 5 - 4]
                     </td>
                     <td style="vertical-align: middle">
-                        @pluginInfo[i*5 - 3]
+                        @pluginInfo[i * 5 - 3]
                     </td>
                     <td style="vertical-align: middle">
-                        @pluginInfo[i*5 - 2]
+                        @pluginInfo[i * 5 - 2]
                     </td>
                     <td style="vertical-align: middle">
-                        <button id="plugin_@pluginInfo[i * 5 - 5]" class="btn btn-primary" onclick=" EnableDisable(@pluginInfo[i*5 - 5]) "></button>
+                        <button id="plugin_@pluginInfo[i * 5 - 5]" class="btn btn-primary" onclick="EnableDisable(@pluginInfo[i * 5 - 5])"></button>
                     </td>
                 </tr>
             }
@@ -57,6 +58,7 @@
 </div>
 
 @section Scripts {
+    @Scripts.Render("~/Bundles/SortableScripts")
     @for (var i = 1; i <= pluginInfo.Count/5; i++)
     {
         <script type="text/javascript">
