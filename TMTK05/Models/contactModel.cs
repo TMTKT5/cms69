@@ -10,6 +10,11 @@ namespace TMTK05.Models
 {
     public class ContactModel
     {
+        public ContactModel()
+        {
+            Done = false;
+        }
+
         [Display(Name = "Name")]
         public string Name { get; set; }
 
@@ -22,9 +27,12 @@ namespace TMTK05.Models
         [Display(Name = "Message")]
         public string Message { get; set; }
 
+        public bool Done { get; set; }
+
         public void SendMail()
         {
             Classes.Message.SendMail(Name, Email, Subject, Message);
+            Done = true;
         }
     }
 }

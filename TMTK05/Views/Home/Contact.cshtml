@@ -10,7 +10,7 @@
 
 <h2>Contact</h2>
 
-@using (Html.BeginForm("Contact", "Home", new {ViewBag.ReturnUrl}, FormMethod.Post, new {@id = "ContactForm", @autocomplete = "off"}))
+@using (Html.BeginForm("Contact", "Home", new {ViewBag.ReturnUrl}, FormMethod.Post, new {@id = "contactForm", @autocomplete = "off"}))
 {
     <div class="row">
         <div class="large-3 columns">
@@ -39,6 +39,9 @@
         </div>
         <div id="emailError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Email is required
+        </div>
+        <div id="emailError2" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
+            Email is not valid
         </div>
     </div>
 
@@ -92,7 +95,75 @@
     <script type="text/javascript">
         $('#nameError').hide();
         $('#emailError').hide();
+        $('#emailError2').hide();
         $('#subjectError').hide();
         $('#messageError').hide();
+
+        function checkMail() {
+            var url = "/Home/MailCheck";
+            var email = $('#Email').val();
+            $.get(url, { input: email }, function(data) {
+                if (data == "valid") {
+                    $('#emailError2').hide(500);
+                } else {
+                    $('#emailError2').show(500);
+                }
+            });
+        }
+
+        $('#contactForm').submit(function (event) {
+
+            var error = false;
+
+            if ($('#emailError2').is(":visible")) {
+                error = true;
+            }
+
+            if ($('#Name').val() == "") {
+                error = true;
+                $('#nameError').show(500);
+            }
+
+            if ($('#Email').val() == "") {
+                error = true;
+                $('#emailError').show(500);
+            }
+
+            if ($('#Subject').val() == "") {
+                error = true;
+                $('#subjectError').show(500);
+            }
+
+            if ($('#Message').val() == "") {
+                error = true;
+                $('#messageError').show(500);
+            }
+
+            if (error) {
+                event.preventDefault();
+            } else {
+                $('#contactForm').submit();
+                
+            }
+        });
+
+        $('#Email').keyup(function () {
+            checkMail();
+        });
+
+        $('#Email').change(function () {
+            checkMail();
+        });
     </script>
+    
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            alertify.success('Your email has been send!');
+            $('#Name').val('');
+            $('#Email').val('');
+            $('#Subject').val('');
+            $('#Message').val('');
+        </script>
+    }
 }
