@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@using TMTK05.Models
 @model TMTK05.Models.UserModel
 @{
     ViewBag.Title = "Log in";
@@ -44,17 +45,20 @@
             Password is required
         </p>
     </div>
-    <div class="row" id="tfaCode">
-        <p class="col-lg-1">
-            @Html.LabelFor(model => model.TwoFactorCode)
-        </p>
-        <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.TwoFactorCode, new {@class = "form-control"})
-        </p>
-        <p id="tfaError" class="col-lg-2 alert-small alert-danger">
-            Code is required
-        </p>
-    </div>
+    if (PluginModel.PluginStatus("1"))
+    {
+        <div class="row" id="tfaCode">
+            <p class="col-lg-1">
+                @Html.LabelFor(model => model.TwoFactorCode)
+            </p>
+            <p class="col-lg-2">
+                @Html.TextBoxFor(model => model.TwoFactorCode, new {@class = "form-control"})
+            </p>
+            <p id="tfaError" class="col-lg-2 alert-small alert-danger">
+                Code is required
+            </p>
+        </div>
+    }
     <div class="row">
         <p class="col-lg-1">
             <!-- Boo hoo, so bad, so sad -->

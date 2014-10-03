@@ -371,7 +371,7 @@ namespace TMTK05.Models
                         // Hash the password and check if the hash is the same as the saved password 
                         if (Crypt.ValidatePassword(Password, savedPassword, savedSalt))
                         {
-                            if (TwoFactorEnabled == 0)
+                            if (TwoFactorEnabled == 0 && PluginModel.PluginStatus("1"))
                             {
                                 if (TimeBasedOneTimePassword.IsValid(code, TwoFactorCode))
                                 {
