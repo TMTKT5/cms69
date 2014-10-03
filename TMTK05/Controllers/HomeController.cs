@@ -2,8 +2,6 @@
 
 using System;
 using System.Web.Mvc;
-using Bibliotheek.Attributes;
-using Gma.QrCodeNet.Encoding.DataEncodation;
 using TMTK05.Classes;
 using TMTK05.Models;
 #endregion
