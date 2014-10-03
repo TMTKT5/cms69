@@ -3,7 +3,7 @@
 using System;
 using System.Web.Mvc;
 using System.Web.Security;
-using Bibliotheek.Attributes;
+using TMTK05.Attributes;
 using TMTK05.Classes;
 using TMTK05.Models;
 
@@ -102,6 +102,38 @@ namespace TMTK05.Controllers
         {
             model.Login();
             return model.Done ? View("LoggedIn") : View(model);
+        }
+
+        //
+        // GET: /Admin/Login/
+        public ActionResult Plugins()
+        {
+
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
+            return View();
+        }
+
+        //
+        // AJAX:
+        // GET: /Admin/PluginStatus/
+        [EnableCompression]
+        public string PluginStatus(string input)
+        {
+            return PluginModel.PluginStatus(input).ToString();
+        }
+
+        //
+        // AJAX:
+        // GET: /Admin/PluginEnableDisable/
+        [EnableCompression]
+        public string PluginEnableDisable(string input)
+        {
+            return PluginModel.PluginEnableDisable(input).ToString();
         }
 
         //

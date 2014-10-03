@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 #endregion
 
-namespace Bibliotheek.Attributes
+namespace TMTK05.Attributes
 {
     public class EnableCompressionAttribute : ActionFilterAttribute
     {

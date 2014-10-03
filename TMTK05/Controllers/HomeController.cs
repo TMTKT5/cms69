@@ -1,6 +1,11 @@
 ﻿#region
 
 using System.Web.Mvc;
+<<<<<<< Updated upstream
+=======
+using TMTK05.Classes;
+using TMTK05.Models;
+>>>>>>> Stashed changes
 
 #endregion
 

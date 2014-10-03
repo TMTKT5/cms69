@@ -1,0 +1,86 @@
+﻿@using TMTK05.Models
+@model TMTK05.Models.SettingsModel
+@{
+    ViewBag.Title = "Plugin Settings";
+    ViewBag.HeaderTitle = "Plugin Settings";
+    ViewBag.HeaderSubHeading = "";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+
+    var pluginInfo = PluginModel.AllPlugins();
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-wrench"></i> Layout settings
+        </li>
+    </ol>
+}
+
+<div class="table-responsive">
+    <table class="table table-hover sortable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i <= pluginInfo.Count/5; i++)
+            {
+                <tr style="height: 51px">
+                    <td style="vertical-align: middle">
+                        @pluginInfo[i*5 - 5]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @pluginInfo[i*5 - 4]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @pluginInfo[i*5 - 3]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @pluginInfo[i*5 - 2]
+                    </td>
+                    <td style="vertical-align: middle">
+                        <button id="plugin_@pluginInfo[i * 5 - 5]" class="btn btn-primary" onclick=" EnableDisable(@pluginInfo[i*5 - 5]) "></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @for (var i = 1; i <= pluginInfo.Count/5; i++)
+    {
+        <script type="text/javascript">
+            var value = @i + "";
+            var url = "/Admin/PluginStatus";
+            $.get(url, { input: value }, function(data) {
+                if (data == "True") {
+                    $('#plugin_@i').html('Enabled');
+                } else if (data == "False") {
+                    $('#plugin_@i').html('Disabled');
+                }
+            });
+        </script>
+    }
+    <script type="text/javascript">
+        function EnableDisable(id) {
+            var url = "/Admin/PluginEnableDisable";
+            $.get(url, { input: id }, function(data) {
+                if (data == "0") {
+                    $('#plugin_' + id).html('Disabled');
+                } else if (data == "1") {
+                    $('#plugin_' + id).html('Enabled');
+                }
+            });
+        }
+    </script>
+}

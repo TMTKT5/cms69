@@ -1,8 +1,8 @@
 ﻿@using System.Web.Optimization
 @model TMTK05.Models.SettingsModel
 @{
-    ViewBag.Title = "Settings";
-    ViewBag.HeaderTitle = "Settings";
+    ViewBag.Title = "Layout Settings";
+    ViewBag.HeaderTitle = "Layout Settings";
     ViewBag.HeaderSubHeading = "Personalization";
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
 }
@@ -17,7 +17,7 @@
             <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
         </li>
         <li class="active">
-            <i class="fa fa-wrench"></i> Settings
+            <i class="fa fa-wrench"></i> Layout settings
         </li>
     </ol>
 }
