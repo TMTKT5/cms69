@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Remoting.Messaging;
+using TMTK05.Classes;
 using System.Linq;
 using System.Web;
 
@@ -8,16 +10,21 @@ namespace TMTK05.Models
 {
     public class ContactModel
     {
-        [Display(Name = "Naam")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Display(Name = "Onderwerp")]
+        [Display(Name = "Subject")]
         public string Subject { get; set; }
 
-        [Display(Name = "Bericht")]
+        [Display(Name = "Message")]
         public string Message { get; set; }
+
+        public void SendMail()
+        {
+            Classes.Message.SendMail(Name, Email, Subject, Message);
+        }
     }
 }

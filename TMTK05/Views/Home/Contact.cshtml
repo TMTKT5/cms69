@@ -1,4 +1,5 @@
-﻿@model TMTK05.Models.ContactModel
+﻿@using System.Web.Optimization
+@model TMTK05.Models.ContactModel
 
 @{
     ViewBag.Title = "Contact";
@@ -9,62 +10,89 @@
 
 <h2>Contact</h2>
 
-<div class="row">
-    <div class="large-3 columns">
-        &nbsp;
+@using (Html.BeginForm("Contact", "Home", new {ViewBag.ReturnUrl}, FormMethod.Post, new {@id = "ContactForm", @autocomplete = "off"}))
+{
+    <div class="row">
+        <div class="large-3 columns">
+            &nbsp;
+        </div>
+        <div class="large-2 columns">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="large-4 columns">
+            @Html.TextBoxFor(model => model.Name, new {@placeholder = "Name"})
+        </div>
+        <div id="nameError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
+            Name is required
+        </div>
     </div>
-    <div class="large-2 columns">
-        @Html.LabelFor(model => model.Name)
-    </div>
-    <div class="large-4 columns end">
-        @Html.TextBoxFor(model => model.Name, new { @placeholder = "Naam"})
-    </div>
-</div>
 
-<div class="row">
-    <div class="large-3 columns">
-        &nbsp;
+    <div class="row">
+        <div class="large-3 columns">
+            &nbsp;
+        </div>
+        <div class="large-2 columns">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="large-4 columns end">
+            @Html.TextBoxFor(model => model.Email, new {@placeholder = "Email"})
+        </div>
+        <div id="emailError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
+            Email is required
+        </div>
     </div>
-    <div class="large-2 columns">
-        @Html.LabelFor(model => model.Email)
-    </div>
-    <div class="large-4 columns end">
-        @Html.TextBoxFor(model => model.Email, new { @placeholder = "Email"})
-    </div>
-</div>
 
-<div class="row">
-    <div class="large-3 columns">
-        &nbsp;
+    <div class="row">
+        <div class="large-3 columns">
+            &nbsp;
+        </div>
+        <div class="large-2 columns">
+            @Html.LabelFor(model => model.Subject)
+        </div>
+        <div class="large-4 columns end">
+            @Html.TextBoxFor(model => model.Subject, new {@placeholder = "Subject"})
+        </div>
+        <div id="subjectError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
+            Subject is required
+        </div>
     </div>
-    <div class="large-2 columns">
-        @Html.LabelFor(model => model.Subject)
-    </div>
-    <div class="large-4 columns end">
-        @Html.TextBoxFor(model => model.Subject, new { @placeholder = "Onderwerp"})
-    </div>
-</div>
 
-<div class="row">
-    <div class="large-3 columns">
-        &nbsp;
+    <div class="row">
+        <div class="large-3 columns">
+            &nbsp;
+        </div>
+        <div class="large-2 columns">
+            @Html.LabelFor(model => model.Message)
+        </div>
+        <div class="large-4 columns end">
+            @Html.TextAreaFor(model => model.Message, new {@placeholder = "Message..."})
+        </div>
+        <div id="messageError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
+            Message is required
+        </div>
     </div>
-    <div class="large-2 columns">
-        @Html.LabelFor(model => model.Message)
-    </div>
-    <div class="large-4 columns end">
-        @Html.TextAreaFor(model => model.Message, new { @placeholder = "Bericht..."})
-    </div>
-</div>
 
-<div class="row">
-    <div class="large-3 columns">
-        &nbsp;
+    <div class="row">
+        <div class="large-3 columns">
+            &nbsp;
+        </div>
+        <div class="large-2 columns">
+            &nbsp;
+        </div>
+        <div class="large-4 columns end">
+            <input type="submit" value="Send" class="button radius" />
+        </div>
     </div>
-    <div class="large-2 columns">
-        &nbsp;
-    </div>
-    <div class="large-4 columns end">
-        <input type="submit" value="Versturen" class="button radius" />
-    </div>
-</div>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+
+    <script type="text/javascript">
+        $('#nameError').hide();
+        $('#emailError').hide();
+        $('#subjectError').hide();
+        $('#messageError').hide();
+    </script>
+}

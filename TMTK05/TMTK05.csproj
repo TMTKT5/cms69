@@ -189,6 +189,7 @@
     <Content Include="Css\sb-admin.css" />
     <Content Include="Css\style.css" />
     <Content Include="Css\themes\default.css" />
+    <Content Include="EmailTemplate.html" />
     <Content Include="Font-awesome-4.1.0\css\font-awesome.css" />
     <Content Include="Font-awesome-4.1.0\css\font-awesome.min.css" />
     <Content Include="Font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />

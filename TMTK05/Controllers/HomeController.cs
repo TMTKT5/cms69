@@ -1,12 +1,7 @@
 ﻿#region
 
 using System.Web.Mvc;
-<<<<<<< Updated upstream
-=======
-using TMTK05.Classes;
 using TMTK05.Models;
->>>>>>> Stashed changes
-
 #endregion
 
 namespace TMTK05.Controllers
@@ -16,14 +11,26 @@ namespace TMTK05.Controllers
 
         #region Public Methods
 
-        // GET: Home 
+        //
+        // GET: Home/Index 
         public ActionResult Index()
         {
             return View();
         }
 
+        //
+        // GET: Home/Contact
         public ActionResult Contact()
         {
+            return View(new ContactModel());
+        }
+        
+        //
+        // POST: Home/Contact
+        [HttpPost]
+        public ActionResult Contact(ContactModel model)
+        {
+            model.SendMail();
             return View();
         }
 
