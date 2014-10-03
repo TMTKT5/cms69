@@ -8,6 +8,11 @@
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
 
+@section Styles
+{
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
 <h2>Contact</h2>
 
 @using (Html.BeginForm("Contact", "Home", new {ViewBag.ReturnUrl}, FormMethod.Post, new {@id = "contactForm", @autocomplete = "off"}))
