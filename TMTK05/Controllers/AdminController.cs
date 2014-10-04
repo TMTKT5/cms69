@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Web.Security;
+using Gma.QrCodeNet.Encoding.DataEncodation;
 using MySql.Data.MySqlClient;
 using TMTK05.Attributes;
 using TMTK05.Classes;
@@ -30,6 +31,21 @@ namespace TMTK05.Controllers
             }
             
             return View();
+        }
+
+        //
+        // POST: /Admin/NewPage/
+        [HttpPost]
+        public ActionResult NewPage(NewPageModel model)
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            model.NewPage();
+            return View(model);
         }
 
         //
