@@ -25,7 +25,7 @@ namespace TMTK05.Models
         [Display(Name = "Message")]
         public string Message { get; set; }
 
-        public bool Done { get; set; }
+        public bool Done { get; private set; }
 
         public void SendMail()
         {

@@ -3,10 +3,9 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Web.DynamicData;
+using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
-using MySql.Data.MySqlClient;
 using TMTK05.Attributes;
 using TMTK05.Classes;
 using TMTK05.Models;
@@ -149,7 +148,7 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public string PluginEnableDisable(string input)
         {
-            return PluginModel.PluginEnableDisable(input).ToString();
+            return PluginModel.PluginEnableDisable(input).ToString(CultureInfo.InvariantCulture);
         }
 
         //

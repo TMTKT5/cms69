@@ -312,7 +312,6 @@ namespace TMTK05.Models
                                 // Save the values 
                                 TwoFactorCode =
                                     new Base32Encoder().Encode(Encoding.ASCII.GetBytes(myDataReader.GetString(0)));
-                                ;
                                 TwoFactorEnabled = Convert.ToInt32(myDataReader.GetValue(1));
                             }
                         }

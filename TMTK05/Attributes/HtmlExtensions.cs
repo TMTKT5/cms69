@@ -53,15 +53,10 @@ namespace TMTK05.Attributes
             if (memberExp != null)
                 return true;
 
-            if (IsConversion(exp) && exp is UnaryExpression)
-            {
-                memberExp = ((UnaryExpression) exp).Operand as MemberExpression;
+            if (!IsConversion(exp) || !(exp is UnaryExpression)) return false;
+            memberExp = ((UnaryExpression) exp).Operand as MemberExpression;
 
-                if (memberExp != null)
-                    return true;
-            }
-
-            return false;
+            return memberExp != null;
         }
 
         private static bool IsConversion(Expression exp)
