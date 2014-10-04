@@ -1,0 +1,169 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Attributes
+@using TMTK05.Models
+@model UploadImageModel
+@{
+    ViewBag.Title = "Media Upload";
+    ViewBag.HeaderTitle = "Media Upload";
+    ViewBag.HeaderSubHeading = "";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+@section Styles
+{
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+    @Styles.Render("~/Bundles/WebsiteCropStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> Media Upload
+        </li>
+    </ol>
+}
+
+<div class="row">
+    @using (Html.BeginForm("MediaUpload", "Admin",
+        new {ViewBag.ReturnUrl},
+        FormMethod.Post, new {@id = "mediaUploadForm", @autocomplete = "off", @enctype = "multipart/form-data"}))
+    {
+        @Html.HiddenFor(m => m.X)
+        @Html.HiddenFor(m => m.Y)
+        @Html.HiddenFor(m => m.Width)
+        @Html.HiddenFor(m => m.Height)
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="col-lg-3">
+                    @Html.EditorFor(m => m.IsUrl)
+                    @Html.LabelFor(m => m.Url)
+                </div>
+                <div class="col-lg-9">
+                    @Html.EditorFor(m => m.Url)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-3">
+                    @Html.EditorFor(m => m.IsFile)
+                    @Html.LabelFor(m => m.File)
+                </div>
+                <div class="col-lg-9">
+                    @Html.FileFor(m => m.File)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-3">&nbsp;</div>
+                <div class="col-lg-9" style="text-align: center;">
+                    <div id="upload-cut">
+                        <img alt="" id="preview" style="display: block;" src="http://tmtk-05.ict-lab.nl/Img/empty.png" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-3">&nbsp;</div>
+                <div class="col-lg-9">
+                    <input type="submit" name="submit" value="Upload" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteImageCropScripts")
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+
+    <script type="text/javascript">
+        var boxes = $('input[type=checkbox]').attr('disabled', true);
+
+        var preview = $('#preview').load(function () {
+            setPreview();
+            ias.setOptions({
+                x1: 0,
+                y1: 0,
+                x2: 100,
+                y2: 100,
+                persistent: true,
+                keys: true,
+                resizable: true,
+                movable: true,
+                show: true
+            });
+        });
+
+        var setPreview = function(x, y, w, h) {
+            $('#X').val(x || 0);
+            $('#Y').val(y || 0);
+            $('#Width').val(w || preview[0].naturalWidth);
+            $('#Height').val(h || preview[0].naturalHeight);
+        };
+
+        var ias = preview.imgAreaSelect({
+            handles: true,
+            instance: true,
+            parent: 'html',
+            onSelectEnd: function(s, e) {
+                var scale = preview[0].naturalWidth / preview.width();
+                var f = Math.floor;
+                setPreview(f(scale * e.x1), f(scale * e.y1), f(scale * e.width), f(scale * e.height));
+            }
+        });
+
+        var setBox = function(filter) {
+            $('button').attr('disabled', false);
+            boxes.attr('checked', false)
+                .filter(filter).attr({ 'checked': true, 'disabled': false });
+        };
+
+        setPreview(0, 0, 1, 1);
+
+        var lastValue = '';
+        $('#Url').on('change keyup paste', function() {
+            if ($(this).val() != lastValue) {
+                lastValue = $(this).val();
+                setBox('#IsUrl');
+                preview.attr('src', this.value);
+            }
+        });
+
+        $('#File').change(function(evt) {
+            var f = evt.target.files[0];
+            var reader = new FileReader();
+
+            if (!f.type.match('image.*')) {
+                noImage();
+                return;
+            }
+
+            setBox('#IsFile');
+            reader.onload = function(e) { preview.attr('src', e.target.result); };
+            reader.readAsDataURL(f);
+        });
+
+        boxes.change(function() {
+            setBox(this);
+            $('#' + this.id.substr(2)).change();
+        });
+
+        $('button').attr('disabled', true);
+        $('form').submit(function() {
+            $('button').attr('disabled', true).text('Please wait...');
+        });
+
+        function noImage() {
+            alertify.error("The file you've selected is not an image!");
+        }
+    </script>
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            alertify.success('The image has been uploaded!');
+        </script>
+    }
+}

@@ -66,8 +66,8 @@ namespace TMTK05
             bundles.Add(websiteAlertifyScriptsBundle);
 
             var websiteImageCropScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteImageCropScripts");
-            websiteAlertifyScriptsBundle.Include(
-                "~/Js/jquery.imgareaselect.pack");
+            websiteImageCropScriptsBundle.Include(
+                "~/Js/jquery.imgareaselect.pack.js");
             websiteImageCropScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteImageCropScriptsBundle);
 
