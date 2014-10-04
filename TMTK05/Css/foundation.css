@@ -3898,3 +3898,7 @@ table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoo
 /* CUSTOM CSS */
 
 /* CONTACT ERRORS */
+
+#nameError, #emailError, #emailError2, #subjectError, #messageError {
+    display: none;
+}
