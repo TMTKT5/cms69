@@ -6231,6 +6231,6 @@ button.close {
 
 /* LOGIN PAGE */
 
-#usernameError, #passwordError, #tfaCode, #footerTextError {
+#usernameError, #passwordError, #tfaCode, #footerTextError, #titleError, #descriptionError {
     display: none;
 }

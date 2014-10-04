@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@model TMTK05.Models.NewPageModel
 
 @{
     ViewBag.Title = "Add Page";
@@ -24,6 +25,41 @@
         </li>
     </ol>
 }
+
+
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Title)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Title, new {@class = "form-control"})
+        </p>
+        <p id="titleError" class="col-lg-2 alert-small alert-danger">
+            Title is required
+        </p>
+    </div>
+
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Description)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        </p>
+        <p id="descriptionError" class="col-lg-2 alert-small alert-danger">
+            Description is required
+        </p>
+    </div>
+
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Add Page" class="btn btn-primary">
+        </div>
+    </div>
+
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
