@@ -309,6 +309,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Admin\Plugins.cshtml" />
     <Content Include="Views\Admin\MediaUpload.cshtml" />
+    <Content Include="Views\Admin\NewPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

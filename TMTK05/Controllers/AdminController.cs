@@ -19,6 +19,13 @@ namespace TMTK05.Controllers
         #region Public Methods
 
         //
+        // GET: /Admin/AddPage/
+        public ActionResult NewPage()
+        {
+            return View();
+        }
+
+        //
         // GET: /Admin/AddUser/ 
         [EnableCompression]
         public ActionResult AddUser()

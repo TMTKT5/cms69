@@ -1,0 +1,30 @@
+﻿@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Add Page";
+    ViewBag.HeaderTitle = "Add Page";
+    ViewBag.HeaderSubHeading = "The more, the better, right?"; /* MEOW, Copycat! */
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> Pages
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> Add Page
+        </li>
+    </ol>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+}
