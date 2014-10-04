@@ -6228,3 +6228,9 @@ button.close {
 .active-border {
     border: solid 2px #222;
 }
+
+/* LOGIN PAGE */
+
+#usernameError, #passwordError, #tfaCode {
+    display: none;
+}
