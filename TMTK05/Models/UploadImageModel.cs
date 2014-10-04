@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
+
+#endregion
 
 namespace TMTK05.Models
 {
     public class UploadImageModel
     {
+        #region Public Constructors
+
         public UploadImageModel()
         {
             Done = false;
@@ -19,15 +23,31 @@ namespace TMTK05.Models
             NotFile = false;
         }
 
-        [Display(Name = "Link to image: ")]
-        public string Url { get; set; }
+        #endregion Public Constructors
 
-        public bool IsUrl { get; set; }
+        #region Public Properties
+
+        public bool Done { get; set; }
 
         [Display(Name = "Upload file: ")]
         public HttpPostedFileBase File { get; set; }
 
+        [Range(1, int.MaxValue)]
+        public int Height { get; set; }
+
         public bool IsFile { get; set; }
+
+        public bool IsUrl { get; set; }
+
+        public bool NotFile { get; set; }
+
+        [Display(Name = "Link to image: ")]
+        public string Url { get; set; }
+
+        [Range(1, int.MaxValue)]
+        public int Width { get; set; }
+
+        public bool Wrong { get; set; }
 
         [Range(0, int.MaxValue)]
         public int X { get; set; }
@@ -35,17 +55,23 @@ namespace TMTK05.Models
         [Range(0, int.MaxValue)]
         public int Y { get; set; }
 
-        [Range(1, int.MaxValue)]
-        public int Width { get; set; }
+        #endregion Public Properties
 
-        [Range(1, int.MaxValue)]
-        public int Height { get; set; }
+        #region Public Methods
 
-        public bool NotFile { get; set; }
+        public static Bitmap CreateImage(Image original, int x, int y, int width, int height)
+        {
+            var img = new Bitmap(width, height);
 
-        public bool Done { get; set; }
+            using (var g = Graphics.FromImage(img))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(original, new Rectangle(0, 0, width, height), x, y, width, height, GraphicsUnit.Pixel);
+            }
 
-        public bool Wrong { get; set; }
+            return img;
+        }
 
         public static Bitmap GetImageFromUrl(string url)
         {
@@ -77,18 +103,6 @@ namespace TMTK05.Models
             return image;
         }
 
-        public static Bitmap CreateImage(Image original, int x, int y, int width, int height)
-        {
-            var img = new Bitmap(width, height);
-
-            using (var g = Graphics.FromImage(img))
-            {
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(original, new Rectangle(0, 0, width, height), x, y, width, height, GraphicsUnit.Pixel);
-            }
-
-            return img;
-        }
+        #endregion Public Methods
     }
 }
