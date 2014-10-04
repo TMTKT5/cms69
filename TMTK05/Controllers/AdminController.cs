@@ -218,6 +218,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/MediaUpload
+        [EnableCompression]
         public ActionResult MediaUpload()
         {
             // Redirect if the user isn't logged in
@@ -232,6 +233,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Logged/ProfilePicture
         [HttpPost]
+        [EnableCompression]
         public ActionResult MediaUpload(UploadImageModel model)
         {
             // Redirect if the user isn't logged in
@@ -316,7 +318,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/ViewProfile/
-        //[EnableCompression]
+        [EnableCompression]
         public ActionResult ViewProfile()
         {
             // Redirect if the user isn't logged in
@@ -331,7 +333,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Admin/ViewProfile/
         [HttpPost]
-        //[EnableCompression]
+        [EnableCompression]
         public ActionResult ViewProfile(UserModel model)
         {
             // Redirect if the user isn't logged in
