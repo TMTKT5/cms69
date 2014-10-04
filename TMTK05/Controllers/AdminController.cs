@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Web.Security;
 using MySql.Data.MySqlClient;
@@ -19,9 +20,15 @@ namespace TMTK05.Controllers
         #region Public Methods
 
         //
-        // GET: /Admin/AddPage/
+        // GET: /Admin/NewPage/
         public ActionResult NewPage()
         {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            
             return View();
         }
 

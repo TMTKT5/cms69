@@ -26,7 +26,8 @@
     </ol>
 }
 
-
+@using (Html.BeginForm("NewPage", "Admin", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "newPageForm", @autocomplete = "off" }))
+{
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Title)
@@ -53,13 +54,37 @@
 
     <div class="row">
         <p class="col-lg-1">
+            @*@Html.LabelFor(model => model.Content)*@
+        </p>
+        <p class="col-lg-2">
+            @*@Html.TextBoxFor(model => model.Content, new { @class = "form-control" })*@
+        </p>
+        <p id="contentError" class="col-lg-2 alert-small alert-danger">
+            Content is required
+        </p>
+    </div>
+
+    <div class="row">
+        <p class="col-lg-1">
+            @*@Html.LabelFor(model => model.Image)*@
+        </p>
+        <p class="col-lg-2">
+            @*@Html.TextBoxFor(model => model.Image, new { @class = "form-control" })*@
+        </p>
+        <p id="imageError" class="col-lg-2 alert-small alert-danger">
+            Image is required
+        </p>
+    </div>
+
+    <div class="row">
+        <p class="col-lg-1">
             <!-- Boo hoo, so bad, so sad -->
         </p>
         <div class="col-lg-1">
             <input type="submit" name="submit" value="Add Page" class="btn btn-primary">
         </div>
     </div>
-
+}
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
