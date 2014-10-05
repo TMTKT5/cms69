@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.UI;
-using TMTK05.Classes;
 
 #endregion
 
@@ -17,11 +16,6 @@ namespace TMTK05
     {
         protected void Application_Start()
         {
-            ViewEngines.Engines.Clear();
-            var viewEngine = new CSharpRazorViewEngine();
-            viewEngine.ViewLocationCache = new TwoLevelViewCache(viewEngine.ViewLocationCache);
-            ViewEngines.Engines.Add(viewEngine);
-
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
