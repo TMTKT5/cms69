@@ -32,6 +32,21 @@ namespace TMTK05.Controllers
         }
 
         //
+        // POST: /Admin/NewPage/
+        [HttpPost]
+        public ActionResult NewPage(NewPageModel model)
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            model.NewPage();
+            return View(model);
+        }
+
+        //
         // GET: /Admin/AddUser/ 
         [EnableCompression]
         public ActionResult AddUser()
