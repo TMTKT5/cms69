@@ -163,10 +163,12 @@
     <Compile Include="Classes\ValidateEmail.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ContactPluginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\ContactPluginSettingsModel.cs" />
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\NewPageModel.cs" />
     <Compile Include="Models\PluginModel.cs" />
@@ -245,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Plugin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

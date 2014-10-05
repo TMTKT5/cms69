@@ -33,7 +33,7 @@ namespace TMTK05.Models
             var list = new List<String>();
 
             // MySQL query 
-            const string selectStatment = "SELECT Id, Name, Description, Author, Enabled " +
+            const string selectStatment = "SELECT Id, Name, Description, Author, Enabled, Settings " +
                                           "FROM plugins";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
@@ -54,6 +54,7 @@ namespace TMTK05.Models
                                 list.Add(myDataReader.GetString(2));
                                 list.Add(myDataReader.GetString(3));
                                 list.Add(myDataReader.GetString(4));
+                                list.Add(myDataReader.GetString(5));
                             }
                         }
                     }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Web;
+using TMTK05.Models;
 
 #endregion
 
@@ -58,7 +59,7 @@ namespace TMTK05.Classes
             try
             {
                 var mailMessage = new MailMessage();
-                mailMessage.To.Add("66164@ict-lab.nl");
+                mailMessage.To.Add(ContactPluginSettingsModel.GetEmail());
                 mailMessage.From = new MailAddress(email);
                 mailMessage.Subject = subject;
                 mailMessage.Body = body;
