@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
+using System;
 using System.Data;
-using System.Linq;
-using System.Web;
 using MySql.Data.MySqlClient;
 using TMTK05.Classes;
+
+#endregion
 
 namespace TMTK05.Models
 {
     public class ContactPluginSettingsModel
     {
+        #region Public Methods
+
         // <summary> Adds a new user to the database </summery> 
         public static String GetEmail()
         {
@@ -52,7 +55,6 @@ namespace TMTK05.Models
             return email;
         }
 
-
         // <summary> Adds a new user to the database </summery> 
         public static bool SaveEmail(string input)
         {
@@ -65,7 +67,6 @@ namespace TMTK05.Models
             {
                 using (var updateCommand = new MySqlCommand(updateStatment, empConnection))
                 {
-
                     updateCommand.Parameters.Add("Email", MySqlDbType.VarChar).Value = SqlInjection.SafeSqlLiteral(input);
 
                     try
@@ -87,5 +88,7 @@ namespace TMTK05.Models
             }
             return false;
         }
+
+        #endregion Public Methods
     }
 }

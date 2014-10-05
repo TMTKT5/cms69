@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿#region
+
+using System;
 using System.Web.Mvc;
 using TMTK05.Attributes;
 using TMTK05.Models;
+
+#endregion
 
 namespace TMTK05.Controllers
 {
     public class ContactPluginController : Controller
     {
+        #region Public Methods
+
         //
         // AJAX:
         // GET: /ContactPlugin/GetEmail/
@@ -27,5 +30,7 @@ namespace TMTK05.Controllers
         {
             return ContactPluginSettingsModel.SaveEmail(input);
         }
+
+        #endregion Public Methods
     }
 }
