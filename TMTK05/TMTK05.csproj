@@ -264,7 +264,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_LayoutAdminPanel.cshtml" />
+    <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
@@ -302,29 +302,29 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Index.cshtml" />
+    <None Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutWebsite.cshtml" />
-    <Content Include="Views\Admin\Settings.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\_LayoutWebsite.cshtml" />
+    <None Include="Views\Admin\Settings.cshtml" />
     <None Include="Properties\PublishProfiles\School.pubxml" />
     <None Include="Properties\PublishProfiles\Thuis.pubxml" />
-    <Content Include="Views\Admin\AddUser.cshtml" />
-    <Content Include="Views\Shared\_AdminPanelProfile.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\LoggedIn.cshtml" />
-    <Content Include="Views\Admin\SignOut.cshtml" />
-    <Content Include="Views\Admin\ViewProfile.cshtml" />
-    <Content Include="Views\Admin\TwoFactorAuthentication.cshtml" />
-    <Content Include="Views\Admin\AllUsers.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Admin\Plugins.cshtml" />
-    <Content Include="Views\Admin\MediaUpload.cshtml" />
-    <Content Include="Views\Admin\NewPage.cshtml" />
+    <None Include="Views\Admin\AddUser.cshtml" />
+    <None Include="Views\Shared\_AdminPanelProfile.cshtml" />
+    <None Include="Views\Admin\Login.cshtml" />
+    <None Include="Views\Admin\LoggedIn.cshtml" />
+    <None Include="Views\Admin\SignOut.cshtml" />
+    <None Include="Views\Admin\ViewProfile.cshtml" />
+    <None Include="Views\Admin\TwoFactorAuthentication.cshtml" />
+    <None Include="Views\Admin\AllUsers.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Admin\Plugins.cshtml" />
+    <None Include="Views\Admin\MediaUpload.cshtml" />
+    <None Include="Views\Admin\NewPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
