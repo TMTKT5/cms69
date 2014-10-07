@@ -181,7 +181,7 @@
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ContactPluginSettingsModel.cs" />
     <Compile Include="Models\IdentityModel.cs" />
-    <Compile Include="Models\NewPageModel.cs" />
+    <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\PluginModel.cs" />
     <Compile Include="Models\UploadImageModel.cs" />
     <Compile Include="Models\UserModel.cs" />

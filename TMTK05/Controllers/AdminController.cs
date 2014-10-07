@@ -28,13 +28,13 @@ namespace TMTK05.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             
-            return View();
+            return View(new PageModel());
         }
 
         //
         // POST: /Admin/NewPage/
         [HttpPost]
-        public ActionResult NewPage(NewPageModel model)
+        public ActionResult NewPage(PageModel model)
         {
             // Redirect if the user isn't logged in 
             if (!IdentityModel.CurrentUserLoggedIn)

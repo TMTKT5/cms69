@@ -1,5 +1,5 @@
 ﻿@using System.Web.Optimization
-@model TMTK05.Models.NewPageModel
+@model TMTK05.Models.PageModel
 
 @{
     ViewBag.Title = "Add Page";
@@ -26,7 +26,9 @@
     </ol>
 }
 
-@using (Html.BeginForm("NewPage", "Admin", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "newPageForm", @autocomplete = "off" }))
+@using (Html.BeginForm("NewPage", "Admin",
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "newPageForm", @autocomplete = "off"}))
 {
     <div class="row">
         <p class="col-lg-1">
@@ -54,30 +56,6 @@
 
     <div class="row">
         <p class="col-lg-1">
-            @*@Html.LabelFor(model => model.Content)*@
-        </p>
-        <p class="col-lg-2">
-            @*@Html.TextBoxFor(model => model.Content, new { @class = "form-control" })*@
-        </p>
-        <p id="contentError" class="col-lg-2 alert-small alert-danger">
-            Content is required
-        </p>
-    </div>
-
-    <div class="row">
-        <p class="col-lg-1">
-            @*@Html.LabelFor(model => model.Image)*@
-        </p>
-        <p class="col-lg-2">
-            @*@Html.TextBoxFor(model => model.Image, new { @class = "form-control" })*@
-        </p>
-        <p id="imageError" class="col-lg-2 alert-small alert-danger">
-            Image is required
-        </p>
-    </div>
-
-    <div class="row">
-        <p class="col-lg-1">
             <!-- Boo hoo, so bad, so sad -->
         </p>
         <div class="col-lg-1">
@@ -88,4 +66,30 @@
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+    $("#newPageForm").submit(function (event) {
+        var error = false;
+        if ($('#Title').val() == "") {
+            error = true;
+            $('#titleError').show(500);
+        }
+        if ($('#Description').val() == "") {
+            error = true;
+            $('#descriptionError').show(500);
+        }
+        if (error) {
+            event.preventDefault();
+        } else {
+            $('#newPageForm').submit();
+        }
+    });
+    </script>
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            $('#Title').val("");
+            $('#Description').val("");
+            alertify.success('The page has been added!');
+        </script>
+    }
 }
