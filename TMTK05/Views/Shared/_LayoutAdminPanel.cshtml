@@ -86,17 +86,6 @@
                             </li>
                             if (IdentityModel.CurrentUserOwner)
                             {
-                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "AllPages" || (string) ViewContext.RouteData.Values["action"] == "NewPage") ? "active" : "")">
-                                    <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
-                                    <ul id="pages" class="collapse">
-                                        <li>
-                                            @Html.ActionLink("All Pages", "AllPages", "Admin")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("New Page", "NewPage", "Admin")
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li class="@(((string) ViewContext.RouteData.Values["action"] == "AddUser" || (string) ViewContext.RouteData.Values["action"] == "AllUsers") ? "active" : "" )">
                                     <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul id="users" class="collapse">
@@ -108,25 +97,25 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "Settings" || (string) ViewContext.RouteData.Values["action"] == "Plugins") ? "active" : "")">
-                                    <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-wrench"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
-                                    <ul id="settings" class="collapse">
+                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "AllPages" || (string) ViewContext.RouteData.Values["action"] == "NewPage") ? "active" : "")">
+                                    <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
+                                    <ul id="pages" class="collapse">
                                         <li>
-                                            @Html.ActionLink("Layout settings", "Settings", "Admin")
+                                            @Html.ActionLink("All Pages", "AllPages", "Admin")
                                         </li>
                                         <li>
-                                            @Html.ActionLink("Plugin settings", "Plugins", "Admin")
+                                            @Html.ActionLink("New Page", "NewPage", "Admin")
                                         </li>
                                     </ul>
                                 </li>
                             }
                             else
                             {
-                                <li class="@((string) ViewContext.RouteData.Values["action"] == "AllPages" ? "active" : "")">
-                                    <a href="@Url.Action("AllPages", "Admin")"><i class="fa fa-fw fa-edit"></i> Pages</a>
-                                </li>
                                 <li class="@((string) ViewContext.RouteData.Values["action"] == "AllUsers" ? "active" : "")">
                                     <a href="@Url.Action("AllUsers", "Admin")"><i class="fa fa-fw fa-user"></i> Users</a>
+                                </li>
+                                <li class="@((string) ViewContext.RouteData.Values["action"] == "AllPages" ? "active" : "")">
+                                    <a href="@Url.Action("AllPages", "Admin")"><i class="fa fa-fw fa-edit"></i> Pages</a>
                                 </li>
                             }
                             if (PluginModel.PluginStatus("3"))
@@ -148,6 +137,20 @@
 
                                 <li class="@((string) ViewContext.RouteData.Values["action"] == "MediaUpload" ? "active" : "")">
                                     <a href="@Url.Action("MediaUpload", "Admin")"><i class="fa fa-fw fa-picture-o"></i> Upload media</a>
+                                </li>
+                            }
+                            if (IdentityModel.CurrentUserOwner)
+                            {
+                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "Settings" || (string) ViewContext.RouteData.Values["action"] == "Plugins") ? "active" : "")">
+                                    <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-wrench"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
+                                    <ul id="settings" class="collapse">
+                                        <li>
+                                            @Html.ActionLink("Layout settings", "Settings", "Admin")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Plugin settings", "Plugins", "Admin")
+                                        </li>
+                                    </ul>
                                 </li>
                             }
                         }
