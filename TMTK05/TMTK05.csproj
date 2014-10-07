@@ -203,7 +203,6 @@
     <Content Include="Img\tweets.png" />
     <Content Include="Js\alertify.js" />
     <Content Include="Js\bootstrap.js" />
-    <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\clndr.js" />
     <Content Include="Js\clockwidget.js" />
     <Content Include="Js\custom.modernizr.js" />
@@ -212,7 +211,6 @@
     <Content Include="Js\functions.js" />
     <Content Include="Js\headroom.min.js" />
     <Content Include="Js\jquery-1.11.0.js" />
-    <Content Include="Js\jquery.easytabs.min.js" />
     <Content Include="Js\jquery.imgareaselect.pack.js" />
     <Content Include="Js\jquery.simpleWeather.js" />
     <Content Include="Js\moment-2.2.1.js" />

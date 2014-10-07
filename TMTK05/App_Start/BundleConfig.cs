@@ -1,9 +1,9 @@
 ﻿#region
 
-using System.Web.Optimization;
 using BundleTransformer.Core.Bundles;
 using BundleTransformer.Core.Orderers;
 using BundleTransformer.Core.Resolvers;
+using System.Web.Optimization;
 
 #endregion
 
@@ -23,6 +23,7 @@ namespace TMTK05
             // transformations of the corresponding bundle
             BundleResolver.Current = new CustomBundleResolver();
 
+            // Admin panel styles
             var adminPanelStylesBundle = new CustomStyleBundle("~/Bundles/AdminPanelStyles");
             adminPanelStylesBundle.Include(
                 "~/Css/bootstrap.css",
@@ -31,64 +32,28 @@ namespace TMTK05
             adminPanelStylesBundle.Orderer = nullOrderer;
             bundles.Add(adminPanelStylesBundle);
 
+            // Admin panel scripts
             var adminPanelScriptsBundle = new CustomScriptBundle("~/Bundles/AdminPanelScripts");
             adminPanelScriptsBundle.Include(
                 "~/Js/jquery-1.11.0.js",
-                "~/Js/bootstrap.min.js");
+                "~/Js/bootstrap.js");
             adminPanelScriptsBundle.Orderer = nullOrderer;
             bundles.Add(adminPanelScriptsBundle);
 
-            var clockScriptsBundle = new CustomScriptBundle("~/Bundles/ClockScripts");
-            clockScriptsBundle.Include(
-                "~/Js/clockwidget.js");
-            clockScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(clockScriptsBundle);
-
-            var weatherScriptsBundle = new CustomScriptBundle("~/Bundles/WeatherScripts");
-            weatherScriptsBundle.Include(
+            //Admin panel widgets
+            var widgetScriptsBundle = new CustomScriptBundle("~/Bundles/AdminPanelWidgets");
+            widgetScriptsBundle.Include(
                 "~/Js/jquery.simpleWeather.js",
-                "~/Js/Weather.js");
-            weatherScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(weatherScriptsBundle);
+                "~/Js/Weather.js",
+                "~/Js/clockwidget.js",
+                "~/Js/underscore-min.js",
+                "~/Js/moment-2.2.1.js",
+                "~/Js/clndr.js",
+                "~/Js/site.js");
+            widgetScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(widgetScriptsBundle);
 
-            var websiteScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteScripts");
-            websiteScriptsBundle.Include(
-                "~/Js/functions.js",
-                "~/Js/custom.modernizr.js",
-                "~/Js/headroom.min.js");
-            websiteScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(websiteScriptsBundle);
-
-            var websiteAlertifyScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteAlertifyScripts");
-            websiteAlertifyScriptsBundle.Include(
-                "~/Js/alertify.js");
-            websiteAlertifyScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(websiteAlertifyScriptsBundle);
-
-            var websiteImageCropScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteImageCropScripts");
-            websiteImageCropScriptsBundle.Include(
-                "~/Js/jquery.imgareaselect.pack.js");
-            websiteImageCropScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(websiteImageCropScriptsBundle);
-
-            var websiteFoundationScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteFoundationScripts");
-            websiteFoundationScriptsBundle.Include(
-                "~/Js/foundation.min.js");
-            websiteFoundationScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(websiteFoundationScriptsBundle);
-
-            var websiteTabsScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteTabsScripts");
-            websiteTabsScriptsBundle.Include(
-                "~/Js/jquery.easytabs.min.js");
-            websiteTabsScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(websiteTabsScriptsBundle);
-
-            var sortableScriptsBundle = new CustomScriptBundle("~/Bundles/SortableScripts");
-            sortableScriptsBundle.Include(
-                "~/Js/sorttable.js");
-            sortableScriptsBundle.Orderer = nullOrderer;
-            bundles.Add(sortableScriptsBundle);
-
+            // Website styles
             var websiteStylesBundle = new CustomStyleBundle("~/Bundles/WebsiteStyles");
             websiteStylesBundle.Include(
                 "~/Css/normalize.css",
@@ -98,6 +63,17 @@ namespace TMTK05
             websiteStylesBundle.Orderer = nullOrderer;
             bundles.Add(websiteStylesBundle);
 
+            // Website scripts
+            var websiteScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteScripts");
+            websiteScriptsBundle.Include(
+                "~/Js/functions.js",
+                "~/Js/custom.modernizr.js",
+                "~/Js/headroom.min.js",
+                "~/Js/foundation.min.js");
+            websiteScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(websiteScriptsBundle);
+
+            // Alertify styles
             var websiteAlertifyStyleBundle = new CustomStyleBundle("~/Bundles/WebsiteAlertifyStyles");
             websiteAlertifyStyleBundle.Include(
                 "~/Css/alertify.css",
@@ -105,11 +81,33 @@ namespace TMTK05
             websiteAlertifyStyleBundle.Orderer = nullOrderer;
             bundles.Add(websiteAlertifyStyleBundle);
 
+            // Alertify script
+            var websiteAlertifyScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteAlertifyScripts");
+            websiteAlertifyScriptsBundle.Include(
+                "~/Js/alertify.js");
+            websiteAlertifyScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(websiteAlertifyScriptsBundle);
+
+            // Image crop style
             var websiteCropStyleBundle = new CustomStyleBundle("~/Bundles/WebsiteCropStyles");
             websiteCropStyleBundle.Include(
                 "~/Css/imgareaselect-animated.css");
             websiteCropStyleBundle.Orderer = nullOrderer;
             bundles.Add(websiteCropStyleBundle);
+
+            // Image crop script
+            var websiteImageCropScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteImageCropScripts");
+            websiteImageCropScriptsBundle.Include(
+                "~/Js/jquery.imgareaselect.pack.js");
+            websiteImageCropScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(websiteImageCropScriptsBundle);
+
+            // Sortable tables script
+            var sortableScriptsBundle = new CustomScriptBundle("~/Bundles/SortableScripts");
+            sortableScriptsBundle.Include(
+                "~/Js/sorttable.js");
+            sortableScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(sortableScriptsBundle);
         }
 
         #endregion Public Methods
