@@ -1,5 +1,8 @@
 ﻿#region
 
+using System;
+using System.Collections.Generic;
+using System.Data;
 using MySql.Data.MySqlClient;
 using System.ComponentModel.DataAnnotations;
 using TMTK05.Classes;
@@ -39,6 +42,41 @@ namespace TMTK05.Models
 
         #region Public Methods
 
+        public static bool DeletePage(int id)
+        {
+            // MySQL query 
+            const string deleteStatment = "DELETE " +
+                                          "FROM pages " +
+                                          "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var deleteCommand = new MySqlCommand(deleteStatment, empConnection))
+                {
+                    // Bind parameters 
+                    deleteCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        deleteCommand.ExecuteScalar();
+                        return true;
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException 
+                        return false;
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+        }
+
         public void NewPage()
         {
             // Run model through sql injection prevention 
@@ -76,6 +114,48 @@ namespace TMTK05.Models
                 }
             }
             Done = true;
+        }
+
+        public static List<String> AllPages()
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Id, Title, Description " +
+                                          "FROM pages";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                list.Add(myDataReader.GetString(0));
+                                list.Add(myDataReader.GetString(1));
+                                list.Add(myDataReader.GetString(2));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return list;
         }
 
         #endregion Public Methods

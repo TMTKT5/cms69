@@ -264,6 +264,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Admin\AllPages.cshtml" />
     <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>

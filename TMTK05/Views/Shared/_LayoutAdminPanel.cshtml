@@ -75,7 +75,7 @@
                     {
                         @Html.Partial("_AdminPanelProfile")
                     }
-                </ul>
+                </ul>`
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
@@ -87,6 +87,9 @@
                             <li>
                                 <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
                                 <ul id="pages" class="collapse">
+                                    <li>
+                                        @Html.ActionLink("All Page", "AllPages", "Admin")
+                                    </li>
                                     <li>
                                         @Html.ActionLink("New Page", "NewPage", "Admin")
                                     </li>

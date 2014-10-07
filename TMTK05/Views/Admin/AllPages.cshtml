@@ -1,0 +1,89 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Models
+@{
+    ViewBag.Title = "All Pages";
+    ViewBag.HeaderTitle = "All Pages";
+    ViewBag.HeaderSubHeading = "Overview";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+
+    var pageInfo = PageModel.AllPages();
+}
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> Pages
+        </li>
+        <li class="active">
+            <i class="fa fa-user"></i> All Pages
+        </li>
+    </ol>
+}
+
+<div class="table-responsive">
+    <table class="table table-hover sortable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                @if (IdentityModel.CurrentUserOwner)
+                {
+                    <th>Delete</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i <= pageInfo.Count / 3; i++)
+            {
+                <tr style="height: 51px" id="@pageInfo[i * 3 - 3]">
+                    <td style="vertical-align: middle">
+                        @pageInfo[i * 3 - 3]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @pageInfo[i * 3 - 2]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @pageInfo[i * 3 - 1]
+                    </td>
+                    @if (IdentityModel.CurrentUserOwner)
+                    {
+                        <td>
+                            <button class="btn btn-danger" onclick=" confirmDelete(@pageInfo[i * 3 - 3], '@pageInfo[i * 3 - 2]') ">Delete</button>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    @Scripts.Render("~/Bundles/SortableScripts")
+    @if (IdentityModel.CurrentUserOwner)
+    {
+        <script type="text/javascript">
+            function confirmDelete(pageId, pageName) {
+                alertify.confirm("Delete", "Are you sure you want to delete " + pageName + "?",
+                    function() {
+                        var url = "/Admin/DeletePage";
+                        $.get(url, { input: pageId }, function(data) {
+                            if (data == "True") {
+                                alertify.success(pageName + " deleted!");
+                                $('#' + pageId).hide(500);
+                            } else {
+                                alertify.error("Oops something went wrong!");
+                            }
+                        });
+                    }, null).setting({ 'labels': { ok: 'Yes', cancel: 'No' }, 'movable': false });
+            }
+        </script>
+    }
+}

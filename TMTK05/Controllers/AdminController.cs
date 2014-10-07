@@ -78,7 +78,6 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/AllUsers/ 
-        [EnableCompression]
         public ActionResult AllUsers()
         {
             // Redirect if the user isn't logged in 
@@ -88,6 +87,28 @@ namespace TMTK05.Controllers
             }
 
             return View();
+        }
+        
+        //
+        // GET: /Admin/AllPages/ 
+        public ActionResult AllPages()
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View();
+        }
+
+        //
+        // AJAX:
+        // GET: /Admin/DeletePage/
+        [EnableCompression]
+        public bool DeletePage(int input)
+        {
+            return PageModel.DeletePage(input);
         }
 
         //
