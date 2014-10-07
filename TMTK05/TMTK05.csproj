@@ -252,6 +252,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Views\Admin\AllPages.cshtml" />
+    <None Include="Views\Admin\EditPage.cshtml" />
     <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,109 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Models
+@model PageModel
+@{
+    ViewBag.Title = "Edit Page";
+    ViewBag.HeaderTitle = "Edit Page";
+    ViewBag.HeaderSubHeading = String.Empty;
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> Pages
+        </li>
+        <li>
+            <i class="fa fa-edit"></i> @Html.ActionLink("All pages", "AllPages", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> Edit Page
+        </li>
+    </ol>
+}
+
+@using (Html.BeginForm("EditPage", "Admin",
+    new { ViewBag.ReturnUrl },
+    FormMethod.Post, new {@id = "editPageForm", @autocomplete = "off"}))
+{
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Title)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Title, new {@class = "form-control"})
+        </p>
+        <p id="titleError" class="col-lg-2 alert-small alert-danger">
+            Title is required
+        </p>
+    </div>
+
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Description)
+        </p>
+        <p class="col-lg-2">
+            @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
+        </p>
+        <p id="descriptionError" class="col-lg-2 alert-small alert-danger">
+            Description is required
+        </p>
+    </div>
+
+    if (PluginModel.PluginStatus("3"))
+    {
+        <div class="row">
+            <p class="col-lg-1">
+                @Html.LabelFor(model => model.Type)
+            </p>
+            <p class="col-lg-2">
+                @Html.RadioButtonFor(model => model.Type, 0, new { @id = "Type0", @checked = "checked" }) @Html.LabelFor(model => model.Type, "Static page", new { @for = "Type0" }) <br />
+                @Html.RadioButtonFor(model => model.Type, 1, new { @id = "Type1" }) @Html.LabelFor(model => model.Type, "Blog", new { @for = "Type1" })
+            </p>
+        </div>
+    }
+
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Save" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    <script type="text/javascript">
+        $("#editPageForm").submit(function(event) {
+            var error = false;
+            if ($('#Title').val() == "") {
+                error = true;
+                $('#titleError').show(500);
+            }
+            if ($('#Description').val() == "") {
+                error = true;
+                $('#descriptionError').show(500);
+            }
+            if (error) {
+                event.preventDefault();
+            } else {
+                $('#editPageForm').submit();
+            }
+        });
+    </script>
+    @if (Model.Done)
+    {
+        <script type="text/javascript">
+            alertify.success('The page has been saved!');
+        </script>
+    }
+}
