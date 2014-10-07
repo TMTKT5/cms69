@@ -84,7 +84,7 @@
                             <li class="@((string) ViewContext.RouteData.Values["action"] == "Index" ? "active" : "")">
                                 <a href="@Url.Action("Index", "Admin")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                             </li>
-                            <li>
+                            <li class="@(((string) ViewContext.RouteData.Values["action"] == "AllPages" || (string) ViewContext.RouteData.Values["action"] == "NewPage") ? "active" : "")">
                                 <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
                                 <ul id="pages" class="collapse">
                                     <li>
@@ -92,12 +92,6 @@
                                     </li>
                                     <li>
                                         @Html.ActionLink("New Page", "NewPage", "Admin")
-                                    </li>
-                                    <li>
-                                        <a href="#">Edit Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Upload Media</a>
                                     </li>
                                 </ul>
                             </li>
@@ -138,13 +132,10 @@
                                     <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-edit"></i> Blog <i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul id="posts" class="collapse">
                                         <li>
+                                            <a href="#">All Posts</a>
+                                        </li>
+                                        <li>
                                             <a href="#">New Post</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Edit Post</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Upload Media</a>
                                         </li>
                                     </ul>
                                 </li>
