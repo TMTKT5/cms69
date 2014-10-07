@@ -84,19 +84,19 @@
                             <li class="@((string) ViewContext.RouteData.Values["action"] == "Index" ? "active" : "")">
                                 <a href="@Url.Action("Index", "Admin")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                             </li>
-                            <li class="@(((string) ViewContext.RouteData.Values["action"] == "AllPages" || (string) ViewContext.RouteData.Values["action"] == "NewPage") ? "active" : "")">
-                                <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
-                                <ul id="pages" class="collapse">
-                                    <li>
-                                        @Html.ActionLink("All Pages", "AllPages", "Admin")
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("New Page", "NewPage", "Admin")
-                                    </li>
-                                </ul>
-                            </li>
                             if (IdentityModel.CurrentUserOwner)
                             {
+                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "AllPages" || (string) ViewContext.RouteData.Values["action"] == "NewPage") ? "active" : "")">
+                                    <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
+                                    <ul id="pages" class="collapse">
+                                        <li>
+                                            @Html.ActionLink("All Pages", "AllPages", "Admin")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("New Page", "NewPage", "Admin")
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="@(((string) ViewContext.RouteData.Values["action"] == "AddUser" || (string) ViewContext.RouteData.Values["action"] == "AllUsers") ? "active" : "" )">
                                     <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul id="users" class="collapse">
@@ -122,6 +122,9 @@
                             }
                             else
                             {
+                                <li class="@((string) ViewContext.RouteData.Values["action"] == "AllPages" ? "active" : "")">
+                                    <a href="@Url.Action("AllPages", "Admin")"><i class="fa fa-fw fa-edit"></i> Pages</a>
+                                </li>
                                 <li class="@((string) ViewContext.RouteData.Values["action"] == "AllUsers" ? "active" : "")">
                                     <a href="@Url.Action("AllUsers", "Admin")"><i class="fa fa-fw fa-user"></i> Users</a>
                                 </li>

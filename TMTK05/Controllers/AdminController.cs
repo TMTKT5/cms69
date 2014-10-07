@@ -241,7 +241,7 @@ namespace TMTK05.Controllers
         public ActionResult NewPage(PageModel model)
         {
             // Redirect if the user isn't logged in 
-            if (!IdentityModel.CurrentUserLoggedIn)
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
             {
                 return RedirectToAction("Login", "Admin");
             }
