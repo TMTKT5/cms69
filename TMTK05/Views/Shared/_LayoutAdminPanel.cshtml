@@ -140,6 +140,13 @@
                                     </ul>
                                 </li>
                             }
+                            if (PluginModel.PluginStatus("4"))
+                            {
+
+                                <li class="@((string) ViewContext.RouteData.Values["action"] == "MediaUpload" ? "active" : "")">
+                                    <a href="@Url.Action("MediaUpload", "Admin")"><i class="fa fa-fw fa-picture-o"></i> Upload media</a>
+                                </li>
+                            }
                         }
                         else
                         {
