@@ -19,36 +19,6 @@ namespace TMTK05.Controllers
         #region Public Methods
 
         //
-        // GET: /Admin/NewPage/
-        [EnableCompression]
-        public ActionResult NewPage()
-        {
-            // Redirect if the user isn't logged in
-            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-            
-            return View(new PageModel());
-        }
-
-        //
-        // POST: /Admin/NewPage/
-        [HttpPost]
-        [EnableCompression]
-        public ActionResult NewPage(PageModel model)
-        {
-            // Redirect if the user isn't logged in 
-            if (!IdentityModel.CurrentUserLoggedIn)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            model.NewPage();
-            return View(model);
-        }
-
-        //
         // GET: /Admin/AddUser/ 
         [EnableCompression]
         public ActionResult AddUser()
@@ -79,9 +49,9 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/AllUsers/ 
+        // GET: /Admin/AllPages/ 
         [EnableCompression]
-        public ActionResult AllUsers()
+        public ActionResult AllPages()
         {
             // Redirect if the user isn't logged in 
             if (!IdentityModel.CurrentUserLoggedIn)
@@ -91,11 +61,11 @@ namespace TMTK05.Controllers
 
             return View();
         }
-        
+
         //
-        // GET: /Admin/AllPages/ 
+        // GET: /Admin/AllUsers/ 
         [EnableCompression]
-        public ActionResult AllPages()
+        public ActionResult AllUsers()
         {
             // Redirect if the user isn't logged in 
             if (!IdentityModel.CurrentUserLoggedIn)
@@ -161,6 +131,134 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/MediaUpload
+        [EnableCompression]
+        public ActionResult MediaUpload()
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View(new UploadImageModel());
+        }
+
+        //
+        // POST: /Logged/ProfilePicture
+        // TODO: Fix
+        [HttpPost]
+        [EnableCompression]
+        public ActionResult MediaUpload(UploadImageModel model)
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            if (!ModelState.IsValid) return View(model);
+            Bitmap original = null;
+
+            if (model.IsUrl)
+            {
+                original = UploadImageModel.GetImageFromUrl(model.Url);
+            }
+            else if (model.File != null)
+            {
+                original = Image.FromStream(model.File.InputStream) as Bitmap;
+            }
+
+            if (original != null)
+            {
+                var img = UploadImageModel.CreateImage(original, model.X, model.Y, model.Width, model.Height);
+
+                var pictureName = Guid.NewGuid().ToString().Replace("-", "").ToUpper();
+                var fn = Server.MapPath("~/database/" + pictureName + ".png");
+                img.Save(fn, ImageFormat.Png);
+
+                /*const string result = "UPDATE gebruiker " +
+                                      "SET profielfoto = ? " +
+                                      "WHERE id = ?";
+
+                var user = User.Identity as FormsIdentity;
+                // ReSharper disable PossibleNullReferenceException
+                var ticket = user.Ticket;
+                // ReSharper restore PossibleNullReferenceException
+
+                var id = ticket.UserData;
+
+                using (var empConnection = DatabaseConnection.DatabaseConnect())
+                {
+                    using (var showresult = new MySqlCommand(result, empConnection))
+                    {
+                        showresult.Parameters.Add("profielfoto", MySqlDbType.VarChar).Value = pictureName + ".png";
+                        showresult.Parameters.Add("id", MySqlDbType.Int16).Value = id;
+
+                        try
+                        {
+                            DatabaseConnection.DatabaseOpen(empConnection);
+                            showresult.ExecuteNonQuery(); */
+                model = new UploadImageModel { Done = true };/*
+                        }
+                        catch (MySqlException)
+                        {
+                            model.Wrong = false;
+                        }
+                        finally
+                        {
+                            DatabaseConnection.DatabaseClose(empConnection);
+                        }
+                    }
+                } */
+            }
+            else
+            {
+                model.NotFile = true;
+            }
+
+            return View(model);
+        }
+
+        //
+        // GET: /Admin/NewPage/
+        [EnableCompression]
+        public ActionResult NewPage()
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            
+            return View(new PageModel());
+        }
+
+        //
+        // POST: /Admin/NewPage/
+        [HttpPost]
+        [EnableCompression]
+        public ActionResult NewPage(PageModel model)
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            model.NewPage();
+            return View(model);
+        }
+        //
+        // AJAX:
+        // GET: /Admin/PluginEnableDisable/
+        [EnableCompression]
+        public string PluginEnableDisable(string input)
+        {
+            return PluginModel.PluginEnableDisable(input).ToString(CultureInfo.InvariantCulture);
+        }
+
+        //
         // GET: /Admin/Plugins/
         public ActionResult Plugins()
         {
@@ -180,15 +278,6 @@ namespace TMTK05.Controllers
         public string PluginStatus(string input)
         {
             return PluginModel.PluginStatus(input).ToString();
-        }
-
-        //
-        // AJAX:
-        // GET: /Admin/PluginEnableDisable/
-        [EnableCompression]
-        public string PluginEnableDisable(string input)
-        {
-            return PluginModel.PluginEnableDisable(input).ToString(CultureInfo.InvariantCulture);
         }
 
         //
@@ -268,96 +357,6 @@ namespace TMTK05.Controllers
             model.SaveTfaSettings();
             return View(model);
         }
-
-        //
-        // GET: /Admin/MediaUpload
-        [EnableCompression]
-        public ActionResult MediaUpload()
-        {
-            // Redirect if the user isn't logged in
-            if (!IdentityModel.CurrentUserLoggedIn)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            return View(new UploadImageModel());
-        }
-
-        //
-        // POST: /Logged/ProfilePicture
-        [HttpPost]
-        [EnableCompression]
-        public ActionResult MediaUpload(UploadImageModel model)
-        {
-            // Redirect if the user isn't logged in
-            if (!IdentityModel.CurrentUserLoggedIn)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            if (!ModelState.IsValid) return View(model);
-            Bitmap original = null;
-
-            if (model.IsUrl)
-            {
-                original = UploadImageModel.GetImageFromUrl(model.Url);
-            }
-            else if (model.File != null)
-            {
-                original = Image.FromStream(model.File.InputStream) as Bitmap;
-            }
-
-            if (original != null)
-            {
-                var img = UploadImageModel.CreateImage(original, model.X, model.Y, model.Width, model.Height);
-
-                var pictureName = Guid.NewGuid().ToString().Replace("-", "").ToUpper();
-                var fn = Server.MapPath("~/database/" + pictureName + ".png");
-                img.Save(fn, ImageFormat.Png);
-
-                /*const string result = "UPDATE gebruiker " +
-                                      "SET profielfoto = ? " +
-                                      "WHERE id = ?";
-
-                var user = User.Identity as FormsIdentity;
-                // ReSharper disable PossibleNullReferenceException
-                var ticket = user.Ticket;
-                // ReSharper restore PossibleNullReferenceException
-
-                var id = ticket.UserData;
-
-                using (var empConnection = DatabaseConnection.DatabaseConnect())
-                {
-                    using (var showresult = new MySqlCommand(result, empConnection))
-                    {
-                        showresult.Parameters.Add("profielfoto", MySqlDbType.VarChar).Value = pictureName + ".png";
-                        showresult.Parameters.Add("id", MySqlDbType.Int16).Value = id;
-
-                        try
-                        {
-                            DatabaseConnection.DatabaseOpen(empConnection);
-                            showresult.ExecuteNonQuery(); */
-                            model = new UploadImageModel { Done = true };/*
-                        }
-                        catch (MySqlException)
-                        {
-                            model.Wrong = false;
-                        }
-                        finally
-                        {
-                            DatabaseConnection.DatabaseClose(empConnection);
-                        }
-                    }
-                } */
-            }
-            else
-            {
-                model.NotFile = true;
-            }
-
-            return View(model);
-        }
-
         //
         // AJAX:
         // GET: /Admin/UsernameCheck/
