@@ -77,6 +77,41 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/EditPage/ 
+        public ActionResult EditPage(String id)
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
+            var model = new PageModel();
+            model.GetSinglePage(x);
+
+            return View(model);
+        }
+
+        //
+        // POST: /Admin/EditPage/ 
+        [HttpPost]
+        public ActionResult EditPage(String id, PageModel model)
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
+            model.SavePage(x);
+            return View(model);
+        }
+
+        //
         // AJAX:
         // GET: /Admin/DeletePage/
         [EnableCompression]
@@ -230,7 +265,7 @@ namespace TMTK05.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
-            
+
             return View(new PageModel());
         }
 

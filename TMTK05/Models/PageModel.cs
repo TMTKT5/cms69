@@ -39,6 +39,7 @@ namespace TMTK05.Models
         public string Title { get; set; }
 
         public int Type { get; set; }
+        public string Error { get; set; }
 
         #endregion Public Properties
 
@@ -69,6 +70,53 @@ namespace TMTK05.Models
                     {
                         // MySqlException 
                         return false;
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+        }
+
+        public void GetSinglePage(int id)
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Title, Description, Blog, Content " +
+                                          "FROM pages " +
+                                          "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    selectCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                Title = myDataReader.GetString(0);
+                                Description = myDataReader.GetString(1);
+                                Type = myDataReader.GetInt16(2);
+                                if (!myDataReader.IsDBNull(3))
+                                {
+                                    Content = myDataReader.GetString(3);
+                                }
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
                     }
                     finally
                     {
@@ -117,6 +165,45 @@ namespace TMTK05.Models
                 }
             }
             Done = true;
+        }
+
+        public void SavePage(int id)
+        {
+            // MySQL query 
+            const string updateStatement = "UPDATE pages " +
+                                           "SET Title = ?, " +
+                                           "Description = ?, " +
+                                           "Blog = ?, " +
+                                           "Content = ? " +
+                                           "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var updateCommand = new MySqlCommand(updateStatement, empConnection))
+                {
+                    updateCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = Title;
+                    updateCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = Description;
+                    updateCommand.Parameters.Add("Blog", MySqlDbType.VarChar).Value = Type;
+                    updateCommand.Parameters.Add("Content", MySqlDbType.Text).Value = Content;
+                    updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        updateCommand.ExecuteNonQuery();
+                        Done = true;
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
         }
 
         public static List<String> AllPages()

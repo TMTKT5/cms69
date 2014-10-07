@@ -36,6 +36,7 @@
                 <th>Type</th>
                 @if (IdentityModel.CurrentUserOwner)
                 {
+                    <th>Edit</th>
                     <th>Delete</th>
                 }
             </tr>
@@ -65,6 +66,9 @@
                     </td>
                     @if (IdentityModel.CurrentUserOwner)
                     {
+                        <td>
+                            @Html.ActionLink("Edit", "EditPage", "Admin", new { id = pageInfo[i * 4 - 4] }, new { @class = "btn btn-primary" })
+                        </td>
                         <td>
                             <button class="btn btn-danger" onclick="confirmDelete(@pageInfo[i * 4 - 4], '@pageInfo[i * 4 - 3]')">Delete</button>
                         </td>
