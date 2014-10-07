@@ -9,7 +9,7 @@ using TMTK05.Classes;
 
 namespace TMTK05.Models
 {
-    public class ContactPluginSettingsModel
+    public static class ContactPluginSettingsModel
     {
         #region Public Methods
 

@@ -3,6 +3,7 @@
 using System;
 using System.Web.Mvc;
 using TMTK05.Attributes;
+using TMTK05.Classes;
 using TMTK05.Models;
 
 #endregion
@@ -28,7 +29,7 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public bool SaveEmail(string input)
         {
-            return ContactPluginSettingsModel.SaveEmail(input);
+            return ValidateEmail.IsValidEmail(input) && ContactPluginSettingsModel.SaveEmail(input);
         }
 
         #endregion Public Methods
