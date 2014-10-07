@@ -1,10 +1,10 @@
 ﻿#region
 
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using MySql.Data.MySqlClient;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using TMTK05.Classes;
 
 #endregion
@@ -37,6 +37,8 @@ namespace TMTK05.Models
 
         [Display(Name = "Title:")]
         public string Title { get; set; }
+
+        public int Type { get; set; }
 
         #endregion Public Properties
 
@@ -85,8 +87,8 @@ namespace TMTK05.Models
 
             // MySql query 
             const string insertStatement = "INSERT INTO pages " +
-                                           "(Title, Description) " +
-                                           "VALUES (?, ?)";
+                                           "(Title, Description, Blog) " +
+                                           "VALUES (?, ?, ?)";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
             {
@@ -95,6 +97,7 @@ namespace TMTK05.Models
                     // Bind parameters 
                     insertCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = title;
                     insertCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = description;
+                    insertCommand.Parameters.Add("Blog", MySqlDbType.VarChar).Value = Type;
 
                     try
                     {
@@ -122,7 +125,7 @@ namespace TMTK05.Models
             var list = new List<String>();
 
             // MySQL query 
-            const string selectStatment = "SELECT Id, Title, Description " +
+            const string selectStatment = "SELECT Id, Title, Description, Blog " +
                                           "FROM pages";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
@@ -141,6 +144,7 @@ namespace TMTK05.Models
                                 list.Add(myDataReader.GetString(0));
                                 list.Add(myDataReader.GetString(1));
                                 list.Add(myDataReader.GetString(2));
+                                list.Add(myDataReader.GetString(3));
                             }
                         }
                     }

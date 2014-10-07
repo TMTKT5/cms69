@@ -1,5 +1,6 @@
 ﻿@using System.Web.Optimization
-@model TMTK05.Models.PageModel
+@using TMTK05.Models
+@model PageModel
 @{
     ViewBag.Title = "Add Page";
     ViewBag.HeaderTitle = "Add Page";
@@ -52,6 +53,19 @@
             Description is required
         </p>
     </div>
+
+    if (PluginModel.PluginStatus("3"))
+    {
+        <div class="row">
+            <p class="col-lg-1">
+                @Html.LabelFor(model => model.Type)
+            </p>
+            <p class="col-lg-2">
+                @Html.RadioButtonFor(model => model.Type, 0, new { @id = "Type0", @checked = "checked" }) @Html.LabelFor(model => model.Type, "Static page", new { @for = "Type0" }) <br />
+                @Html.RadioButtonFor(model => model.Type, 1, new { @id = "Type1" }) @Html.LabelFor(model => model.Type, "Blog", new { @for = "Type1" })
+            </p>
+        </div>
+    }
 
     <div class="row">
         <p class="col-lg-1">

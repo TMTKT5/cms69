@@ -33,6 +33,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Type</th>
                 @if (IdentityModel.CurrentUserOwner)
                 {
                     <th>Delete</th>
@@ -40,22 +41,32 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 1; i <= pageInfo.Count / 3; i++)
+            @for (var i = 1; i <= pageInfo.Count / 4; i++)
             {
-                <tr style="height: 51px" id="@pageInfo[i * 3 - 3]">
+                <tr style="height: 51px" id="@pageInfo[i * 4 - 4]">
                     <td style="vertical-align: middle">
-                        @pageInfo[i * 3 - 3]
+                        @pageInfo[i * 4 - 4]
                     </td>
                     <td style="vertical-align: middle">
-                        @pageInfo[i * 3 - 2]
+                        @pageInfo[i * 4 - 3]
                     </td>
                     <td style="vertical-align: middle">
-                        @pageInfo[i * 3 - 1]
+                        @pageInfo[i * 4 - 2]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @if (pageInfo[i * 4 - 1] == "0")
+                        {
+                            <span>Static page</span>
+                        }
+                        else
+                        {
+                            <span>Blog page</span>
+                        }
                     </td>
                     @if (IdentityModel.CurrentUserOwner)
                     {
                         <td>
-                            <button class="btn btn-danger" onclick=" confirmDelete(@pageInfo[i * 3 - 3], '@pageInfo[i * 3 - 2]') ">Delete</button>
+                            <button class="btn btn-danger" onclick="confirmDelete(@pageInfo[i * 4 - 4], '@pageInfo[i * 4 - 3]')">Delete</button>
                         </td>
                     }
                 </tr>

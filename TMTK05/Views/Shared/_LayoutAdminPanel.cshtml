@@ -88,27 +88,13 @@
                                 <a href="javascript:;" data-toggle="collapse" data-target="#pages"><i class="fa fa-fw fa-edit"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
                                 <ul id="pages" class="collapse">
                                     <li>
-                                        @Html.ActionLink("All Page", "AllPages", "Admin")
+                                        @Html.ActionLink("All Pages", "AllPages", "Admin")
                                     </li>
                                     <li>
                                         @Html.ActionLink("New Page", "NewPage", "Admin")
                                     </li>
                                     <li>
                                         <a href="#">Edit Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Upload Media</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-edit"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
-                                <ul id="posts" class="collapse">
-                                    <li>
-                                        <a href="#">New Post</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Edit Post</a>
                                     </li>
                                     <li>
                                         <a href="#">Upload Media</a>
@@ -144,6 +130,23 @@
                             {
                                 <li class="@((string) ViewContext.RouteData.Values["action"] == "AllUsers" ? "active" : "")">
                                     <a href="@Url.Action("AllUsers", "Admin")"><i class="fa fa-fw fa-user"></i> Users</a>
+                                </li>
+                            }
+                            if (PluginModel.PluginStatus("3"))
+                            {
+                                <li>
+                                    <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-edit"></i> Blog <i class="fa fa-fw fa-caret-down"></i></a>
+                                    <ul id="posts" class="collapse">
+                                        <li>
+                                            <a href="#">New Post</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Edit Post</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Upload Media</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             }
                         }
