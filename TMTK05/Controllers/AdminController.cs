@@ -20,6 +20,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/NewPage/
+        [EnableCompression]
         public ActionResult NewPage()
         {
             // Redirect if the user isn't logged in
@@ -34,6 +35,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Admin/NewPage/
         [HttpPost]
+        [EnableCompression]
         public ActionResult NewPage(PageModel model)
         {
             // Redirect if the user isn't logged in 
@@ -78,6 +80,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/AllUsers/ 
+        [EnableCompression]
         public ActionResult AllUsers()
         {
             // Redirect if the user isn't logged in 
@@ -91,6 +94,7 @@ namespace TMTK05.Controllers
         
         //
         // GET: /Admin/AllPages/ 
+        [EnableCompression]
         public ActionResult AllPages()
         {
             // Redirect if the user isn't logged in 
