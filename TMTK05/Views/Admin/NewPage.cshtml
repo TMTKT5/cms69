@@ -1,6 +1,5 @@
 ﻿@using System.Web.Optimization
 @model TMTK05.Models.PageModel
-
 @{
     ViewBag.Title = "Add Page";
     ViewBag.HeaderTitle = "Add Page";
@@ -47,7 +46,7 @@
             @Html.LabelFor(model => model.Description)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
         </p>
         <p id="descriptionError" class="col-lg-2 alert-small alert-danger">
             Description is required
@@ -67,22 +66,22 @@
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
     <script type="text/javascript">
-    $("#newPageForm").submit(function (event) {
-        var error = false;
-        if ($('#Title').val() == "") {
-            error = true;
-            $('#titleError').show(500);
-        }
-        if ($('#Description').val() == "") {
-            error = true;
-            $('#descriptionError').show(500);
-        }
-        if (error) {
-            event.preventDefault();
-        } else {
-            $('#newPageForm').submit();
-        }
-    });
+        $("#newPageForm").submit(function(event) {
+            var error = false;
+            if ($('#Title').val() == "") {
+                error = true;
+                $('#titleError').show(500);
+            }
+            if ($('#Description').val() == "") {
+                error = true;
+                $('#descriptionError').show(500);
+            }
+            if (error) {
+                event.preventDefault();
+            } else {
+                $('#newPageForm').submit();
+            }
+        });
     </script>
     @if (Model.Done)
     {

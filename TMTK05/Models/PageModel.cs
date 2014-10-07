@@ -1,33 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿#region
+
 using MySql.Data.MySqlClient;
-using WebGrease.Css.Ast;
+using System.ComponentModel.DataAnnotations;
 using TMTK05.Classes;
+
+#endregion
 
 namespace TMTK05.Models
 {
     public class PageModel
     {
+        #region Public Constructors
+
         public PageModel()
         {
             Done = false;
         }
-        public bool Done { get; set; }
 
-        [Display(Name = "Title:")]
-        public string Title { get; set; }
+        #endregion Public Constructors
 
-        [Display(Name = "Description:")]
-        public string Description { get; set; }
+        #region Public Properties
 
         [Display(Name = "Content:")]
         public string Content { get; set; }
 
+        [Display(Name = "Description:")]
+        public string Description { get; set; }
+
+        public bool Done { get; set; }
+
         [Display(Name = "Image:")]
         public string Image { get; set; }
+
+        [Display(Name = "Title:")]
+        public string Title { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void NewPage()
         {
@@ -67,5 +77,7 @@ namespace TMTK05.Models
             }
             Done = true;
         }
+
+        #endregion Public Methods
     }
 }
