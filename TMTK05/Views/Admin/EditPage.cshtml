@@ -70,6 +70,14 @@
         </div>
     }
 
+    <div class="aloha-editable">
+        <h2>Bla bla</h2>
+        <p>
+            Test test test
+        </p>
+        <p><small>Teehee</small></p>
+    </div>
+
     <div class="row">
         <p class="col-lg-1">
             <!-- Boo hoo, so bad, so sad -->
@@ -81,6 +89,7 @@
 }
 
 @section Scripts {
+    <script src="~/Js/aloha.min.js"></script>
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
     <script type="text/javascript">
         $("#editPageForm").submit(function(event) {
@@ -99,6 +108,10 @@
                 $('#editPageForm').submit();
             }
         });
+
+        var editable = document.querySelector('.aloha-editable');
+        editable.style.borderColor = '#54c8eb';
+        aloha(editable);
     </script>
     @if (Model.Done)
     {
