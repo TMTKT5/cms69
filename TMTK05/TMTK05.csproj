@@ -227,7 +227,7 @@
     <Content Include="Js\site.js" />
     <Content Include="Js\sorttable.js" />
     <Content Include="Js\underscore-min.js" />
-    <Content Include="Js\Weather.js" />
+    <Content Include="Js\weather.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

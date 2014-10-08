@@ -44,7 +44,7 @@ namespace TMTK05
             var widgetScriptsBundle = new CustomScriptBundle("~/Bundles/AdminPanelWidgets");
             widgetScriptsBundle.Include(
                 "~/Js/jquery.simpleWeather.js",
-                "~/Js/Weather.js",
+                "~/Js/weather.js",
                 "~/Js/clockwidget.js",
                 "~/Js/underscore-min.js",
                 "~/Js/moment-2.2.1.js",
