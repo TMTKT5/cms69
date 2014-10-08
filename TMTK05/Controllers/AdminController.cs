@@ -78,6 +78,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/EditPage/ 
+        [EnableCompression]
         public ActionResult EditPage(String id)
         {
             // Redirect if the user isn't logged in 
@@ -97,6 +98,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Admin/EditPage/ 
         [HttpPost]
+        [EnableCompression]
         public ActionResult EditPage(String id, PageModel model)
         {
             // Redirect if the user isn't logged in 
@@ -183,7 +185,6 @@ namespace TMTK05.Controllers
         // POST: /Logged/ProfilePicture
         // TODO: Fix
         [HttpPost]
-        [EnableCompression]
         public ActionResult MediaUpload(UploadImageModel model)
         {
             // Redirect if the user isn't logged in
