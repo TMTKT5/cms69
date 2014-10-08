@@ -202,6 +202,7 @@
     <Content Include="Img\empty.png" />
     <Content Include="Img\tweets.png" />
     <Content Include="Js\alertify.js" />
+    <Content Include="Js\aloha.min.js" />
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\clndr.js" />
@@ -300,7 +301,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61055</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
