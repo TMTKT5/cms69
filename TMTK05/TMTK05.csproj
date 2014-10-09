@@ -201,7 +201,9 @@
     <Content Include="Img\border-anim-h.gif" />
     <Content Include="Img\border-anim-v.gif" />
     <Content Include="Img\empty.png" />
+    <Content Include="Img\pages.png" />
     <Content Include="Img\tweets.png" />
+    <Content Include="Img\users.png" />
     <Content Include="Js\alertify.js" />
     <Content Include="Js\aloha-ui-links.js" />
     <Content Include="Js\aloha-ui.js" />

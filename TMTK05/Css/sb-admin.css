@@ -238,7 +238,7 @@ ul.alert-dropdown {
 
 #weather {
   width: auto;
-  height: 170px;
+  height: 175px;
   margin: 0px auto;
   text-align: center;
   text-transform: uppercase;
@@ -329,7 +329,7 @@ i {
 /* CLOCK WIDGET */
 .clock {
     width: auto;
-    height: 170px;
+    height: 175px;
     margin-bottom: 25px;
     padding: 10px;
     text-align: center;
@@ -364,9 +364,10 @@ i {
 
 .clock ul li {
     display: inline;
-    font-size: 5.6em;
+    font-size: 5em;
     text-align: center;
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    line-height: 1.8em;
 }
 
 /* CLNDR */
@@ -570,4 +571,53 @@ i {
 	display:block;
 	color:#9099B7;
 	padding:10px 0;
+}
+
+/* Page COUNTER (PETER) */
+.pageCounter {
+  width: auto;
+  height: 177px;
+  margin: 0px auto;
+  text-align: center;
+  text-transform: uppercase;
+  background: #394264;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  font-size: 1.7em;
+  line-height: 2.5em;
+}
+
+/* User COUNTER (PETER) */
+.userCounter {
+  width: auto;
+  height: 177px;
+  margin: 10px auto;
+  text-align: center;
+  text-transform: uppercase;
+  background: #394264;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  font-size: 1.7em;
+  line-height: 2.5em;
+}
+
+.titleCounters {
+    width: auto;
+    height: 50px;
+}
+
+.pictureFieldCounters {
+    width: 100px;
+    height: 110px;
+    margin-top: 8px;
+    margin-left: 10px;
+    float:left;
+}
+
+.counterText {
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  font-size: 5em;
+  line-height: 1em;
 }
