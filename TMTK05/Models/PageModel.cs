@@ -191,8 +191,8 @@ namespace TMTK05.Models
                             while (myDataReader.Read())
                             {
                                 // Save the values 
-                                Title = myDataReader.GetString(0);
-                                Description = myDataReader.GetString(1);
+                                Title = SqlInjection.SafeSqlLiteralRevert(myDataReader.GetString(0));
+                                Description = SqlInjection.SafeSqlLiteralRevert(myDataReader.GetString(1));
                                 Type = myDataReader.GetInt16(2);
                             }
                         }
@@ -251,6 +251,10 @@ namespace TMTK05.Models
 
         public void SavePage(int id)
         {
+            // Run model through sql injection prevention 
+            var title = SqlInjection.SafeSqlLiteral(Title);
+            var description = SqlInjection.SafeSqlLiteral(Description);
+
             // MySQL query 
             const string updateStatement = "UPDATE pages " +
                                            "SET Title = ?, " +
@@ -263,8 +267,8 @@ namespace TMTK05.Models
             {
                 using (var updateCommand = new MySqlCommand(updateStatement, empConnection))
                 {
-                    updateCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = Title;
-                    updateCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = Description;
+                    updateCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = title;
+                    updateCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = description;
                     updateCommand.Parameters.Add("Blog", MySqlDbType.VarChar).Value = Type;
                     updateCommand.Parameters.Add("Content", MySqlDbType.VarChar).Value = Content;
                     updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
