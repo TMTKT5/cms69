@@ -2,6 +2,7 @@
 @using TMTK05.Models
 @{
     var layoutPreferences = SettingsModel.FetchSettings();
+    var pageInfo = PageModel.AllPages();
 }
 <!DOCTYPE html>
 
@@ -27,9 +28,14 @@
                                 </li>-->
                             <li class="toggle-topbar menu-icon"><a id="menutoggle" href="#" onclick=" menuClick(); "><span>Menu</span></a></li>
                         </ul>
-
                         <section class="top-bar-section">
                             <ul class="right">
+                                @for (var i = 1; i <= pageInfo.Count / 4; i++)
+                                {
+                                    <li>
+                                        @Html.ActionLink(@pageInfo[i * 4 - 3], "Page", "Home", new { id = pageInfo[i * 4 - 4] }, new { @id = "page_@pageInfo[i * 4 - 4]" })
+                                    </li>
+                                }
                                 @if (PluginModel.PluginStatus("2"))
                                 {
                                     <li>

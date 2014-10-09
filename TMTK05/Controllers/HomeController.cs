@@ -37,6 +37,15 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Home/Page/
+        public ActionResult Page(String id)
+        {
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Index", "Home");
+            return View();
+        }
+
+        //
         // AJAX:
         // GET: /Home/MailCheck/
         public string MailCheck(string input)

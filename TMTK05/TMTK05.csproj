@@ -258,6 +258,7 @@
     </None>
     <None Include="Views\Admin\AllPages.cshtml" />
     <None Include="Views\Admin\EditPage.cshtml" />
+    <Content Include="Views\Home\Page.cshtml" />
     <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
