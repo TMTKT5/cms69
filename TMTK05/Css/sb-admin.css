@@ -622,3 +622,33 @@ i {
     line-height: 1em;
     text-align: center;
 }
+
+/* Posts COUNTER (PETER) */
+.postCounter {
+  width: auto;
+  height: 177px;
+  text-align: center;
+  text-transform: uppercase;
+  background: #394264;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  font-size: 1.7em;
+  line-height: 2.5em;
+
+}
+
+/* Plugin COUNTER (PETER) */
+.pluginCounter {
+  width: auto;
+  height: 177px;
+  margin: 10px auto;
+  text-align: center;
+  text-transform: uppercase;
+  background: #394264;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  font-size: 1.7em;
+  line-height: 2.5em;
+}
