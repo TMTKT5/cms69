@@ -1,11 +1,11 @@
 ﻿#region
 
-using System.Web.Mvc;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Web.Mvc;
 using TMTK05.Classes;
 
 #endregion
@@ -33,6 +33,8 @@ namespace TMTK05.Models
 
         public bool Done { get; set; }
 
+        public string Error { get; set; }
+
         [Display(Name = "Image:")]
         public string Image { get; set; }
 
@@ -40,11 +42,53 @@ namespace TMTK05.Models
         public string Title { get; set; }
 
         public int Type { get; set; }
-        public string Error { get; set; }
 
         #endregion Public Properties
 
         #region Public Methods
+
+        public static List<String> AllPages()
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Id, Title, Description, Blog " +
+                                          "FROM pages";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                list.Add(myDataReader.GetString(0));
+                                list.Add(myDataReader.GetString(1));
+                                list.Add(myDataReader.GetString(2));
+                                list.Add(myDataReader.GetString(3));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return list;
+        }
 
         public static bool DeletePage(int id)
         {
@@ -71,49 +115,6 @@ namespace TMTK05.Models
                     {
                         // MySqlException 
                         return false;
-                    }
-                    finally
-                    {
-                        // Always close the connection 
-                        DatabaseConnection.DatabaseClose(empConnection);
-                    }
-                }
-            }
-        }
-
-        public void GetSinglePage(int id)
-        {
-            // Initial vars 
-            var list = new List<String>();
-
-            // MySQL query 
-            const string selectStatment = "SELECT Title, Description, Blog " +
-                                          "FROM pages " +
-                                          "WHERE Id = ?";
-
-            using (var empConnection = DatabaseConnection.DatabaseConnect())
-            {
-                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
-                {
-                    selectCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
-                    try
-                    {
-                        DatabaseConnection.DatabaseOpen(empConnection);
-                        // Execute command 
-                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
-                        {
-                            while (myDataReader.Read())
-                            {
-                                // Save the values 
-                                Title = myDataReader.GetString(0);
-                                Description = myDataReader.GetString(1);
-                                Type = myDataReader.GetInt16(2);
-                            }
-                        }
-                    }
-                    catch (MySqlException)
-                    {
-                        // MySqlException bail out 
                     }
                     finally
                     {
@@ -166,6 +167,48 @@ namespace TMTK05.Models
             return String.Empty;
         }
 
+        public void GetSinglePage(int id)
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Title, Description, Blog " +
+                                          "FROM pages " +
+                                          "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    selectCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                Title = myDataReader.GetString(0);
+                                Description = myDataReader.GetString(1);
+                                Type = myDataReader.GetInt16(2);
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+        }
         public void NewPage()
         {
             // Run model through sql injection prevention 
@@ -243,49 +286,6 @@ namespace TMTK05.Models
                     }
                 }
             }
-        }
-
-        public static List<String> AllPages()
-        {
-            // Initial vars 
-            var list = new List<String>();
-
-            // MySQL query 
-            const string selectStatment = "SELECT Id, Title, Description, Blog " +
-                                          "FROM pages";
-
-            using (var empConnection = DatabaseConnection.DatabaseConnect())
-            {
-                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
-                {
-                    try
-                    {
-                        DatabaseConnection.DatabaseOpen(empConnection);
-                        // Execute command 
-                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
-                        {
-                            while (myDataReader.Read())
-                            {
-                                // Save the values 
-                                list.Add(myDataReader.GetString(0));
-                                list.Add(myDataReader.GetString(1));
-                                list.Add(myDataReader.GetString(2));
-                                list.Add(myDataReader.GetString(3));
-                            }
-                        }
-                    }
-                    catch (MySqlException)
-                    {
-                        // MySqlException bail out 
-                    }
-                    finally
-                    {
-                        // Always close the connection 
-                        DatabaseConnection.DatabaseClose(empConnection);
-                    }
-                }
-            }
-            return list;
         }
 
         #endregion Public Methods
