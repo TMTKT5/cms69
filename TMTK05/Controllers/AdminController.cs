@@ -77,43 +77,6 @@ namespace TMTK05.Controllers
         }
 
         //
-        // GET: /Admin/EditPage/ 
-        [EnableCompression]
-        public ActionResult EditPage(String id)
-        {
-            // Redirect if the user isn't logged in 
-            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            int x;
-            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
-            var model = new PageModel();
-            model.GetSinglePage(x);
-
-            return View(model);
-        }
-
-        //
-        // POST: /Admin/EditPage/ 
-        [HttpPost]
-        [EnableCompression]
-        public ActionResult EditPage(String id, PageModel model)
-        {
-            // Redirect if the user isn't logged in 
-            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-
-            int x;
-            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
-            model.SavePage(x);
-            return View(model);
-        }
-
-        //
         // AJAX:
         // GET: /Admin/DeletePage/
         [EnableCompression]
@@ -129,6 +92,43 @@ namespace TMTK05.Controllers
         public bool DeleteUser(int input)
         {
             return UserModel.DeleteUser(input);
+        }
+
+        //
+        // GET: /Admin/EditPage/
+        [EnableCompression]
+        public ActionResult EditPage(String id)
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
+            var model = new PageModel();
+            model.GetSinglePage(x);
+
+            return View(model);
+        }
+
+        //
+        // POST: /Admin/EditPage/
+        [HttpPost]
+        [EnableCompression]
+        public ActionResult EditPage(String id, PageModel model)
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
+            model.SavePage(x);
+            return View(model);
         }
 
         //
@@ -244,7 +244,7 @@ namespace TMTK05.Controllers
                         {
                             DatabaseConnection.DatabaseOpen(empConnection);
                             showresult.ExecuteNonQuery(); */
-                model = new UploadImageModel { Done = true };/*
+                model = new UploadImageModel { Done = true }; /*
                         }
                         catch (MySqlException)
                         {
@@ -285,7 +285,7 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public ActionResult NewPage(PageModel model)
         {
-            // Redirect if the user isn't logged in 
+            // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
             {
                 return RedirectToAction("Login", "Admin");
@@ -294,6 +294,7 @@ namespace TMTK05.Controllers
             model.NewPage();
             return View(model);
         }
+
         //
         // AJAX:
         // GET: /Admin/PluginEnableDisable/
@@ -307,7 +308,7 @@ namespace TMTK05.Controllers
         // GET: /Admin/Plugins/
         public ActionResult Plugins()
         {
-            // Redirect if the user isn't logged in 
+            // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
             {
                 return RedirectToAction("Index", "Admin");
@@ -402,6 +403,7 @@ namespace TMTK05.Controllers
             model.SaveTfaSettings();
             return View(model);
         }
+
         //
         // AJAX:
         // GET: /Admin/UsernameCheck/
