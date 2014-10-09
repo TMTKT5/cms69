@@ -87,5 +87,84 @@ namespace TMTK05.Models
             }
             return count;
         }
+
+        public int PostsCount()
+        {
+            var count = 0;
+
+            // MySQL query 
+            const string selectStatment = "SELECT COUNT(*) " +
+                                          "FROM posts ";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                count = Convert.ToInt16(myDataReader.GetValue(0));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return count;
+        }
+
+        public int PluginsCount()
+        {
+            var count = 0;
+
+            // MySQL query 
+            const string selectStatment = "SELECT COUNT(*) " +
+                                          "FROM posts " +
+                                          "WHERE Enabled = 1";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                count = Convert.ToInt16(myDataReader.GetValue(0));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return count;
+        }
     }
 }
