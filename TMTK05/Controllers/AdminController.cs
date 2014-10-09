@@ -142,6 +142,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/Home/
+        [EnableCompression]
         public ActionResult Index(DashboardModel model)
         {
             // Redirect if the user isn't logged in
@@ -195,6 +196,7 @@ namespace TMTK05.Controllers
         // POST: /Logged/ProfilePicture
         // TODO: Fix
         [HttpPost]
+        [EnableCompression]
         public ActionResult MediaUpload(UploadImageModel model)
         {
             // Redirect if the user isn't logged in
@@ -307,6 +309,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/Plugins/
+        [EnableCompression]
         public ActionResult Plugins()
         {
             // Redirect if the user isn't logged in

@@ -2,6 +2,7 @@
 
 using System;
 using System.Web.Mvc;
+using TMTK05.Attributes;
 using TMTK05.Classes;
 using TMTK05.Models;
 
@@ -15,6 +16,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Home/Index 
+        [EnableCompression]
         public ActionResult Index()
         {
             return View();
@@ -22,6 +24,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Home/Contact
+        [EnableCompression]
         public ActionResult Contact()
         {
             return View(new ContactModel());
@@ -30,6 +33,7 @@ namespace TMTK05.Controllers
         //
         // POST: /Home/Contact
         [HttpPost]
+        [EnableCompression]
         public ActionResult Contact(ContactModel model)
         {
             model.SendMail();
@@ -38,6 +42,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Home/Page/
+        [EnableCompression]
         public ActionResult Page(String id)
         {
             int x;
@@ -48,6 +53,7 @@ namespace TMTK05.Controllers
         //
         // AJAX:
         // GET: /Home/MailCheck/
+        [EnableCompression]
         public string MailCheck(string input)
         {
             return ValidateEmail.IsValidEmail(input) ? "valid" : String.Empty;
