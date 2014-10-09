@@ -108,6 +108,22 @@ namespace TMTK05
                 "~/Js/sorttable.js");
             sortableScriptsBundle.Orderer = nullOrderer;
             bundles.Add(sortableScriptsBundle);
+
+            // WYSIWYG style
+            var alohaStyleBundle = new CustomStyleBundle("~/Bundles/AlohaStyles");
+            alohaStyleBundle.Include(
+                "~/Css/aloha-ui.css");
+            alohaStyleBundle.Orderer = nullOrderer;
+            bundles.Add(alohaStyleBundle);
+
+            // WYSIWYG scripts
+            var alohaScriptsBundle = new CustomScriptBundle("~/Bundles/AlohaScripts");
+            alohaScriptsBundle.Include(
+                "~/Js/aloha.min.js",
+                "~/Js/aloha-ui.js",
+                "~/Js/aloha-ui-links.js");
+            alohaScriptsBundle.Orderer = nullOrderer;
+            bundles.Add(alohaScriptsBundle);
         }
 
         #endregion Public Methods

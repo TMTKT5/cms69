@@ -54,7 +54,7 @@ namespace TMTK05.Attributes
                 return true;
 
             if (!IsConversion(exp) || !(exp is UnaryExpression)) return false;
-            memberExp = ((UnaryExpression) exp).Operand as MemberExpression;
+            memberExp = ((UnaryExpression)exp).Operand as MemberExpression;
 
             return memberExp != null;
         }

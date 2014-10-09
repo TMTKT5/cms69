@@ -176,6 +176,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Css\alertify.css" />
+    <Content Include="Css\aloha-ui.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\border-anim-h.gif" />
     <Content Include="Css\border-anim-v.gif" />
@@ -202,6 +203,8 @@
     <Content Include="Img\empty.png" />
     <Content Include="Img\tweets.png" />
     <Content Include="Js\alertify.js" />
+    <Content Include="Js\aloha-ui-links.js" />
+    <Content Include="Js\aloha-ui.js" />
     <Content Include="Js\aloha.min.js" />
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\clndr.js" />

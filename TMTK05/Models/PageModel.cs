@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Web.Mvc;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace TMTK05.Models
 
         #region Public Properties
 
-        [Display(Name = "Content:")]
+        [AllowHtml]
         public string Content { get; set; }
 
         [Display(Name = "Description:")]
@@ -86,7 +87,7 @@ namespace TMTK05.Models
             var list = new List<String>();
 
             // MySQL query 
-            const string selectStatment = "SELECT Title, Description, Blog, Content " +
+            const string selectStatment = "SELECT Title, Description, Blog " +
                                           "FROM pages " +
                                           "WHERE Id = ?";
 
@@ -107,10 +108,6 @@ namespace TMTK05.Models
                                 Title = myDataReader.GetString(0);
                                 Description = myDataReader.GetString(1);
                                 Type = myDataReader.GetInt16(2);
-                                if (!myDataReader.IsDBNull(3))
-                                {
-                                    Content = myDataReader.GetString(3);
-                                }
                             }
                         }
                     }
@@ -125,6 +122,48 @@ namespace TMTK05.Models
                     }
                 }
             }
+        }
+
+        public static string GetContent(int id)
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Content " +
+                                          "FROM pages " +
+                                          "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    selectCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                return myDataReader.GetString(0);
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return String.Empty;
         }
 
         public void NewPage()
@@ -173,7 +212,7 @@ namespace TMTK05.Models
             const string updateStatement = "UPDATE pages " +
                                            "SET Title = ?, " +
                                            "Description = ?, " +
-                                           "Blog = ?, " +
+                                           "Blog = ?," +
                                            "Content = ? " +
                                            "WHERE Id = ?";
 
@@ -184,7 +223,7 @@ namespace TMTK05.Models
                     updateCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = Title;
                     updateCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = Description;
                     updateCommand.Parameters.Add("Blog", MySqlDbType.VarChar).Value = Type;
-                    updateCommand.Parameters.Add("Content", MySqlDbType.Text).Value = Content;
+                    updateCommand.Parameters.Add("Content", MySqlDbType.VarChar).Value = Content;
                     updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
 
                     try
