@@ -38,7 +38,7 @@
         <div class="large-12 columns">
             <div class="row">
                 <div class="col-lg-3">
-                    @Html.EditorFor(m => m.IsUrl)
+                    @Html.CheckBoxFor(m => m.IsUrl)
                     @Html.LabelFor(m => m.Url)
                 </div>
                 <div class="col-lg-9">
@@ -48,7 +48,7 @@
             <br />
             <div class="row">
                 <div class="col-lg-3">
-                    @Html.EditorFor(m => m.IsFile)
+                    @Html.CheckBoxFor(m => m.IsFile)
                     @Html.LabelFor(m => m.File)
                 </div>
                 <div class="col-lg-9">
