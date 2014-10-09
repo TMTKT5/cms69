@@ -30,11 +30,13 @@
                         </ul>
                         <section class="top-bar-section">
                             <ul class="right">
-                                @for (var i = 1; i <= pageInfo.Count / 4; i++)
+                                @for (var i = 1; i <= pageInfo.Count / 5; i++)
                                 {
-                                    <li>
-                                        @Html.ActionLink(@pageInfo[i * 4 - 3], "Page", "Home", new { id = pageInfo[i * 4 - 4] }, new { @id = "page_@pageInfo[i * 4 - 4]" })
-                                    </li>
+                                    if (@pageInfo[i * 5 - 1] == "1") {
+                                        <li>
+                                            @Html.ActionLink(@pageInfo[i * 5 - 4], "Page", "Home", new {id = pageInfo[i * 5 - 5]}, new {@id = "page_@pageInfo[i * 5 - 5]"})
+                                        </li>
+                                    }
                                 }
                                 @if (PluginModel.PluginStatus("2"))
                                 {

@@ -43,6 +43,9 @@ namespace TMTK05.Models
 
         public int Type { get; set; }
 
+        [Display(Name = "Show in menu:")]
+        public int Menu { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods
@@ -53,7 +56,7 @@ namespace TMTK05.Models
             var list = new List<String>();
 
             // MySQL query 
-            const string selectStatment = "SELECT Id, Title, Description, Blog " +
+            const string selectStatment = "SELECT Id, Title, Description, Blog, Menu " +
                                           "FROM pages";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
@@ -73,6 +76,7 @@ namespace TMTK05.Models
                                 list.Add(myDataReader.GetString(1));
                                 list.Add(myDataReader.GetString(2));
                                 list.Add(myDataReader.GetString(3));
+                                list.Add(myDataReader.GetString(4));
                             }
                         }
                     }
@@ -173,7 +177,7 @@ namespace TMTK05.Models
             var list = new List<String>();
 
             // MySQL query 
-            const string selectStatment = "SELECT Title, Description, Blog " +
+            const string selectStatment = "SELECT Title, Description, Blog, Menu " +
                                           "FROM pages " +
                                           "WHERE Id = ?";
 
@@ -194,6 +198,7 @@ namespace TMTK05.Models
                                 Title = SqlInjection.SafeSqlLiteralRevert(myDataReader.GetString(0));
                                 Description = SqlInjection.SafeSqlLiteralRevert(myDataReader.GetString(1));
                                 Type = myDataReader.GetInt16(2);
+                                Menu = myDataReader.GetInt16(3);
                             }
                         }
                     }
@@ -217,8 +222,8 @@ namespace TMTK05.Models
 
             // MySql query 
             const string insertStatement = "INSERT INTO pages " +
-                                           "(Title, Description, Blog) " +
-                                           "VALUES (?, ?, ?)";
+                                           "(Title, Description, Blog, Menu) " +
+                                           "VALUES (?, ?, ?, ?)";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
             {
@@ -228,6 +233,7 @@ namespace TMTK05.Models
                     insertCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = title;
                     insertCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = description;
                     insertCommand.Parameters.Add("Blog", MySqlDbType.VarChar).Value = Type;
+                    insertCommand.Parameters.Add("Menu", MySqlDbType.VarChar).Value = Menu;
 
                     try
                     {
@@ -260,6 +266,7 @@ namespace TMTK05.Models
                                            "SET Title = ?, " +
                                            "Description = ?, " +
                                            "Blog = ?," +
+                                           "Menu = ?," +
                                            "Content = ? " +
                                            "WHERE Id = ?";
 
@@ -270,6 +277,7 @@ namespace TMTK05.Models
                     updateCommand.Parameters.Add("Title", MySqlDbType.VarChar).Value = title;
                     updateCommand.Parameters.Add("Description", MySqlDbType.VarChar).Value = description;
                     updateCommand.Parameters.Add("Blog", MySqlDbType.VarChar).Value = Type;
+                    updateCommand.Parameters.Add("Menu", MySqlDbType.VarChar).Value = Menu;
                     updateCommand.Parameters.Add("Content", MySqlDbType.VarChar).Value = Content;
                     updateCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
 

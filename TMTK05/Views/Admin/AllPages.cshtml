@@ -42,20 +42,20 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 1; i <= pageInfo.Count / 4; i++)
+            @for (var i = 1; i <= pageInfo.Count / 5; i++)
             {
-                <tr style="height: 51px" id="@pageInfo[i * 4 - 4]">
+                <tr style="height: 51px" id="@pageInfo[i * 5 - 5]">
                     <td style="vertical-align: middle">
-                        @pageInfo[i * 4 - 4]
+                        @pageInfo[i * 5 - 5]
                     </td>
                     <td style="vertical-align: middle">
-                        @pageInfo[i * 4 - 3]
+                        @pageInfo[i * 5 - 4]
                     </td>
                     <td style="vertical-align: middle">
-                        @pageInfo[i * 4 - 2]
+                        @pageInfo[i * 5 - 3]
                     </td>
                     <td style="vertical-align: middle">
-                        @if (pageInfo[i * 4 - 1] == "0")
+                        @if (pageInfo[i * 5 - 2] == "0")
                         {
                             <span>Static page</span>
                         }
@@ -67,10 +67,10 @@
                     @if (IdentityModel.CurrentUserOwner)
                     {
                         <td>
-                            @Html.ActionLink("Edit", "EditPage", "Admin", new { id = pageInfo[i * 4 - 4] }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Edit", "EditPage", "Admin", new { id = pageInfo[i * 5 - 5] }, new { @class = "btn btn-primary" })
                         </td>
                         <td>
-                            <button class="btn btn-danger" onclick="confirmDelete(@pageInfo[i * 4 - 4], '@pageInfo[i * 4 - 3]')">Delete</button>
+                            <button class="btn btn-danger" onclick="confirmDelete(@pageInfo[i * 5 - 5], '@pageInfo[i * 5 - 4]')">Delete</button>
                         </td>
                     }
                 </tr>

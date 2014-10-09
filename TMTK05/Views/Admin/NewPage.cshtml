@@ -41,7 +41,6 @@
             Title is required
         </p>
     </div>
-
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Description)
@@ -53,7 +52,15 @@
             Description is required
         </p>
     </div>
-
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.LabelFor(model => model.Menu)
+        </p>
+        <p class="col-lg-2">
+            @Html.RadioButtonFor(model => model.Menu, 1, new { @id = "Menu1", @checked = "checked" }) @Html.LabelFor(model => model.Type, "Yes", new { @for = "Menu1" }) <br />
+            @Html.RadioButtonFor(model => model.Menu, 0, new { @id = "Menu0" }) @Html.LabelFor(model => model.Type, "No", new { @for = "Menu0" })
+        </p>
+    </div>
     if (PluginModel.PluginStatus("3"))
     {
         <div class="row">
@@ -66,7 +73,6 @@
             </p>
         </div>
     }
-
     <div class="row">
         <p class="col-lg-1">
             <!-- Boo hoo, so bad, so sad -->
