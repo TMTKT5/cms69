@@ -132,6 +132,15 @@ namespace TMTK05.Controllers
         }
 
         //
+        // AJAX:
+        // GET: /Admin/GetContent/
+        [EnableCompression]
+        public string GetContent(int pageId)
+        {
+            return PageModel.GetContent(pageId);
+        }
+
+        //
         // GET: /Admin/Home/
         public ActionResult Index()
         {

@@ -10,6 +10,7 @@
 
 @section Styles {
     @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+    @Styles.Render("~/Bundles/AlohaStyles")
 }
 
 @section Breadcrumb {
@@ -69,13 +70,59 @@
             </p>
         </div>
     }
-
-    <div class="aloha-editable">
-        <h2>Bla bla</h2>
-        <p>
-            Test test test
+    
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
         </p>
-        <p><small>Teehee</small></p>
+        <div class="aloha-ui btn-toolbar" role="toolbar">
+            <div class="btn-group">
+                <button type="button" class="aloha-action-B btn btn-default" title="Bold"><b>B</b></button>
+                <button type="button" class="aloha-action-unformat btn btn-default" title="Remove formatting"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="aloha-action-OL btn btn-default" title="Ordered List"><span class="glyphicon glyphicon-list"></span></button>
+                <button type="button" class="aloha-action-UL btn btn-default" title="Unordered List"><span class="glyphicon glyphicon-list"></span></button>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="color:#000">
+                    Paragraph <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" class="aloha-action-H2">Heading 2</a></li>
+                    <li><a href="#" class="aloha-action-H3">Heading 3</a></li>
+                    <li><a href="#" class="aloha-action-H4">Heading 4</a></li>
+                    <li><a href="#" class="aloha-action-P">Paragraph</a></li>
+                    <li><a href="#" class="aloha-action-PRE">Preformatted</a></li>
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" data-activeon="a" title="Create Link" class="aloha-action-A btn btn-default">
+                    <span class="glyphicon glyphicon-link"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="aloha-3d aloha-ui">
+        <div class="aloha-link-toolbar btn-toolbar" role="toolbar" style="background-color:#000">
+            <input type="text" name="href" placeholder="http://TMTK-05.ict-lab.nl"/ value="">
+            <a class="aloha-link-follow btn btn-default" href="#" target="_blank" rel="noreferrer" title="Follow this link">
+                <span class="glyphicon glyphicon-share-alt" style="color:#FFF"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <p class="col-lg-1">
+            <label>Content:</label>
+        </p>
+        <div class="col-lg-10 aloha-editable" id="aloha">
+        </div>
+        @Html.HiddenFor(model => model.Content)
     </div>
 
     <div class="row">
@@ -89,9 +136,14 @@
 }
 
 @section Scripts {
-    <script src="~/Js/aloha.min.js"></script>
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    @Scripts.Render("~/Bundles/AlohaScripts")
+
     <script type="text/javascript">
+        $.get("/Admin/GetContent", { pageId: @Url.RequestContext.RouteData.Values["id"] }, function(data) {
+            $('#aloha').html(data);
+        });
+
         $("#editPageForm").submit(function(event) {
             var error = false;
             if ($('#Title').val() == "") {
@@ -105,13 +157,11 @@
             if (error) {
                 event.preventDefault();
             } else {
-                $('#editPageForm').submit();
+                $('#Content').val($('.aloha-editable').html().trim());
+                $("#editPageForm").submit();
             }
         });
-
-        var editable = document.querySelector('.aloha-editable');
-        editable.style.borderColor = '#54c8eb';
-        aloha(editable);
+        aloha.dom.query('.aloha-editable', document).forEach(aloha);
     </script>
     @if (Model.Done)
     {
