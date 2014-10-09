@@ -142,7 +142,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/Home/
-        public ActionResult Index()
+        public ActionResult Index(DashboardModel model)
         {
             // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn)
@@ -150,7 +150,8 @@ namespace TMTK05.Controllers
                 return RedirectToAction("Login", "Admin");
             }
 
-            return View();
+            model.UserCount();
+            return View(model);
         }
 
         //

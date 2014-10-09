@@ -1,4 +1,7 @@
 ﻿@using System.Web.Optimization
+@using TMTK05.Models
+@model TMTK05.Models.DashboardModel
+
 @{
     ViewBag.Title = "Dashboard";
     ViewBag.HeaderTitle = "Dashboard";
@@ -39,7 +42,7 @@
     <div class="userCounter">
         <div class="titleCounters">Users</div>
         <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="users" /></div>    
-        <div class="counterText">69</div>                                                                   
+        <div class="counterText">@Model.UserCount()</div>                                                                   
     </div>
 </div>
 

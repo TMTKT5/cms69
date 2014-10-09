@@ -617,7 +617,8 @@ i {
 }
 
 .counterText {
-  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
-  font-size: 5em;
-  line-height: 1em;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    font-size: 5em;
+    line-height: 1em;
+    text-align: center;
 }

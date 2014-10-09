@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ContactPluginSettingsModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\PluginModel.cs" />
