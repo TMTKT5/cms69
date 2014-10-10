@@ -241,8 +241,9 @@ namespace TMTK05.Models
                                 // Save the values 
                                 list.Add(myDataReader.GetString(0));
                                 list.Add(myDataReader.GetString(1));
-                                list.Add(myDataReader.GetString(2));
                                 list.Add(myDataReader.GetString(3));
+
+                                list.Add(!myDataReader.IsDBNull(2) ? myDataReader.GetString(2) : String.Empty);
                             }
                         }
                     }

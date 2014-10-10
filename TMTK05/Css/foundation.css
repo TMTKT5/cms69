@@ -3902,3 +3902,9 @@ table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoo
 #nameError, #emailError, #emailError2, #subjectError, #messageError {
     display: none;
 }
+
+/* HEADER */
+
+.subheading .quote {
+    padding-bottom: 20px !important;
+}
