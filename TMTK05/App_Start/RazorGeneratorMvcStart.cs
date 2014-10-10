@@ -27,8 +27,9 @@ namespace TMTK05.App_Start
 
             engine.ViewLocationCache = new TwoLevelViewCache(engine.ViewLocationCache);
 
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(engine);
+            //ViewEngines.Engines.Clear();
+            //ViewEngines.Engines.Add(engine);
+            ViewEngines.Engines.Insert(0, engine);
 
             // StartPage lookups are done by WebPages. 
             VirtualPathFactoryManager.RegisterVirtualPathFactory(engine);
