@@ -1,6 +1,5 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Models
-@model TMTK05.Models.DashboardModel
 
 @{
     ViewBag.Title = "Dashboard";
@@ -16,59 +15,59 @@
         </li>
     </ol>
 }
-
-<div class="col-lg-3 col-md-6">
-    <div class="panel">
-        <div id="weather"></div> 
-    </div>
-    <div class="pageCounter">
-        <div class="titleCounters">Pages</div>
-        <div class="pictureFieldCounters"><img src="~/Img/pages.png" alt="pages" /></div>
-        <div class="counterText">@Model.PageCount()</div>
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-6">
-    <div class="clock">
-        <div id="Date"></div>
-        <ul>
-            <li id="hours"></li>
-            <li id="point">:</li>
-            <li id="min"></li>
-            <li id="point">:</li>
-            <li id="sec"></li>
-        </ul>
-    </div>
-    <div class="userCounter">
-        <div class="titleCounters">Users</div>
-        <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="users" /></div>    
-        <div class="counterText">@Model.UserCount()</div>                                                                   
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-6">
-    <div class="tweets">
-        <h3><i><img src="../Img/tweets.png" alt="" /> </i> Latest Tweets</h3>
-        <div class="tweets_list">
-            <ul>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore <a href="#">TEST</a>
-                    <span>10 minutes ago</span>
-                </li>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore eiusmod <a href="#">#Creative Cloud</a>
-                    <span>2 hours ago</span>
-                </li>
-            </ul>
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel">
+            <div id="weather"></div> 
+        </div>
+        <div class="pageCounter">
+            <div class="titleCounters">Pages</div>
+            <div class="pictureFieldCounters"><img src="~/Img/pages.png" alt="pages" /></div>
+            <div class="counterText">@DashboardModel.PageCount()</div>
         </div>
     </div>
-</div>
+    <div class="col-lg-3 col-md-6">
+        <div class="clock">
+            <div id="Date"></div>
+            <ul>
+                <li id="hours"></li>
+                <li id="point">:</li>
+                <li id="min"></li>
+                <li id="point">:</li>
+                <li id="sec"></li>
+            </ul>
+        </div>
+        <div class="userCounter">
+            <div class="titleCounters">Users</div>
+            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="users" /></div>    
+            <div class="counterText">@DashboardModel.UserCount()</div>                                                                   
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="tweets">
+            <h3><i><img src="../Img/tweets.png" alt="" /> </i> Latest Tweets</h3>
+            <div class="tweets_list">
+                <ul>
+                    <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore <a href="#">TEST</a>
+                        <span>10 minutes ago</span>
+                    </li>
+                    <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore eiusmod <a href="#">#Creative Cloud</a>
+                        <span>2 hours ago</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-<div class="col-lg-3 col-md-6">
-    <div class="calender">
-        <div class="cal1"></div>
-    </div> 
+    <div class="col-lg-3 col-md-6">
+        <div class="calender">
+            <div class="cal1"></div>
+        </div> 
+    </div>
 </div>
+<div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="postCounter">
             <div class="titleCounters">Posts</div>
@@ -83,29 +82,30 @@
             <div class="counterText"></div>
         </div>
     </div>
-<div class="col-lg-3 col-md-6">
-    <div class="pluginCounter">
-        <div class="titleCounters">Plugin</div>
-        <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-        <div class="counterText"></div>
+    <div class="col-lg-3 col-md-6">
+        <div class="pluginCounter">
+            <div class="titleCounters">Plugin</div>
+            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
+            <div class="counterText"></div>
+        </div>
     </div>
-</div>
-<div class="col-lg-3 col-md-6">
-    <div class="pluginCounter">
-        <div class="titleCounters">Plugin</div>
-        <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-        <div class="counterText"></div>
+    <div class="col-lg-3 col-md-6">
+        <div class="pluginCounter">
+            <div class="titleCounters">Plugin</div>
+            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
+            <div class="counterText"></div>
+        </div>
     </div>
-</div>
-<div class="col-lg-3 col-md-6">
-    <div class="pluginCounter">
-        <div class="titleCounters">Plugin</div>
-        <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-        <div class="counterText"></div>
+    <div class="col-lg-3 col-md-6">
+        <div class="pluginCounter">
+            <div class="titleCounters">Plugin</div>
+            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
+            <div class="counterText"></div>
+        </div>
     </div>
 </div>
 
 
-    @section Scripts {
-        @Scripts.Render("~/Bundles/AdminPanelWidgets")
-    }
+@section Scripts {
+    @Scripts.Render("~/Bundles/AdminPanelWidgets")
+}
