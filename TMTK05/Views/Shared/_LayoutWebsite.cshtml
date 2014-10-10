@@ -55,10 +55,10 @@
                 <div class="columns">
                     <div style="text-align: center">
                         <h1> @ViewBag.HeaderTitle </h1>
-                        <div class="subheading quote" style="margin-bottom: -10px; margin-top: -25px;">
+                        <div class="subheading quote" style="margin-top: -15px;">
                             @if (ViewBag.HeaderSubHeading != String.Empty)
                             {
-                                <blockquote style="color: white;">@ViewBag.HeaderSubHeading </blockquote>
+                                <blockquote style="color: white;">@ViewBag.HeaderSubHeading</blockquote>
                             }
                         </div>
                     </div>
@@ -67,8 +67,10 @@
         </header>
 
         <div id="Content" class="section gray">
-            <div class="container">
-               @RenderBody() 
+            <div class="row">
+                <div class="large-12 columns">
+                    @RenderBody() 
+                </div>
             </div>
         </div>
         @if (layoutPreferences[1] == "0")
