@@ -20,7 +20,7 @@
         <div class="panel">
             <div id="weather"></div> 
         </div>
-        <div class="pageCounter">
+        <div class="counterField">
             <div class="titleCounters">Pages</div>
             <div class="pictureFieldCounters"><img src="~/Img/pages.png" alt="pages" /></div>
             <div class="counterText">@DashboardModel.PageCount()</div>
@@ -37,10 +37,10 @@
                 <li id="sec"></li>
             </ul>
         </div>
-        <div class="userCounter">
+        <div class="counterField">
             <div class="titleCounters">Users</div>
-            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="users" /></div>    
-            <div class="counterText">@DashboardModel.UserCount()</div>                                                                   
+            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="users" /></div>
+            <div class="counterText">@DashboardModel.UserCount()</div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
@@ -69,38 +69,31 @@
 </div>
 <div class="row">
     <div class="col-lg-3 col-md-6">
-        <div class="postCounter">
+        <div class="counterField">
             <div class="titleCounters">Posts</div>
-            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="posts" /></div>
-            <div class="counterText"></div>
+            <div class="pictureFieldCounters"><img src="~/Img/posts.png" alt="posts" /></div>
+            <div class="counterText">@DashboardModel.PostsCount()</div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="pluginCounter">
+        <div class="counterField">
             <div class="titleCounters">Plugin</div>
-            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-            <div class="counterText"></div>
+            <div class="pictureFieldCounters"><img src="~/Img/plugins.png" alt="plugins" /></div>
+            <div class="counterText">@DashboardModel.PluginsCount()</div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="pluginCounter">
-            <div class="titleCounters">Plugin</div>
-            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-            <div class="counterText"></div>
+        <div class="counterField">
+            <div class="titleCounters">Comments</div>
+            <div class="pictureFieldCounters"><img src="~/Img/comments.png" alt="comments" /></div>
+            <div class="counterText">@DashboardModel.CommentCount()</div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="pluginCounter">
-            <div class="titleCounters">Plugin</div>
-            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-            <div class="counterText"></div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="pluginCounter">
-            <div class="titleCounters">Plugin</div>
-            <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="plugins" /></div>
-            <div class="counterText"></div>
+        <div class="counterField">
+            <div class="titleCounters">MONSTER COUNTER</div>
+            <div class="pictureFieldCounters"><img src="~/Img/monster.png" alt="monster" /></div>
+            <div class="counterText" id="monsterCounter">@DashboardModel.MonsterCount()</div>
         </div>
     </div>
 </div>

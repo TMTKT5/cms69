@@ -87,6 +87,15 @@ namespace TMTK05.Controllers
 
         //
         // AJAX:
+        // GET: /Admin/Monster/
+        [EnableCompression]
+        public void Monster()
+        {
+            MonsterPluginModel.AddMonster();
+        }
+
+        //
+        // AJAX:
         // GET: /Admin/DeleteUser/
         [EnableCompression]
         public bool DeleteUser(int input)
@@ -142,7 +151,6 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/Home/
-        [EnableCompression]
         public ActionResult Index()
         {
             // Redirect if the user isn't logged in

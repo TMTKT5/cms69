@@ -166,6 +166,7 @@
     <Compile Include="Models\ContactPluginSettingsModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\IdentityModel.cs" />
+    <Compile Include="Models\MonsterPluginModel.cs" />
     <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\PluginModel.cs" />
     <Compile Include="Models\UploadImageModel.cs" />
@@ -201,8 +202,12 @@
     <Content Include="Img\arrow-right.png" />
     <Content Include="Img\border-anim-h.gif" />
     <Content Include="Img\border-anim-v.gif" />
+    <Content Include="Img\comments.png" />
     <Content Include="Img\empty.png" />
+    <Content Include="Img\monster.png" />
     <Content Include="Img\pages.png" />
+    <Content Include="Img\plugins.png" />
+    <Content Include="Img\posts.png" />
     <Content Include="Img\tweets.png" />
     <Content Include="Img\users.png" />
     <Content Include="Js\alertify.js" />

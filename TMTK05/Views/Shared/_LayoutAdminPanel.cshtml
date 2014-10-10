@@ -194,7 +194,16 @@
         </div>
         <!-- /#wrapper -->
         @Scripts.Render("~/Bundles/AdminPanelScripts")
-        @RenderSection("Scripts", false)
+                @RenderSection("Scripts", false)
+        <script type="text/javascript">
+            function addMonster() {
+                var url = "/Admin/Monster";
+                $.get(url, function() {
+                    var count = parseInt($('#monsterCounter').html());
+                    $('#monsterCounter').html(count + 1);
+                });
+            }
+        </script>
     </body>
 
 </html>

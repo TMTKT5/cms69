@@ -573,36 +573,6 @@ i {
 	padding:10px 0;
 }
 
-/* Page COUNTER (PETER) */
-.pageCounter {
-  width: auto;
-  height: 177px;
-  margin: 0px auto;
-  text-align: center;
-  text-transform: uppercase;
-  background: #394264;
-  border-radius: 10px;
-  color: #FFFFFF;
-  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
-  font-size: 1.7em;
-  line-height: 2.5em;
-}
-
-/* User COUNTER (PETER) */
-.userCounter {
-  width: auto;
-  height: 177px;
-  margin: 10px auto;
-  text-align: center;
-  text-transform: uppercase;
-  background: #394264;
-  border-radius: 10px;
-  color: #FFFFFF;
-  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
-  font-size: 1.7em;
-  line-height: 2.5em;
-}
-
 .titleCounters {
     width: auto;
     height: 50px;
@@ -623,8 +593,8 @@ i {
     text-align: center;
 }
 
-/* Posts COUNTER (PETER) */
-.postCounter {
+/* COUNTERFIELD (PETER) */
+.counterField {
   width: auto;
   height: 177px;
   text-align: center;
@@ -636,19 +606,4 @@ i {
   font-size: 1.7em;
   line-height: 2.5em;
 
-}
-
-/* Plugin COUNTER (PETER) */
-.pluginCounter {
-  width: auto;
-  height: 177px;
-  margin: 10px auto;
-  text-align: center;
-  text-transform: uppercase;
-  background: #394264;
-  border-radius: 10px;
-  color: #FFFFFF;
-  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
-  font-size: 1.7em;
-  line-height: 2.5em;
 }

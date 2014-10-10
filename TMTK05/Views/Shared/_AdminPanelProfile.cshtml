@@ -5,10 +5,17 @@
     <ul class="dropdown-menu">
         <li>
             <a href="@Url.Action("ViewProfile", "Admin")"><i class="fa fa-fw fa-user"></i> Profile</a>
-        </li>
-        @if (PluginModel.PluginStatus("1")) {
+        </li>        
+        @if (PluginModel.PluginStatus("1"))
+        {
             <li>
                 <a href="@Url.Action("TwoFactorAuthentication", "Admin")"><i class="fa fa-fw fa-lock"></i> Security</a>
+            </li>
+        }
+        @if (PluginModel.PluginStatus("5"))
+        {
+            <li>
+                <a href="#" onclick="addMonster()"><i class="fa fa-fw fa-lock"></i><span class="monster">+1</span> Monster</a>
             </li>
         }
         <!--<li>
