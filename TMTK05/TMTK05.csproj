@@ -205,6 +205,7 @@
     <Content Include="Img\comments.png" />
     <Content Include="Img\empty.png" />
     <Content Include="Img\monster.png" />
+    <Content Include="Img\monstericon.png" />
     <Content Include="Img\pages.png" />
     <Content Include="Img\plugins.png" />
     <Content Include="Img\posts.png" />

@@ -607,3 +607,7 @@ i {
   line-height: 2.5em;
 
 }
+
+.monstericon {
+    background: url(~/Img/monstericon.png);
+}
