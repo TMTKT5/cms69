@@ -6234,3 +6234,11 @@ button.close {
 #usernameError, #passwordError, #tfaCode, #footerTextError, #titleError, #descriptionError {
     display: none;
 }
+
+/* ALOHA */
+
+.aloha-editable {
+    border: solid 1px #CCC !important;
+    border-radius: 2px !important;
+    padding: 10px !important;
+}

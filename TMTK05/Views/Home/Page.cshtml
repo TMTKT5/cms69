@@ -1,7 +1,12 @@
-﻿@{
-    ViewBag.Title = "Index";
-    ViewBag.HeaderTitle = "Placeholder";
-    ViewBag.HeaderSubHeading = "Sub placeholder";
+﻿@using TMTK05.Models
+
+@{
+    var pageInfo = PageModel.GetSinglePageStaticList(Convert.ToInt16(Url.RequestContext.RouteData.Values["id"]));
+    
+    ViewBag.Title = pageInfo[0];
+    ViewBag.HeaderTitle = pageInfo[0];
+    ViewBag.HeaderSubHeading = pageInfo[1];
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
-<h2> @Url.RequestContext.RouteData.Values["id"] </h2>
+
+@Html.Raw(HttpUtility.HtmlDecode(pageInfo[2])).

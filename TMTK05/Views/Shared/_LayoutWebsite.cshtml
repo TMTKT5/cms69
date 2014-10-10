@@ -67,7 +67,9 @@
         </header>
 
         <div id="Content" class="section gray">
-            @RenderBody()
+            <div class="container">
+               @RenderBody() 
+            </div>
         </div>
         @if (layoutPreferences[1] == "0")
         {

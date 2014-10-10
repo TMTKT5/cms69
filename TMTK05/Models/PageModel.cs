@@ -214,6 +214,53 @@ namespace TMTK05.Models
                 }
             }
         }
+
+        public static List<String> GetSinglePageStaticList(int id)
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT Title, Description, Content, Blog " +
+                                          "FROM pages " +
+                                          "WHERE Id = ?";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    selectCommand.Parameters.Add("Id", MySqlDbType.Int16).Value = id;
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                list.Add(myDataReader.GetString(0));
+                                list.Add(myDataReader.GetString(1));
+                                list.Add(myDataReader.GetString(2));
+                                list.Add(myDataReader.GetString(3));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+
+            return list;
+        }
+
         public void NewPage()
         {
             // Run model through sql injection prevention 
