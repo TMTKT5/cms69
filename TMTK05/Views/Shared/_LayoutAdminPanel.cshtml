@@ -120,14 +120,14 @@
                             }
                             if (PluginModel.PluginStatus("3"))
                             {
-                                <li>
+                                <li class="@(((string) ViewContext.RouteData.Values["action"] == "AllPosts" || (string) ViewContext.RouteData.Values["action"] == "NewPost") ? "active" : "")">
                                     <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-edit"></i> Blog <i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul id="posts" class="collapse">
                                         <li>
-                                            <a href="#">All Posts</a>
+                                            @Html.ActionLink("All Posts", "AllPosts", "Admin")
                                         </li>
                                         <li>
-                                            <a href="#">New Post</a>
+                                            @Html.ActionLink("New Post", "NewPost", "Admin")
                                         </li>
                                     </ul>
                                 </li>

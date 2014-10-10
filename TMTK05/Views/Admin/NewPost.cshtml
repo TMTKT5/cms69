@@ -1,0 +1,27 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Models
+
+@{
+    ViewBag.Title = "New Post";
+    ViewBag.HeaderTitle = "New Post";
+    ViewBag.HeaderSubHeading = String.Empty;
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> Blog
+        </li>
+        <li class="active">
+            <i class="fa fa-edit"></i> New Post
+        </li>
+    </ol>
+}
+
+@section Scripts {
+
+}
