@@ -10,7 +10,7 @@ namespace TMTK05.Models
 {
     public class DashboardModel
     {
-        public int UserCount()
+        public static int UserCount()
         {
             var count = 1;
 
@@ -49,7 +49,7 @@ namespace TMTK05.Models
             return count;
         }
 
-        public int PageCount()
+        public static int PageCount()
         {
             var count = 1;
 
@@ -88,7 +88,7 @@ namespace TMTK05.Models
             return count;
         }
 
-        public int PostsCount()
+        public static int PostsCount()
         {
             var count = 0;
 
@@ -127,13 +127,13 @@ namespace TMTK05.Models
             return count;
         }
 
-        public int PluginsCount()
+        public static int PluginsCount()
         {
             var count = 0;
 
             // MySQL query 
             const string selectStatment = "SELECT COUNT(*) " +
-                                          "FROM posts " +
+                                          "FROM plugins " +
                                           "WHERE Enabled = 1";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())

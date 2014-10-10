@@ -143,16 +143,14 @@ namespace TMTK05.Controllers
         //
         // GET: /Admin/Home/
         [EnableCompression]
-        public ActionResult Index(DashboardModel model)
+        public ActionResult Index()
         {
             // Redirect if the user isn't logged in
             if (!IdentityModel.CurrentUserLoggedIn)
             {
                 return RedirectToAction("Login", "Admin");
             }
-
-            model.UserCount();
-            return View(model);
+            return View();
         }
 
         //
