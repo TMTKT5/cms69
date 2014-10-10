@@ -454,6 +454,20 @@ namespace TMTK05.Controllers
             return View(model);
         }
 
+        //
+        // GET: /Admin/AllPosts/
+        public ActionResult AllPosts()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Admin/NewPost/
+        public ActionResult NewPost()
+        {
+            return View();
+        }
+
         #endregion Public Methods
     }
 }

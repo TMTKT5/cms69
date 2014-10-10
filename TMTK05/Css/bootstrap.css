@@ -6242,3 +6242,7 @@ button.close {
     border-radius: 2px !important;
     padding: 10px !important;
 }
+
+.monster {
+    color: #449d44;
+}

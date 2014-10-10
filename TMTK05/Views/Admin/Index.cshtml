@@ -70,32 +70,43 @@
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="counterField">
-            <div class="titleCounters">Posts</div>
-            <div class="pictureFieldCounters"><img src="~/Img/posts.png" alt="posts" /></div>
-            <div class="counterText">@DashboardModel.PostsCount()</div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="counterField">
-            <div class="titleCounters">Plugin</div>
+            <div class="titleCounters">Plugins</div>
             <div class="pictureFieldCounters"><img src="~/Img/plugins.png" alt="plugins" /></div>
             <div class="counterText">@DashboardModel.PluginsCount()</div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="counterField">
-            <div class="titleCounters">Comments</div>
-            <div class="pictureFieldCounters"><img src="~/Img/comments.png" alt="comments" /></div>
-            <div class="counterText">@DashboardModel.CommentCount()</div>
+    @if (PluginModel.PluginStatus("3"))
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="counterField">
+                <div class="titleCounters">Posts</div>
+                <div class="pictureFieldCounters"><img src="~/Img/posts.png" alt="posts" /></div>
+                <div class="counterText">@DashboardModel.PostsCount()</div>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="counterField">
-            <div class="titleCounters">MONSTER COUNTER</div>
-            <div class="pictureFieldCounters"><img src="~/Img/monster.png" alt="monster" /></div>
-            <div class="counterText" id="monsterCounter">@DashboardModel.MonsterCount()</div>
+    }
+    
+    <!-- TODO: Change the id. -->
+    @if (PluginModel.PluginStatus("3"))
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="counterField">
+                <div class="titleCounters">Comments</div>
+                <div class="pictureFieldCounters"><img src="~/Img/comments.png" alt="comments" /></div>
+                <div class="counterText">@DashboardModel.CommentCount()</div>
+            </div>
         </div>
-    </div>
+    }
+    @if (PluginModel.PluginStatus("5"))
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="counterField">
+                <div class="titleCounters">MONSTER COUNTER</div>
+                <div class="pictureFieldCounters"><img src="~/Img/monster.png" alt="monster" /></div>
+                <div class="counterText" id="monsterCounter">@DashboardModel.MonsterCount()</div>
+            </div>
+        </div>
+    }
 </div>
 
 
