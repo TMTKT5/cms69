@@ -25,7 +25,7 @@
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="large-4 columns">
-            @Html.TextBoxFor(model => model.Name, new {@placeholder = "Name"})
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
         </div>
         <div id="nameError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Name is required
@@ -40,7 +40,7 @@
             @Html.LabelFor(model => model.Email)
         </div>
         <div class="large-4 columns end">
-            @Html.TextBoxFor(model => model.Email, new {@placeholder = "Email"})
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
         </div>
         <div id="emailError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Email is required
@@ -58,7 +58,7 @@
             @Html.LabelFor(model => model.Subject)
         </div>
         <div class="large-4 columns end">
-            @Html.TextBoxFor(model => model.Subject, new {@placeholder = "Subject"})
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
         </div>
         <div id="subjectError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Subject is required
@@ -73,7 +73,7 @@
             @Html.LabelFor(model => model.Message)
         </div>
         <div class="large-4 columns end">
-            @Html.TextAreaFor(model => model.Message, new {@placeholder = "Message..."})
+            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @placeholder = "Message..." } })
         </div>
         <div id="messageError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Message is required

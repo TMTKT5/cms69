@@ -52,7 +52,7 @@
             @Html.LabelFor(model => model.FooterText)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.FooterText, new {@class = "form-control"})
+            @Html.EditorFor(model => model.FooterText, new { htmlAttributes = new { @class = "form-control" } })
         </p>
         <p id="footerTextError" class="col-lg-2 alert-small alert-danger">
             Footer text is required
@@ -63,7 +63,7 @@
             @Html.LabelFor(model => model.Favicon)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.Favicon, new {@class = "form-control"})
+            @Html.EditorFor(model => model.Favicon, new { htmlAttributes = new { @class = "form-control" } })
         </p>
     </div>
     <div class="row">

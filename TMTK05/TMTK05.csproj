@@ -267,7 +267,6 @@
     <None Include="Views\Admin\EditPage.cshtml" />
     <None Include="Views\Home\Page.cshtml" />
     <None Include="Views\Admin\NewPost.cshtml" />
-    <None Include="Views\Shared\EditorTemplates\string.cshtml" />
     <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>

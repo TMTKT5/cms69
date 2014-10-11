@@ -41,7 +41,7 @@
             @Html.LabelFor(m => m.Url)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(m => m.Url)
+            @Html.EditorFor(m => m.Url, new { htmlAttributes = new { @class = "form-control" } })
         </p>
     </div>
     <div class="row">
