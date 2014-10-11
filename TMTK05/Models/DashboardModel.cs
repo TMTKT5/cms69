@@ -9,7 +9,7 @@ using TMTK05.Classes;
 
 namespace TMTK05.Models
 {
-    public class DashboardModel
+    public static class DashboardModel
     {
         #region Public Methods
 
