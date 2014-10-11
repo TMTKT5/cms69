@@ -263,10 +263,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Views\Admin\AllPages.cshtml" />
-    <Content Include="Views\Admin\AllPosts.cshtml" />
+    <None Include="Views\Admin\AllPosts.cshtml" />
     <None Include="Views\Admin\EditPage.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
-    <Content Include="Views\Admin\NewPost.cshtml" />
+    <None Include="Views\Admin\NewPost.cshtml" />
     <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
