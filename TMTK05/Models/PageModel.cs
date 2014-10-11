@@ -26,9 +26,11 @@ namespace TMTK05.Models
         #region Public Properties
 
         [AllowHtml]
+        [HiddenInput(DisplayValue = false)]
         public string Content { get; set; }
 
         [Display(Name = "Description:")]
+        [DataType(DataType.Text)]
         public string Description { get; set; }
 
         public bool Done { get; set; }
@@ -39,6 +41,7 @@ namespace TMTK05.Models
         public string Image { get; set; }
 
         [Display(Name = "Title:")]
+        [DataType(DataType.Text)]
         public string Title { get; set; }
 
         public int Type { get; set; }

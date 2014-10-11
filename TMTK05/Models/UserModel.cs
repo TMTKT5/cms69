@@ -37,25 +37,31 @@ namespace TMTK05.Models
         public bool ErrorCode { get; set; }
 
         [Display(Name = "Full name:")]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
 
+        [DataType(DataType.Text)]
         public int Owner { get; set; }
 
         public bool OldFalse { get; set; }
 
+        [DataType(DataType.Password)]
         [Display(Name = "Old password:")]
         public string OldPassword { get; set; }
 
         [Display(Name = "Password:")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Display(Name = "Code")]
         public string TwoFactorCode { get; set; }
 
         [Display(Name = "Two factor authentication")]
+        [DataType(DataType.Text)]
         public int TwoFactorEnabled { get; set; }
 
         [Display(Name = "Username:")]
+        [DataType(DataType.Text)]
         public string Username { get; set; }
 
         #endregion Public Properties

@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net;
 using System.Web;
+using System.Web.Mvc;
 
 #endregion
 
@@ -33,6 +34,7 @@ namespace TMTK05.Models
         public HttpPostedFileBase File { get; set; }
 
         [Range(1, int.MaxValue)]
+        [HiddenInput(DisplayValue = false)]
         public int Height { get; set; }
 
         public bool IsFile { get; set; }
@@ -45,14 +47,17 @@ namespace TMTK05.Models
         public string Url { get; set; }
 
         [Range(1, int.MaxValue)]
+        [HiddenInput(DisplayValue = false)]
         public int Width { get; set; }
 
         public bool Wrong { get; set; }
 
         [Range(0, int.MaxValue)]
+        [HiddenInput(DisplayValue = false)]
         public int X { get; set; }
 
         [Range(0, int.MaxValue)]
+        [HiddenInput(DisplayValue = false)]
         public int Y { get; set; }
 
         #endregion Public Properties

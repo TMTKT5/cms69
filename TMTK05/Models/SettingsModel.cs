@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Web.Mvc;
 using MySql.Data.MySqlClient;
 using TMTK05.Classes;
 
@@ -25,14 +26,17 @@ namespace TMTK05.Models
         #region Public Properties
 
         [Display(Name = "Color scheme:")]
+        [HiddenInput(DisplayValue = false)]
         public string ColorScheme { get; set; }
 
         public bool Done { get; set; }
 
         [Display(Name = "Footer:")]
+        [DataType(DataType.Text)]
         public int Footer { get; set; }
 
         [Display(Name = "Footer text:")]
+        [DataType(DataType.Text)]
         public string FooterText { get; set; }
 
         [Display(Name = "Header:")]

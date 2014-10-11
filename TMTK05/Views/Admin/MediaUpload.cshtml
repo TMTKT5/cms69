@@ -26,54 +26,52 @@
     </ol>
 }
 
-<div class="row">
-    @using (Html.BeginForm("MediaUpload", "Admin",
-        new {ViewBag.ReturnUrl},
-        FormMethod.Post, new {@id = "mediaUploadForm", @autocomplete = "off", @enctype = "multipart/form-data"}))
-    {
-        @Html.HiddenFor(m => m.X)
-        @Html.HiddenFor(m => m.Y)
-        @Html.HiddenFor(m => m.Width)
-        @Html.HiddenFor(m => m.Height)
-        <div class="large-12 columns">
-            <div class="row">
-                <div class="col-lg-3">
-                    @Html.CheckBoxFor(m => m.IsUrl)
-                    @Html.LabelFor(m => m.Url)
-                </div>
-                <div class="col-lg-9">
-                    @Html.EditorFor(m => m.Url)
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-3">
-                    @Html.CheckBoxFor(m => m.IsFile)
-                    @Html.LabelFor(m => m.File)
-                </div>
-                <div class="col-lg-9">
-                    @Html.FileFor(m => m.File)
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-3">&nbsp;</div>
-                <div class="col-lg-9" style="text-align: center;">
-                    <div id="upload-cut">
-                        <img alt="" id="preview" style="display: block;" src="http://tmtk-05.ict-lab.nl/Img/empty.png" />
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-3">&nbsp;</div>
-                <div class="col-lg-9">
-                    <input type="submit" name="submit" value="Upload" class="btn btn-primary">
-                </div>
+@using (Html.BeginForm("MediaUpload", "Admin",
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "mediaUploadForm", @autocomplete = "off", @enctype = "multipart/form-data"}))
+{
+    @Html.EditorFor(m => m.X)
+    @Html.EditorFor(m => m.Y)
+    @Html.EditorFor(m => m.Width)
+    @Html.EditorFor(m => m.Height)
+
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.CheckBoxFor(m => m.IsUrl)
+            @Html.LabelFor(m => m.Url)
+        </p>
+        <p class="col-lg-2">
+            @Html.EditorFor(m => m.Url)
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.CheckBoxFor(m => m.IsFile)
+            @Html.LabelFor(m => m.File)
+        </p>
+        <p class="col-lg-2">
+            @Html.FileFor(m => m.File)
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-11" style="text-align: center;">
+            <div id="upload-cut">
+                <img alt="" id="preview" style="display: block;" src="http://tmtk-05.ict-lab.nl/Img/empty.png" />
             </div>
         </div>
-    }
-</div>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            <!-- Boo hoo, so bad, so sad -->
+        </p>
+        <div class="col-lg-1">
+            <input type="submit" name="submit" value="Login" class="btn btn-primary">
+        </div>
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteImageCropScripts")

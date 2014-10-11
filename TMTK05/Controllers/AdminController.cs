@@ -184,7 +184,6 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/MediaUpload
-        [EnableCompression]
         public ActionResult MediaUpload()
         {
             // Redirect if the user isn't logged in

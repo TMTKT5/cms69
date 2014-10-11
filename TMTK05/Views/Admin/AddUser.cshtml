@@ -33,7 +33,7 @@
             @Html.LabelFor(model => model.Name)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+            @Html.EditorFor(model => model.Name, new {@class = "form-control"})
         </p>
         <p id="fullNameError" class="col-lg-2 alert-small alert-danger">
             Full name is required
@@ -44,7 +44,7 @@
             @Html.LabelFor(model => model.Username)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Username, new {@class = "form-control"})
+            @Html.EditorFor(model => model.Username, new {@class = "form-control"})
         </p>
         <p id="usernameError" class="col-lg-2 alert-small alert-danger">
             Username is required
@@ -58,7 +58,7 @@
             @Html.LabelFor(model => model.Password)
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.Password, new {@class = "form-control"})
+            @Html.EditorFor(model => model.Password, new {@class = "form-control"})
         </p>
         <p id="passwordError" class="col-lg-2 alert-small alert-danger">
             Password is required
@@ -69,7 +69,7 @@
             @Html.LabelFor(model => model.Password, new {@for = "Password2"})
         </p>
         <p class="col-lg-2">
-            @Html.PasswordFor(model => model.Password, new {@id = "Password2", @class = "form-control"})
+            @Html.EditorFor(model => model.Password, new {@id = "Password2", @class = "form-control"})
         </p>
         <p id="passwordMismatchError" class="col-lg-2 alert-small alert-danger">
             Passwords are not the same

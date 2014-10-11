@@ -39,7 +39,7 @@
             @Html.LabelFor(model => model.Title)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Title, new {@class = "form-control"})
+            @Html.EditorFor(model => model.Title, new {@class = "form-control"})
         </p>
         <p id="titleError" class="col-lg-2 alert-small alert-danger">
             Title is required
@@ -50,7 +50,7 @@
             @Html.LabelFor(model => model.Description)
         </p>
         <p class="col-lg-2">
-            @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
+            @Html.EditorFor(model => model.Description, new {@class = "form-control"})
         </p>
         <p id="descriptionError" class="col-lg-2 alert-small alert-danger">
             Description is required
@@ -125,7 +125,7 @@
         </p>
         <div class="col-lg-10 aloha-editable" id="aloha">
         </div>
-        @Html.HiddenFor(model => model.Content)
+        @Html.EditorFor(model => model.Content)
     </div>
     <div class="row">
         <p class="col-lg-1">

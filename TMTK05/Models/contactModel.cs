@@ -14,15 +14,19 @@ namespace TMTK05.Models
         }
 
         [Display(Name = "Name")]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
 
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "Subject")]
+        [DataType(DataType.Text)]
         public string Subject { get; set; }
 
         [Display(Name = "Message")]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
 
         public bool Done { get; private set; }
