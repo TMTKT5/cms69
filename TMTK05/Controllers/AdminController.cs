@@ -63,6 +63,13 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/AllPosts/ 
+        public ActionResult AllPosts()
+        {
+            return View();
+        }
+
+        //
         // GET: /Admin/AllUsers/ 
         [EnableCompression]
         public ActionResult AllUsers()
@@ -83,15 +90,6 @@ namespace TMTK05.Controllers
         public bool DeletePage(int input)
         {
             return PageModel.DeletePage(input);
-        }
-
-        //
-        // AJAX:
-        // GET: /Admin/Monster/
-        [EnableCompression]
-        public void Monster()
-        {
-            MonsterPluginModel.AddMonster();
         }
 
         //
@@ -275,6 +273,15 @@ namespace TMTK05.Controllers
         }
 
         //
+        // AJAX:
+        // GET: /Admin/Monster/
+        [EnableCompression]
+        public void Monster()
+        {
+            MonsterPluginModel.AddMonster();
+        }
+
+        //
         // GET: /Admin/NewPage/
         [EnableCompression]
         public ActionResult NewPage()
@@ -302,6 +309,13 @@ namespace TMTK05.Controllers
 
             model.NewPage();
             return View(model);
+        }
+
+        //
+        // GET: /Admin/NewPost/
+        public ActionResult NewPost()
+        {
+            return View();
         }
 
         //
@@ -452,20 +466,6 @@ namespace TMTK05.Controllers
             }
             model.UpdateUser();
             return View(model);
-        }
-
-        //
-        // GET: /Admin/AllPosts/
-        public ActionResult AllPosts()
-        {
-            return View();
-        }
-
-        //
-        // GET: /Admin/NewPost/
-        public ActionResult NewPost()
-        {
-            return View();
         }
 
         #endregion Public Methods

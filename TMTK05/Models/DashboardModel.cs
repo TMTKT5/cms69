@@ -1,28 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
+﻿#region
+
 using MySql.Data.MySqlClient;
+using System;
+using System.Data;
 using TMTK05.Classes;
+
+#endregion
 
 namespace TMTK05.Models
 {
     public class DashboardModel
     {
-        public static int UserCount()
+        #region Public Methods
+
+        public static int CommentCount()
         {
-            var count = 1;
+            var count = 0;
 
             // MySQL query 
             const string selectStatment = "SELECT COUNT(*) " +
-                                          "FROM users ";
+                                          "FROM commentplugin ";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
             {
                 using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
                 {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -32,6 +34,44 @@ namespace TMTK05.Models
                             while (myDataReader.Read())
                             {
                                 count = Convert.ToInt16(myDataReader.GetValue(0));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return count;
+        }
+
+        public static int MonsterCount()
+        {
+            var count = 0;
+
+            // MySQL query 
+            const string selectStatment = "SELECT Cans " +
+                                          "FROM monster WHERE UserId = 6 OR UserId = 7 OR UserId = 8 ";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                count += Convert.ToInt16(myDataReader.GetValue(0));
                             }
                         }
                     }
@@ -61,46 +101,6 @@ namespace TMTK05.Models
             {
                 using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
                 {
-
-                    try
-                    {
-                        DatabaseConnection.DatabaseOpen(empConnection);
-                        // Execute command 
-                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
-                        {
-                            while (myDataReader.Read())
-                            {
-                                count = Convert.ToInt16(myDataReader.GetValue(0));
-                            }
-                        }
-                    }
-                    catch (MySqlException)
-                    {
-                        // MySqlException bail out 
-                    }
-                    finally
-                    {
-                        // Always close the connection 
-                        DatabaseConnection.DatabaseClose(empConnection);
-                    }
-                }
-            }
-            return count;
-        }
-
-        public static int PostsCount()
-        {
-            var count = 0;
-
-            // MySQL query 
-            const string selectStatment = "SELECT COUNT(*) " +
-                                          "FROM posts ";
-
-            using (var empConnection = DatabaseConnection.DatabaseConnect())
-            {
-                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
-                {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -140,7 +140,6 @@ namespace TMTK05.Models
             {
                 using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
                 {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -171,7 +170,6 @@ namespace TMTK05.Models
 
                 using (var selectCommand = new MySqlCommand(selectStatment2, empConnection))
                 {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -198,19 +196,18 @@ namespace TMTK05.Models
             return count + "/" + total;
         }
 
-        public static int CommentCount()
+        public static int PostsCount()
         {
             var count = 0;
 
             // MySQL query 
             const string selectStatment = "SELECT COUNT(*) " +
-                                          "FROM commentplugin ";
+                                          "FROM posts ";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
             {
                 using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
                 {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -237,19 +234,18 @@ namespace TMTK05.Models
             return count;
         }
 
-        public static int MonsterCount()
+        public static int UserCount()
         {
-            var count = 0;
+            var count = 1;
 
             // MySQL query 
-            const string selectStatment = "SELECT Cans " +
-                                          "FROM monster WHERE UserId = 6 OR UserId = 7 OR UserId = 8 ";
+            const string selectStatment = "SELECT COUNT(*) " +
+                                          "FROM users ";
 
             using (var empConnection = DatabaseConnection.DatabaseConnect())
             {
                 using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
                 {
-
                     try
                     {
                         DatabaseConnection.DatabaseOpen(empConnection);
@@ -258,7 +254,7 @@ namespace TMTK05.Models
                         {
                             while (myDataReader.Read())
                             {
-                                count += Convert.ToInt16(myDataReader.GetValue(0));
+                                count = Convert.ToInt16(myDataReader.GetValue(0));
                             }
                         }
                     }
@@ -275,5 +271,7 @@ namespace TMTK05.Models
             }
             return count;
         }
+
+        #endregion Public Methods
     }
 }
