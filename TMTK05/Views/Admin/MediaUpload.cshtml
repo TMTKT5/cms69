@@ -38,7 +38,7 @@
 
     <div class="row">
         <p class="col-lg-1">
-            @Html.CheckBoxFor(m => m.IsUrl)
+            @Html.EditorFor(m => m.IsUrl)
             @Html.LabelFor(m => m.Url)
         </p>
         <p class="col-lg-2">
@@ -56,7 +56,7 @@
     </div>
     <div class="row">
         <p class="col-lg-1">
-            @Html.CheckBoxFor(m => m.IsFile)
+            @Html.EditorFor(m => m.IsFile)
             @Html.LabelFor(m => m.File)
         </p>
         <p class="col-lg-2">
@@ -69,7 +69,7 @@
         </p>
         <div class="col-lg-11" style="text-align: center;">
             <div id="upload-cut">
-                <img alt="" id="preview" style="display:block;max-width:1520px;max-height:550px;width:auto;height:auto;margin-bottom:10px;" src="http://tmtk-05.ict-lab.nl/Img/empty.png" />
+                <img alt="" id="preview" style="display:block;max-width:1520px;max-height:550px;width:auto;height:auto;margin-bottom:10px;" src="@Url.Content("~/Img/empty.png")" />
             </div>
         </div>
     </div>
@@ -134,17 +134,21 @@
                 tagmode: "any",
                 format: "json"
             }, function (data) {
-                var screen = $('<div />').addClass('waitScreen').click(function () {
-                    $(this).remove();
-                }).appendTo('body');
-                var box = $('<div />').addClass('flickrImages').appendTo(screen);
+                alertify.alert()
+                    .setting({
+                        'label': 'Close',
+                        'title': query,
+                        'message': ''
+                    }).show();
+                $('.ajs-content').html('');
+                var box = $('<div />').appendTo($('.ajs-content'));
                 $.each(data.items, function (i, v) {
-                    console.log(data.items[i]);
                     $('<img />').addClass('flickrImage').attr('src', data.items[i].media.m).click(function () {
                         $('#Flickr').val(this.src).change();
-                        screen.remove();
+                        $('.ajs-ok').click();
                     }).appendTo(box);
                 });
+                $('.ajs-content').height(680);
             });
         };
 
