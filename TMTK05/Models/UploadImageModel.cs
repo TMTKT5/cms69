@@ -41,9 +41,15 @@ namespace TMTK05.Models
 
         public bool IsUrl { get; set; }
 
+        [Display(Name = "Flickr image")]
+        [HiddenInput(DisplayValue = false)]
+        public string Flickr { get; set; }
+
+        public bool IsFlickr { get; set; }
+
         public bool NotFile { get; set; }
 
-        [Display(Name = "Link to image: ")]
+        [Display(Name = "Internet URL: ")]
         public string Url { get; set; }
 
         [Range(1, int.MaxValue)]

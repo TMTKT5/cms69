@@ -34,6 +34,7 @@
     @Html.EditorFor(m => m.Y)
     @Html.EditorFor(m => m.Width)
     @Html.EditorFor(m => m.Height)
+    @Html.EditorFor(model => model.Flickr)
 
     <div class="row">
         <p class="col-lg-1">
@@ -42,6 +43,15 @@
         </p>
         <p class="col-lg-2">
             @Html.EditorFor(m => m.Url, new { htmlAttributes = new { @class = "form-control" } })
+        </p>
+    </div>
+    <div class="row">
+        <p class="col-lg-1">
+            @Html.EditorFor(model => model.IsFlickr)
+            @Html.LabelFor(model => model.Flickr)
+        </p>
+        <p class="col-lg-2">
+            @Html.Editor("FlickrQuery", new { htmlAttributes = new { @class = "form-control" } })
         </p>
     </div>
     <div class="row">
@@ -68,7 +78,7 @@
             <!-- Boo hoo, so bad, so sad -->
         </p>
         <div class="col-lg-1">
-            <input type="submit" name="submit" value="Login" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">Upload</button>
         </div>
     </div>
 }
@@ -82,6 +92,13 @@
 
         var preview = $('#preview').load(function () {
             setPreview();
+            ias.setOptions({
+                x1: 0,
+                y1: 0,
+                x2: $(this).width(),
+                y2: $(this).height(),
+                show: true
+            });
         });
 
         var setPreview = function(x, y, w, h) {
@@ -94,7 +111,6 @@
         var ias = preview.imgAreaSelect({
             handles: true,
             instance: true,
-            keys: true,
             fadeSpeed: 300,
             parent: 'html',
             onSelectEnd: function(s, e) {
@@ -112,42 +128,63 @@
 
         setPreview(0, 0, 1, 1);
 
-        var lastValue = '';
-        $('#Url').on('change keyup paste', function() {
-            if ($(this).val() != lastValue) {
-                lastValue = $(this).val();
-                setBox('#IsUrl');
-                preview.attr('src', this.value);
-            }
+        var fetchImages = function (query) {
+            $.getJSON('http://www.flickr.com/services/feeds/photos_public.gne?jsoncallback=?', {
+                tags: query,
+                tagmode: "any",
+                format: "json"
+            }, function (data) {
+                var screen = $('<div />').addClass('waitScreen').click(function () {
+                    $(this).remove();
+                }).appendTo('body');
+                var box = $('<div />').addClass('flickrImages').appendTo(screen);
+                $.each(data.items, function (i, v) {
+                    console.log(data.items[i]);
+                    $('<img />').addClass('flickrImage').attr('src', data.items[i].media.m).click(function () {
+                        $('#Flickr').val(this.src).change();
+                        screen.remove();
+                    }).appendTo(box);
+                });
+            });
+        };
+
+        $('#FlickrQuery').change(function () {
+            fetchImages(this.value);
         });
 
-        $('#File').change(function(evt) {
+        $('#Flickr').change(function () {
+            setBox('#IsFlickr');
+            preview.attr('src', this.value);
+        });
+
+        $('#Url').on('change keyup paste', function () {
+            setBox('#IsUrl');
+            preview.attr('src', this.value);
+        });
+
+        $('#File').change(function (evt) {
             var f = evt.target.files[0];
             var reader = new FileReader();
 
             if (!f.type.match('image.*')) {
-                noImage();
+                alertify.error("The file you've selected is not an image!");
                 return;
             }
 
             setBox('#IsFile');
-            reader.onload = function(e) { preview.attr('src', e.target.result); };
+            reader.onload = function (e) { preview.attr('src', e.target.result); };
             reader.readAsDataURL(f);
         });
 
-        boxes.change(function() {
+        boxes.change(function () {
             setBox(this);
             $('#' + this.id.substr(2)).change();
         });
 
         $('button').attr('disabled', true);
-        $('form').submit(function() {
-            $('button').attr('disabled', true).text('Please wait...');
+        $('form').submit(function () {
+            $('button').attr('disabled', true).text('Please wait ...');
         });
-
-        function noImage() {
-            alertify.error("The file you've selected is not an image!");
-        }
     </script>
     @if (Model.Done)
     {

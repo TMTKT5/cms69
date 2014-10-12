@@ -215,6 +215,10 @@ namespace TMTK05.Controllers
             {
                 original = UploadImageModel.GetImageFromUrl(model.Url);
             }
+            else if (model.IsFlickr)
+            {
+                original = UploadImageModel.GetImageFromUrl(model.Flickr);
+            }
             else if (model.File != null)
             {
                 original = Image.FromStream(model.File.InputStream) as Bitmap;
