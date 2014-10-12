@@ -1,17 +1,25 @@
-﻿$(document).ready(function () {
-    $.simpleWeather({
-        location: 'Rotterdam, ZH',
-        woeid: '73307',
-        unit: 'c',
-        success: function (weather) {
-            html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
-            html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
-            html += '<li class="currently">' + weather.currently + '</li>';
-
-            $("#weather").html(html);
-        },
-        error: function (error) {
-            $("#weather").html('<p>' + error + '</p>');
-        }
+﻿$(document).ready(function() {
+    loadWeather('Rotterdam, ZH','');
+    navigator.geolocation.getCurrentPosition(function(position) {
+        loadWeather(position.coords.latitude+','+position.coords.longitude);
     });
 });
+
+function loadWeather(location, woeid) {
+    $.simpleWeather({
+        location: location,
+        woeid: woeid,
+        unit: 'c',
+        success: function(weather) {
+            html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+            html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+            html += '<li class="currently">'+weather.currently+'</li>';
+            html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';  
+      
+            $("#weather").html(html);
+        },
+        error: function(error) {
+            $("#weather").html('<p>'+error+'</p>');
+        }
+    });
+}
