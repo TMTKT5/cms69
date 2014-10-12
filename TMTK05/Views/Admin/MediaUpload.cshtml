@@ -59,7 +59,7 @@
         </p>
         <div class="col-lg-11" style="text-align: center;">
             <div id="upload-cut">
-                <img alt="" id="preview" style="display: block;" src="http://tmtk-05.ict-lab.nl/Img/empty.png" />
+                <img alt="" id="preview" style="display:block;max-width:1520px;max-height:550px;width:auto;height:auto;margin-bottom:10px;" src="http://tmtk-05.ict-lab.nl/Img/empty.png" />
             </div>
         </div>
     </div>
@@ -82,17 +82,6 @@
 
         var preview = $('#preview').load(function () {
             setPreview();
-            ias.setOptions({
-                x1: 0,
-                y1: 0,
-                x2: 100,
-                y2: 100,
-                persistent: true,
-                keys: true,
-                resizable: true,
-                movable: true,
-                show: true
-            });
         });
 
         var setPreview = function(x, y, w, h) {
@@ -105,6 +94,8 @@
         var ias = preview.imgAreaSelect({
             handles: true,
             instance: true,
+            keys: true,
+            fadeSpeed: 300,
             parent: 'html',
             onSelectEnd: function(s, e) {
                 var scale = preview[0].naturalWidth / preview.width();
