@@ -1,9 +1,14 @@
 ﻿$(document).ready(function() {
-    loadWeather('Rotterdam, ZH','');
-    navigator.geolocation.getCurrentPosition(function(position) {
-        loadWeather(position.coords.latitude+','+position.coords.longitude);
-    });
+    getWeather();
+    setInterval(getWeather, 600000);
 });
+
+function getWeather() {
+    loadWeather('Rotterdam, ZH', '');
+    navigator.geolocation.getCurrentPosition(function (position) {
+        loadWeather(position.coords.latitude + ',' + position.coords.longitude);
+    });
+}
 
 function loadWeather(location, woeid) {
     $.simpleWeather({
