@@ -1,16 +1,19 @@
-﻿using System;
+﻿#region
+
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient;
 using TMTK05.Classes;
+
+#endregion
 
 namespace TMTK05.Models
 {
-    public class MonsterPluginModel
+    public static class MonsterPluginModel
     {
+        #region Public Methods
+
         public static void AddMonster()
         {
             var count = 0;
@@ -72,5 +75,58 @@ namespace TMTK05.Models
                 }
             }
         }
+
+        public static List<String> AllCans()
+        {
+            // Initial vars 
+            var list = new List<String>();
+
+            // MySQL query 
+            const string selectStatment = "SELECT `users`.`Id`, " +
+                                          "`users`.`Name`, " +
+                                          "`users`.`Username`, " +
+                                          "`monster`.`Cans` " +
+                                          "FROM users " +
+                                          "LEFT JOIN `dbtmtk_05`.`monster` " +
+                                          "ON `users`.`Id` = `monster`.`UserId` " +
+                                          "WHERE `users`.`Id` = 6 " +
+                                          "OR `users`.`Id` = 7 " +
+                                          "OR `users`.`Id` = 8";
+
+            using (var empConnection = DatabaseConnection.DatabaseConnect())
+            {
+                using (var selectCommand = new MySqlCommand(selectStatment, empConnection))
+                {
+                    try
+                    {
+                        DatabaseConnection.DatabaseOpen(empConnection);
+                        // Execute command 
+                        using (var myDataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (myDataReader.Read())
+                            {
+                                // Save the values 
+                                list.Add(myDataReader.GetString(0));
+                                list.Add(myDataReader.GetString(1));
+                                list.Add(myDataReader.GetString(2));
+                                list.Add(myDataReader.GetString(3));
+                            }
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        // MySqlException bail out 
+                    }
+                    finally
+                    {
+                        // Always close the connection 
+                        DatabaseConnection.DatabaseClose(empConnection);
+                    }
+                }
+            }
+            return list;
+        }
+
+        #endregion Public Methods
     }
 }

@@ -265,6 +265,7 @@
     <None Include="Views\Admin\AllPages.cshtml" />
     <None Include="Views\Admin\AllPosts.cshtml" />
     <None Include="Views\Admin\EditPage.cshtml" />
+    <Content Include="Views\Admin\MonsterOverview.cshtml" />
     <None Include="Views\Home\Page.cshtml" />
     <None Include="Views\Admin\NewPost.cshtml" />
     <None Include="Views\Shared\_LayoutAdminPanel.cshtml" />

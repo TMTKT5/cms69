@@ -149,6 +149,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/Home/
+        [EnableCompression]
         public ActionResult Index()
         {
             // Redirect if the user isn't logged in
@@ -184,6 +185,7 @@ namespace TMTK05.Controllers
 
         //
         // GET: /Admin/MediaUpload
+        [EnableCompression]
         public ActionResult MediaUpload()
         {
             // Redirect if the user isn't logged in
@@ -284,6 +286,19 @@ namespace TMTK05.Controllers
             MonsterPluginModel.AddMonster();
         }
 
+        //
+        // GET: /Admin/AllPages/ 
+        [EnableCompression]
+        public ActionResult MonsterOverview()
+        {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            return View();
+        }
         //
         // GET: /Admin/NewPage/
         [EnableCompression]

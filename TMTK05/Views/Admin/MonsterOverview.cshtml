@@ -1,0 +1,58 @@
+﻿@using System.Web.Optimization
+@using TMTK05.Classes
+@using TMTK05.Models
+@{
+    ViewBag.Title = "Monster";
+    ViewBag.HeaderTitle = "<span class='monster'>Monster</span>";
+    ViewBag.HeaderSubHeading = "Overview";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+
+    var monsterInfo = MonsterPluginModel.AllCans();
+}
+
+@section Breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+        </li>
+        <li class="active">
+            <img src="~/Img/monstericon.png" alt=""/> Monster
+        </li>
+    </ol>
+}
+
+<div class="table-responsive">
+    <table class="table table-hover sortable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th class="monster">Cans</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i <= monsterInfo.Count / 4; i++)
+            {
+                <tr style="height: 51px" id="@monsterInfo[i * 4 - 4]">
+                    <td style="vertical-align: middle">
+                        @monsterInfo[i * 4 - 4]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @monsterInfo[i * 4 - 3]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @monsterInfo[i * 4 - 2].CaptalizeFirstLetter()
+                    </td>
+                    <td style="vertical-align: middle">
+                        @monsterInfo[i * 4 - 1]
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Bundles/SortableScripts")
+}
