@@ -66,6 +66,12 @@ namespace TMTK05.Controllers
         // GET: /Admin/AllPosts/ 
         public ActionResult AllPosts()
         {
+            // Redirect if the user isn't logged in 
+            if (!IdentityModel.CurrentUserLoggedIn || !PluginModel.PluginStatus("3"))
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
             return View();
         }
 
@@ -189,7 +195,7 @@ namespace TMTK05.Controllers
         public ActionResult MediaUpload()
         {
             // Redirect if the user isn't logged in
-            if (!IdentityModel.CurrentUserLoggedIn)
+            if (!IdentityModel.CurrentUserLoggedIn || !PluginModel.PluginStatus("4"))
             {
                 return RedirectToAction("Login", "Admin");
             }
@@ -205,7 +211,7 @@ namespace TMTK05.Controllers
         public ActionResult MediaUpload(UploadImageModel model)
         {
             // Redirect if the user isn't logged in
-            if (!IdentityModel.CurrentUserLoggedIn)
+            if (!IdentityModel.CurrentUserLoggedIn || !PluginModel.PluginStatus("4"))
             {
                 return RedirectToAction("Login", "Admin");
             }
@@ -283,7 +289,10 @@ namespace TMTK05.Controllers
         [EnableCompression]
         public void Monster()
         {
-            MonsterPluginModel.AddMonster();
+            if (PluginModel.PluginStatus("5"))
+            {
+                MonsterPluginModel.AddMonster();
+            }
         }
 
         //
@@ -292,7 +301,7 @@ namespace TMTK05.Controllers
         public ActionResult MonsterOverview()
         {
             // Redirect if the user isn't logged in 
-            if (!IdentityModel.CurrentUserLoggedIn)
+            if (!IdentityModel.CurrentUserLoggedIn || !PluginModel.PluginStatus("5"))
             {
                 return RedirectToAction("Login", "Admin");
             }
@@ -333,6 +342,11 @@ namespace TMTK05.Controllers
         // GET: /Admin/NewPost/
         public ActionResult NewPost()
         {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner || !PluginModel.PluginStatus("3"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return View();
         }
 
