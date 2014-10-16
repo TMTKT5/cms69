@@ -75,7 +75,7 @@ namespace TMTK05.Classes
             var i = data.IndexOf(charac);
 
             // capitalize that letter
-            chars[i] = Char.ToUpper(chars[i]);
+            chars[i] = Char.ToUpperFast(chars[i]);
 
             return new string(chars);
         }
