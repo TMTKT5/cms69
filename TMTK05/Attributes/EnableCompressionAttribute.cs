@@ -18,9 +18,10 @@ namespace TMTK05.Attributes
         #region Public Methods
 
         /// <summary>
-        ///     Enable compression if requested
+        /// Enable compression if requested 
         /// </summary>
-        /// <param name="filterContext"></param>
+        /// <param name="filterContext">
+        /// </param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
@@ -35,7 +36,7 @@ namespace TMTK05.Attributes
                 response.Filter = new DeflateStream(response.Filter, Compress);
                 response.AppendHeader("Content-Encoding", "deflate");
             }
-                // If deflate isn't available use gzip 
+            // If deflate isn't available use gzip 
             else if (acceptEncoding.ToLower().Contains("gzip"))
             {
                 response.Filter = new GZipStream(response.Filter, Compress);

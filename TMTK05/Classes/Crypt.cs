@@ -14,7 +14,7 @@ namespace TMTK05.Classes
         #region Public Methods
 
         // <summary>
-        // Create MD5 hash
+        // Create MD5 hash 
         // </summary>
         public static String GetMd5Hash(MD5 md5Hash, String input)
         {
@@ -29,7 +29,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Create a random salt
+        // Create a random salt 
         // </summary>
         public static String GetRandomSalt(Int32 size = 12)
         {
@@ -41,7 +41,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Hash a string using a random salt
+        // Hash a string using a random salt 
         // </summary>
         public static String HashPassword(String password, String salt)
         {
@@ -54,13 +54,13 @@ namespace TMTK05.Classes
         }
 
         /// <summary>
-        ///     Decrypt a string using rijdeal
+        /// Decrypt a string using rijdeal 
         /// </summary>
         public static string StringDecrypt(string cipherText, string password)
         {
             var cipherBytes = Convert.FromBase64String(cipherText);
             var pdb = new PasswordDeriveBytes(password,
-                new byte[] {0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36});
+                new byte[] { 0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36 });
 #pragma warning disable 618
             var decryptedData = StringDecrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
 #pragma warning restore 618
@@ -69,13 +69,13 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Encrypt a string using rijdeal
+        // Encrypt a string using rijdeal 
         // </summary>
         public static string StringEncrypt(string clearText, string password)
         {
             var clearBytes = Encoding.Unicode.GetBytes(clearText);
             var pdb = new PasswordDeriveBytes(password,
-                new byte[] {0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36});
+                new byte[] { 0x51, 0x42, 0x69, 0x2e, 0x4f, 0x3a, 0x56, 0x59, 0x16, 0x3c, 0xcd, 0x4d, 0x36 });
 #pragma warning disable 618
             var encryptedData = StringEncrypt(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16));
 #pragma warning restore 618
@@ -84,7 +84,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Check is the database hash and the hash of the givin string are the same
+        // Check is the database hash and the hash of the givin string are the same 
         // </summary>
         public static Boolean ValidatePassword(String enteredPassword, String storedHash, String storedSalt)
         {
@@ -94,7 +94,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Check if given hash and a hashed string are the same
+        // Check if given hash and a hashed string are the same 
         // </summary>
         public static Boolean VerifyMd5Hash(MD5 md5Hash, String input, String hash)
         {
@@ -109,7 +109,7 @@ namespace TMTK05.Classes
         #region Private Methods
 
         /// <summary>
-        ///     Decrypt a string using rijdeal
+        /// Decrypt a string using rijdeal 
         /// </summary>
         private static byte[] StringDecrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
@@ -126,7 +126,7 @@ namespace TMTK05.Classes
         }
 
         // <summary>
-        // Encrypt a string using rijdeal
+        // Encrypt a string using rijdeal 
         // </summary>
         private static byte[] StringEncrypt(byte[] clearText, byte[] key, byte[] iv)
         {

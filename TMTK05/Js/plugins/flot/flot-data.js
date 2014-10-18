@@ -53,7 +53,6 @@ $(document).ready(function() {
 
 // Flot Pie Chart with Tooltips
 $(function() {
-
     var data = [{
         label: "Series 0",
         data: 1
@@ -87,7 +86,6 @@ $(function() {
             defaultTheme: false
         }
     });
-
 });
 
 // Flot Line Charts - Multiple Axes - With Data
@@ -1090,7 +1088,6 @@ $(function() {
                     // console.log(flotItem, $tooltipEl);
                 }
             }
-
         });
     }
 
@@ -1104,7 +1101,6 @@ $(function() {
 // Flot Chart Dynamic Chart
 
 $(function() {
-
     var container = $("#flot-moving-line-chart");
 
     // Determine how many data points to keep based on the placeholder's initial size;
@@ -1117,7 +1113,6 @@ $(function() {
     var data = [];
 
     function getRandomData() {
-
         if (data.length) {
             data = data.slice(1);
         }
@@ -1198,13 +1193,11 @@ $(function() {
         plot.setData(series);
         plot.draw();
     }, 40);
-
 });
 
 // Flot Chart Bar Graph
 
 $(function() {
-
     var barOptions = {
         series: {
             bars: {
@@ -1240,5 +1233,4 @@ $(function() {
         ]
     };
     $.plot($("#flot-bar-chart"), [barData], barOptions);
-
 });

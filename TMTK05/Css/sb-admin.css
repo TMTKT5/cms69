@@ -406,7 +406,7 @@ i {
   font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
     font-size: 1.5em;
 }
-.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button { 
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button {
   position:absolute;
   right:30px;
   top:10px;
@@ -425,7 +425,7 @@ i {
 .cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button.inactive:hover {
   cursor: default;
 }
-.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button { 
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button {
    position:absolute;
    left:30px;
    width:30px;
@@ -511,7 +511,6 @@ i {
     }
 }
 
-
 /* TWEETS */
 
 .tweets {
@@ -519,7 +518,6 @@ i {
 }
 
 .tweets h3 {
-    
     margin: 0px auto;
     color: #FFF;
     font-size: 1.5em;
@@ -544,7 +542,6 @@ i {
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
 }
 .tweets_list{
-    
   margin: 0px auto;
     background:#394264;
     border-radius: 0px 0px 10px 10px;
@@ -605,7 +602,6 @@ i {
   font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
   font-size: 1.7em;
   line-height: 2.5em;
-
 }
 
 .monstericon {

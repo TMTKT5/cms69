@@ -1,6 +1,6 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Models
-@model PageModel
+@model TMTK05.Models.PageModel
 @{
     ViewBag.Title = "Add Page";
     ViewBag.HeaderTitle = "Add Page";
@@ -35,7 +35,7 @@
             @Html.LabelFor(model => model.Title)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control"}})
         </p>
         <p id="titleError" class="col-lg-2 alert-small alert-danger">
             Title is required
@@ -46,7 +46,7 @@
             @Html.LabelFor(model => model.Description)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
         </p>
         <p id="descriptionError" class="col-lg-2 alert-small alert-danger">
             Description is required
@@ -57,8 +57,8 @@
             @Html.LabelFor(model => model.Menu)
         </p>
         <p class="col-lg-2">
-            @Html.RadioButtonFor(model => model.Menu, 1, new { @id = "Menu1", @checked = "checked" }) @Html.LabelFor(model => model.Type, "Yes", new { @for = "Menu1" }) <br />
-            @Html.RadioButtonFor(model => model.Menu, 0, new { @id = "Menu0" }) @Html.LabelFor(model => model.Type, "No", new { @for = "Menu0" })
+            @Html.RadioButtonFor(model => model.Menu, 1, new {@id = "Menu1", @checked = "checked"}) @Html.LabelFor(model => model.Type, "Yes", new {@for = "Menu1"}) <br />
+            @Html.RadioButtonFor(model => model.Menu, 0, new {@id = "Menu0"}) @Html.LabelFor(model => model.Type, "No", new {@for = "Menu0"})
         </p>
     </div>
     if (PluginModel.PluginStatus("3"))
@@ -68,8 +68,8 @@
                 @Html.LabelFor(model => model.Type)
             </p>
             <p class="col-lg-2">
-                @Html.RadioButtonFor(model => model.Type, 0, new { @id = "Type0", @checked = "checked" }) @Html.LabelFor(model => model.Type, "Static page", new { @for = "Type0" }) <br />
-                @Html.RadioButtonFor(model => model.Type, 1, new { @id = "Type1" }) @Html.LabelFor(model => model.Type, "Blog", new { @for = "Type1" })
+                @Html.RadioButtonFor(model => model.Type, 0, new {@id = "Type0", @checked = "checked"}) @Html.LabelFor(model => model.Type, "Static page", new {@for = "Type0"}) <br />
+                @Html.RadioButtonFor(model => model.Type, 1, new {@id = "Type1"}) @Html.LabelFor(model => model.Type, "Blog", new {@for = "Type1"})
             </p>
         </div>
     }

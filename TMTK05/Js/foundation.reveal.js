@@ -66,7 +66,6 @@
 
       S(document)
         .on('touchend.fndtn.reveal click.fndtn.reveal', this.close_targets(), function (e) {
-
           e.preventDefault();
 
           if (!self.locked) {

@@ -58,7 +58,7 @@
 .aloha-ui a:focus,
 .aloha-ui button,
 .aloha-ui button:focus,
-.aloha-ui .dropdown-menu a, 
+.aloha-ui .dropdown-menu a,
 .aloha-ui .dropdown-menu a:focus {
     border: 0;
     border-radius: 0;

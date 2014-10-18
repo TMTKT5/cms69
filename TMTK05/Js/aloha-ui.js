@@ -13,7 +13,6 @@
     var ACTION_CLASS_PREFIX = 'aloha-action-';
 
     var $$ = (function () {
-
         /**
          * jQuery-like wrapper for document.querySelectorAll .
          *
@@ -29,7 +28,6 @@
         }
 
         $$.prototype = {
-
             /**
              * Array of matched elements
              * @type {Array.<Element>}
@@ -93,7 +91,6 @@
         return function (selectorOrElement) {
             return new $$(selectorOrElement);
         };
-
     })();
 
     /**

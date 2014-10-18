@@ -16,11 +16,14 @@ namespace TMTK05.Classes
         #region Public Methods
 
         /// <summary>
-        ///     Send mail
+        /// Send mail 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="email"></param>
-        /// <returns></returns>
+        /// <param name="name">
+        /// </param>
+        /// <param name="email">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static String SendMail(string name, string email)
         {
             const bool error = false;
@@ -36,22 +39,27 @@ namespace TMTK05.Classes
                 var smtpClient = new SmtpClient("145.118.4.13");
                 smtpClient.Send(mailMessage);
             }
-                // ReSharper disable EmptyGeneralCatchClause
+            // ReSharper disable EmptyGeneralCatchClause 
             catch (Exception)
-                // ReSharper restore EmptyGeneralCatchClause
+            // ReSharper restore EmptyGeneralCatchClause 
             {
             }
             return error.ToString();
         }
 
         /// <summary>
-        ///     Send mail
+        /// Send mail 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="email"></param>
-        /// <param name="subject"></param>
-        /// <param name="message"></param>
-        /// <returns></returns>
+        /// <param name="name">
+        /// </param>
+        /// <param name="email">
+        /// </param>
+        /// <param name="subject">
+        /// </param>
+        /// <param name="message">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static String SendMail(string name, string email, string subject, string message)
         {
             const bool error = false;
@@ -67,9 +75,9 @@ namespace TMTK05.Classes
                 var smtpClient = new SmtpClient("145.118.4.13");
                 smtpClient.Send(mailMessage);
             }
-                // ReSharper disable EmptyGeneralCatchClause
+            // ReSharper disable EmptyGeneralCatchClause 
             catch (Exception)
-                // ReSharper restore EmptyGeneralCatchClause
+            // ReSharper restore EmptyGeneralCatchClause 
             {
             }
             return error.ToString();
@@ -80,11 +88,14 @@ namespace TMTK05.Classes
         #region Private Methods
 
         /// <summary>
-        ///     Replace placeholders in the email template with vars
+        /// Replace placeholders in the email template with vars 
         /// </summary>
-        /// <param name="naam"></param>
-        /// <param name="mail"></param>
-        /// <returns></returns>
+        /// <param name="naam">
+        /// </param>
+        /// <param name="mail">
+        /// </param>
+        /// <returns>
+        /// </returns>
         private static String PopulateBodyActivate(string naam, string mail)
         {
             String body;
@@ -106,11 +117,14 @@ namespace TMTK05.Classes
         }
 
         /// <summary>
-        ///     Replace placeholders in the email template with vars
+        /// Replace placeholders in the email template with vars 
         /// </summary>
-        /// <param name="naam"></param>
-        /// <param name="message"></param>
-        /// <returns></returns>
+        /// <param name="naam">
+        /// </param>
+        /// <param name="message">
+        /// </param>
+        /// <returns>
+        /// </returns>
         private static String PopulateBody(string naam, string message)
         {
             String body;

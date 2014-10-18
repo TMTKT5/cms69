@@ -7,8 +7,8 @@ using System.Text;
 namespace TMTK05.Classes
 {
     /// <summary>
-    ///     Encodes text into Base32. Taken from
-    ///     http: //www.codeproject.com/Articles/35492/Base32-encoding-implementation-in-NET
+    /// Encodes text into Base32. Taken from
+    /// http: //www.codeproject.com/Articles/35492/Base32-encoding-implementation-in-NET
     /// </summary>
     public sealed class Base32Encoder
     {
@@ -30,6 +30,10 @@ namespace TMTK05.Classes
         {
         }
 
+        #endregion Public Constructors
+
+        #region Private Constructors
+
         private Base32Encoder(string encodingTable, char padding)
         {
             _eTable = encodingTable;
@@ -38,14 +42,14 @@ namespace TMTK05.Classes
             InitialiseDecodingTable();
         }
 
-        #endregion Public Constructors
+        #endregion Private Constructors
 
         #region Public Methods
 
         public string Encode(byte[] input)
         {
             var output = new StringBuilder();
-            var specialLength = input.Length%5;
+            var specialLength = input.Length % 5;
             var normalLength = input.Length - specialLength;
             for (var i = 0; i < normalLength; i += 5)
             {
@@ -68,59 +72,59 @@ namespace TMTK05.Classes
             switch (specialLength)
             {
                 case 1:
-                {
-                    var b1 = input[normalLength] & 0xff;
-                    output.Append(_eTable[(b1 >> 3) & 0x1f]);
-                    output.Append(_eTable[(b1 << 2) & 0x1f]);
-                    output.Append(_padding)
-                        .Append(_padding)
-                        .Append(_padding)
-                        .Append(_padding)
-                        .Append(_padding)
-                        .Append(_padding);
-                    break;
-                }
+                    {
+                        var b1 = input[normalLength] & 0xff;
+                        output.Append(_eTable[(b1 >> 3) & 0x1f]);
+                        output.Append(_eTable[(b1 << 2) & 0x1f]);
+                        output.Append(_padding)
+                            .Append(_padding)
+                            .Append(_padding)
+                            .Append(_padding)
+                            .Append(_padding)
+                            .Append(_padding);
+                        break;
+                    }
 
                 case 2:
-                {
-                    var b1 = input[normalLength] & 0xff;
-                    var b2 = input[normalLength + 1] & 0xff;
-                    output.Append(_eTable[(b1 >> 3) & 0x1f]);
-                    output.Append(_eTable[((b1 << 2) | (b2 >> 6)) & 0x1f]);
-                    output.Append(_eTable[(b2 >> 1) & 0x1f]);
-                    output.Append(_eTable[(b2 << 4) & 0x1f]);
-                    output.Append(_padding).Append(_padding).Append(_padding).Append(_padding);
-                    break;
-                }
+                    {
+                        var b1 = input[normalLength] & 0xff;
+                        var b2 = input[normalLength + 1] & 0xff;
+                        output.Append(_eTable[(b1 >> 3) & 0x1f]);
+                        output.Append(_eTable[((b1 << 2) | (b2 >> 6)) & 0x1f]);
+                        output.Append(_eTable[(b2 >> 1) & 0x1f]);
+                        output.Append(_eTable[(b2 << 4) & 0x1f]);
+                        output.Append(_padding).Append(_padding).Append(_padding).Append(_padding);
+                        break;
+                    }
                 case 3:
-                {
-                    var b1 = input[normalLength] & 0xff;
-                    var b2 = input[normalLength + 1] & 0xff;
-                    var b3 = input[normalLength + 2] & 0xff;
-                    output.Append(_eTable[(b1 >> 3) & 0x1f]);
-                    output.Append(_eTable[((b1 << 2) | (b2 >> 6)) & 0x1f]);
-                    output.Append(_eTable[(b2 >> 1) & 0x1f]);
-                    output.Append(_eTable[((b2 << 4) | (b3 >> 4)) & 0x1f]);
-                    output.Append(_eTable[(b3 << 1) & 0x1f]);
-                    output.Append(_padding).Append(_padding).Append(_padding);
-                    break;
-                }
+                    {
+                        var b1 = input[normalLength] & 0xff;
+                        var b2 = input[normalLength + 1] & 0xff;
+                        var b3 = input[normalLength + 2] & 0xff;
+                        output.Append(_eTable[(b1 >> 3) & 0x1f]);
+                        output.Append(_eTable[((b1 << 2) | (b2 >> 6)) & 0x1f]);
+                        output.Append(_eTable[(b2 >> 1) & 0x1f]);
+                        output.Append(_eTable[((b2 << 4) | (b3 >> 4)) & 0x1f]);
+                        output.Append(_eTable[(b3 << 1) & 0x1f]);
+                        output.Append(_padding).Append(_padding).Append(_padding);
+                        break;
+                    }
                 case 4:
-                {
-                    var b1 = input[normalLength] & 0xff;
-                    var b2 = input[normalLength + 1] & 0xff;
-                    var b3 = input[normalLength + 2] & 0xff;
-                    var b4 = input[normalLength + 3] & 0xff;
-                    output.Append(_eTable[(b1 >> 3) & 0x1f]);
-                    output.Append(_eTable[((b1 << 2) | (b2 >> 6)) & 0x1f]);
-                    output.Append(_eTable[(b2 >> 1) & 0x1f]);
-                    output.Append(_eTable[((b2 << 4) | (b3 >> 4)) & 0x1f]);
-                    output.Append(_eTable[((b3 << 1) | (b4 >> 7)) & 0x1f]);
-                    output.Append(_eTable[(b4 >> 2) & 0x1f]);
-                    output.Append(_eTable[(b4 << 3) & 0x1f]);
-                    output.Append(_padding);
-                    break;
-                }
+                    {
+                        var b1 = input[normalLength] & 0xff;
+                        var b2 = input[normalLength + 1] & 0xff;
+                        var b3 = input[normalLength + 2] & 0xff;
+                        var b4 = input[normalLength + 3] & 0xff;
+                        output.Append(_eTable[(b1 >> 3) & 0x1f]);
+                        output.Append(_eTable[((b1 << 2) | (b2 >> 6)) & 0x1f]);
+                        output.Append(_eTable[(b2 >> 1) & 0x1f]);
+                        output.Append(_eTable[((b2 << 4) | (b3 >> 4)) & 0x1f]);
+                        output.Append(_eTable[((b3 << 1) | (b4 >> 7)) & 0x1f]);
+                        output.Append(_eTable[(b4 >> 2) & 0x1f]);
+                        output.Append(_eTable[(b4 << 3) & 0x1f]);
+                        output.Append(_padding);
+                        break;
+                    }
             }
 
             return output.ToString();
@@ -134,7 +138,7 @@ namespace TMTK05.Classes
         {
             for (var i = 0; i < _eTable.Length; i++)
             {
-                _dTable[_eTable[i]] = (byte) i;
+                _dTable[_eTable[i]] = (byte)i;
             }
         }
 

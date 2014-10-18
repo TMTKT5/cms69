@@ -5,7 +5,7 @@
     <ul class="dropdown-menu">
         <li>
             <a href="@Url.Action("ViewProfile", "Admin")"><i class="fa fa-fw fa-user"></i> Profile</a>
-        </li>        
+        </li>
         @if (PluginModel.PluginStatus("1"))
         {
             <li>
@@ -15,8 +15,8 @@
         @if (PluginModel.PluginStatus("5"))
         {
             <li>
-                <a href="#" onclick="addMonster()"><i></i>
-                    <img src="~/Img/monstericon.png" alt=""/><span class="monster">+1</span> Monster</a>
+                <a href="#" onclick=" addMonster() "><i></i>
+                    <img src="~/Img/monstericon.png" alt="" /><span class="monster">+1</span> Monster</a>
             </li>
         }
         <!--<li>

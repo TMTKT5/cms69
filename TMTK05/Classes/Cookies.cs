@@ -13,11 +13,14 @@ namespace TMTK05.Classes
         #region Public Methods
 
         /// <summary>
-        ///     Create a HttpOnly cookie
+        /// Create a HttpOnly cookie 
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="savedId"></param>
-        /// <param name="admin"></param>
+        /// <param name="email">
+        /// </param>
+        /// <param name="savedId">
+        /// </param>
+        /// <param name="admin">
+        /// </param>
         public static void MakeCookie(string email, string savedId, string admin)
         {
             var tkt = new FormsAuthenticationTicket(1, email, DateTime.Now,

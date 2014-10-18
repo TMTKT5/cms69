@@ -1,5 +1,4 @@
 (function (aloha) {
-
     'use strict';
 
     var Ui = aloha.editor.ui;
@@ -246,5 +245,4 @@
     });
 
     Ui.updateHandlers.push(update);
-
 })(window.aloha);

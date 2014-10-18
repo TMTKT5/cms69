@@ -1,6 +1,6 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Models
-@model PageModel
+@model TMTK05.Models.PageModel
 @{
     ViewBag.Title = "Edit Page";
     ViewBag.HeaderTitle = "Edit Page";
@@ -31,7 +31,7 @@
 }
 
 @using (Html.BeginForm("EditPage", "Admin",
-    new { ViewBag.ReturnUrl },
+    new {ViewBag.ReturnUrl},
     FormMethod.Post, new {@id = "editPageForm", @autocomplete = "off"}))
 {
     <div class="row">
@@ -39,7 +39,7 @@
             @Html.LabelFor(model => model.Title)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control"}})
         </p>
         <p id="titleError" class="col-lg-2 alert-small alert-danger">
             Title is required
@@ -50,7 +50,7 @@
             @Html.LabelFor(model => model.Description)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
         </p>
         <p id="descriptionError" class="col-lg-2 alert-small alert-danger">
             Description is required
@@ -61,8 +61,8 @@
             @Html.LabelFor(model => model.Menu)
         </p>
         <p class="col-lg-2">
-            @Html.RadioButtonFor(model => model.Menu, 1, new { @id = "Menu1" }) @Html.LabelFor(model => model.Menu, "Yes", new { @for = "Menu1" }) <br />
-            @Html.RadioButtonFor(model => model.Menu, 0, new { @id = "Menu0" }) @Html.LabelFor(model => model.Menu, "No", new { @for = "Menu0" })
+            @Html.RadioButtonFor(model => model.Menu, 1, new {@id = "Menu1"}) @Html.LabelFor(model => model.Menu, "Yes", new {@for = "Menu1"}) <br />
+            @Html.RadioButtonFor(model => model.Menu, 0, new {@id = "Menu0"}) @Html.LabelFor(model => model.Menu, "No", new {@for = "Menu0"})
         </p>
     </div>
     if (PluginModel.PluginStatus("3"))
@@ -72,8 +72,8 @@
                 @Html.LabelFor(model => model.Type)
             </p>
             <p class="col-lg-2">
-                @Html.RadioButtonFor(model => model.Type, 0, new { @id = "Type0" }) @Html.LabelFor(model => model.Type, "Static page", new { @for = "Type0" }) <br />
-                @Html.RadioButtonFor(model => model.Type, 1, new { @id = "Type1" }) @Html.LabelFor(model => model.Type, "Blog", new { @for = "Type1" })
+                @Html.RadioButtonFor(model => model.Type, 0, new {@id = "Type0"}) @Html.LabelFor(model => model.Type, "Static page", new {@for = "Type0"}) <br />
+                @Html.RadioButtonFor(model => model.Type, 1, new {@id = "Type1"}) @Html.LabelFor(model => model.Type, "Blog", new {@for = "Type1"})
             </p>
         </div>
     }
@@ -93,7 +93,7 @@
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="color:#000">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="color: #000">
                     Paragraph <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
@@ -112,10 +112,10 @@
         </div>
     </div>
     <div class="aloha-3d aloha-ui">
-        <div class="aloha-link-toolbar btn-toolbar" role="toolbar" style="background-color:#000">
+        <div class="aloha-link-toolbar btn-toolbar" role="toolbar" style="background-color: #000">
             <input type="text" name="href" placeholder="http://TMTK-05.ict-lab.nl"/ value="">
             <a class="aloha-link-follow btn btn-default" href="#" target="_blank" rel="noreferrer" title="Follow this link">
-                <span class="glyphicon glyphicon-share-alt" style="color:#FFF"></span>
+                <span class="glyphicon glyphicon-share-alt" style="color: #FFF"></span>
             </a>
         </div>
     </div>

@@ -12,10 +12,12 @@ namespace TMTK05.Classes
         #region Public Methods
 
         /// <summary>
-        ///     Replace certain chars so SQL injection can't be done on input fields
+        /// Replace certain chars so SQL injection can't be done on input fields 
         /// </summary>
-        /// <param name="inputSql"></param>
-        /// <returns></returns>
+        /// <param name="inputSql">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static String SafeSqlLiteral(String inputSql)
         {
             var sql = inputSql;
@@ -38,10 +40,12 @@ namespace TMTK05.Classes
         }
 
         /// <summary>
-        ///     Replace chars so the user sees the exact thing they did put in
+        /// Replace chars so the user sees the exact thing they did put in 
         /// </summary>
-        /// <param name="inputSql"></param>
-        /// <returns></returns>
+        /// <param name="inputSql">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static String SafeSqlLiteralRevert(String inputSql)
         {
             var sql = inputSql;

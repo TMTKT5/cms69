@@ -6,7 +6,7 @@ using System;
 
 namespace TMTK05.Classes
 {
-    [SerializableAttribute]
+    [Serializable]
     public class OneTimePasswordException : Exception
     {
         #region Public Constructors

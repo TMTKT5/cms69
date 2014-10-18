@@ -42,20 +42,20 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 1; i <= userInfo.Count / 4; i++)
+            @for (var i = 1; i <= userInfo.Count/4; i++)
             {
-                <tr style="height: 51px" id="@userInfo[i * 4 - 4]">
+                <tr style="height: 51px" id="@userInfo[i*4 - 4]">
                     <td style="vertical-align: middle">
-                        @userInfo[i * 4 - 4]
+                        @userInfo[i*4 - 4]
                     </td>
                     <td style="vertical-align: middle">
-                        @userInfo[i * 4 - 3]
+                        @userInfo[i*4 - 3]
                     </td>
                     <td style="vertical-align: middle">
-                        @userInfo[i * 4 - 2].CaptalizeFirstLetter()
+                        @userInfo[i*4 - 2].CaptalizeFirstLetter()
                     </td>
                     <td style="vertical-align: middle">
-                        @if (userInfo[i * 4 - 1] == "0")
+                        @if (userInfo[i*4 - 1] == "0")
                         {
                             <span>Blogger</span>
                         }
@@ -67,9 +67,9 @@
                     @if (IdentityModel.CurrentUserOwner)
                     {
                         <td>
-                            @if (@userInfo[i * 4 - 1] == "0")
+                            @if (@userInfo[i*4 - 1] == "0")
                             {
-                                <button class="btn btn-danger" onclick="confirmDelete(@userInfo[i * 4 - 4], '@userInfo[i * 4 - 3]') ">Delete user</button>
+                                <button class="btn btn-danger" onclick=" confirmDelete(@userInfo[i*4 - 4], '@userInfo[i*4 - 3]') ">Delete user</button>
                             }
                         </td>
                     }

@@ -10,10 +10,12 @@ namespace TMTK05.Classes
     public static class StringManipulation
     {
         /// <summary>
-        ///     Convert DateTime to MySql date
+        /// Convert DateTime to MySql date 
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static string DateTimeToMySql(DateTime value)
         {
             var year = String.Format("{0:yyyy}", value);
@@ -24,10 +26,12 @@ namespace TMTK05.Classes
         }
 
         /// <summary>
-        ///     Lowercase string.
+        /// Lowercase string. 
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static string ToLowerFast(string value)
         {
             var output = value.ToCharArray();
@@ -36,17 +40,19 @@ namespace TMTK05.Classes
                 if (output[i] >= 'A' &&
                     output[i] <= 'Z')
                 {
-                    output[i] = (char) (output[i] + 32);
+                    output[i] = (char)(output[i] + 32);
                 }
             }
             return new string(output);
         }
 
         /// <summary>
-        ///     Uppercase string.
+        /// Uppercase string. 
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static string ToUpperFast(string value)
         {
             var output = value.ToCharArray();
@@ -55,26 +61,28 @@ namespace TMTK05.Classes
                 if (output[i] >= 'a' &&
                     output[i] <= 'z')
                 {
-                    output[i] = (char) (output[i] - 32);
+                    output[i] = (char)(output[i] - 32);
                 }
             }
             return new string(output);
         }
 
         /// <summary>
-        ///     Captalize first letter of a string
+        /// Captalize first letter of a string 
         /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="data">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static string CaptalizeFirstLetter(this string data)
         {
             var chars = data.ToCharArray();
 
-            // Find the Index of the first letter
+            // Find the Index of the first letter 
             var charac = data.First(char.IsLetter);
             var i = data.IndexOf(charac);
 
-            // capitalize that letter
+            // capitalize that letter 
             chars[i] = Char.ToUpper(chars[i]);
 
             return new string(chars);

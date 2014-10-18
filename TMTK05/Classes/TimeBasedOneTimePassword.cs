@@ -42,7 +42,7 @@ namespace TMTK05.Classes
             // Keeping a cache of the secret/password combinations that have been requested allows
             // us to make this a real one time use system. Once a secret/password combination has
             // been tested, it cannot be tested again until after it is no longer valid. See
-            // http://tools.ietf.org/html/rfc6238#section-5.2 for more info.
+            // http: //tools.ietf.org/html/rfc6238#section-5.2 for more info.
             var cacheKey = String.Format("{0}_{1}", secret, password);
 
             if (Cache.Contains(cacheKey))
@@ -51,7 +51,7 @@ namespace TMTK05.Classes
                     "You cannot use the same secret/iterationNumber combination more than once.");
             }
 
-            Cache.Add(cacheKey, cacheKey, new CacheItemPolicy {SlidingExpiration = TimeSpan.FromMinutes(2)});
+            Cache.Add(cacheKey, cacheKey, new CacheItemPolicy { SlidingExpiration = TimeSpan.FromMinutes(2) });
 
             if (password == GetPassword(secret))
                 return true;
@@ -79,7 +79,7 @@ namespace TMTK05.Classes
 
         private static long GetCurrentCounter(DateTime now, DateTime epoch, int timeStep)
         {
-            return (long) (now - epoch).TotalSeconds/timeStep;
+            return (long)(now - epoch).TotalSeconds / timeStep;
         }
 
         private static string GetPassword(string secret, long counter, int digits = 6)

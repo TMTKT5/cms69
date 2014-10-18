@@ -41,7 +41,8 @@ namespace TMTK05.Attributes
             do
             {
                 memberNames.Push(memberExp.Member.Name);
-            } while (TryFindMemberExpression(memberExp.Expression, out memberExp));
+            }
+            while (TryFindMemberExpression(memberExp.Expression, out memberExp));
 
             return string.Join(".", memberNames.ToArray());
         }
@@ -54,7 +55,7 @@ namespace TMTK05.Attributes
                 return true;
 
             if (!IsConversion(exp) || !(exp is UnaryExpression)) return false;
-            memberExp = ((UnaryExpression)exp).Operand as MemberExpression;
+            memberExp = ((UnaryExpression) exp).Operand as MemberExpression;
 
             return memberExp != null;
         }

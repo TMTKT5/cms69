@@ -1,6 +1,5 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Models
-
 @{
     ViewBag.Title = "Dashboard";
     ViewBag.HeaderTitle = "Dashboard";
@@ -18,9 +17,9 @@
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="panel">
-            <div id="weather"></div> 
+            <div id="weather"></div>
         </div>
-        <div class="counterField" onclick="window.location = '@Url.Action("AllPages", "Admin")'">
+        <div class="counterField" onclick=" window.location = '@Url.Action("AllPages", "Admin")' ">
             <div class="titleCounters">Pages</div>
             <div class="pictureFieldCounters"><img src="~/Img/pages.png" alt="pages" /></div>
             <div class="counterText">@DashboardModel.PageCount()</div>
@@ -37,7 +36,7 @@
                 <li id="sec"></li>
             </ul>
         </div>
-        <div class="counterField" onclick="window.location = '@Url.Action("AllUsers", "Admin")'">
+        <div class="counterField" onclick=" window.location = '@Url.Action("AllUsers", "Admin")' ">
             <div class="titleCounters">Users</div>
             <div class="pictureFieldCounters"><img src="~/Img/users.png" alt="users" /></div>
             <div class="counterText">@DashboardModel.UserCount()</div>
@@ -64,11 +63,11 @@
     <div class="col-lg-3 col-md-6">
         <div class="calender">
             <div class="cal1"></div>
-        </div> 
+        </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3 col-md-6" onclick="window.location = '@Url.Action("Plugins", "Admin")'">
+    <div class="col-lg-3 col-md-6" onclick=" window.location = '@Url.Action("Plugins", "Admin")' ">
         <div class="counterField">
             <div class="titleCounters">Plugins</div>
             <div class="pictureFieldCounters"><img src="~/Img/plugins.png" alt="plugins" /></div>
@@ -77,7 +76,7 @@
     </div>
     @if (PluginModel.PluginStatus("3"))
     {
-        <div class="col-lg-3 col-md-6" onclick="window.location = '@Url.Action("AllPosts", "Admin")'">
+        <div class="col-lg-3 col-md-6" onclick=" window.location = '@Url.Action("AllPosts", "Admin")' ">
             <div class="counterField">
                 <div class="titleCounters">Posts</div>
                 <div class="pictureFieldCounters"><img src="~/Img/posts.png" alt="posts" /></div>
@@ -85,7 +84,7 @@
             </div>
         </div>
     }
-    
+
     <!-- TODO: Change the id. add an onclick -->
     @if (PluginModel.PluginStatus("3"))
     {
@@ -99,7 +98,7 @@
     }
     @if (PluginModel.PluginStatus("5"))
     {
-        <div class="col-lg-3 col-md-6" onclick="window.location = '@Url.Action("MonsterOverview", "Admin")'">
+        <div class="col-lg-3 col-md-6" onclick=" window.location = '@Url.Action("MonsterOverview", "Admin")' ">
             <div class="counterField">
                 <div class="titleCounters">MONSTER COUNTER</div>
                 <div class="pictureFieldCounters"><img src="~/Img/monster.png" alt="monster" /></div>
@@ -108,7 +107,6 @@
         </div>
     }
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/Bundles/AdminPanelWidgets")

@@ -10,7 +10,7 @@ using WebActivatorEx;
 
 #endregion
 
-[assembly: PostApplicationStartMethod(typeof (RazorGeneratorMvcStart), "Start")]
+[assembly: PostApplicationStartMethod(typeof(RazorGeneratorMvcStart), "Start")]
 
 namespace TMTK05.App_Start
 {
@@ -20,7 +20,7 @@ namespace TMTK05.App_Start
 
         public static void Start()
         {
-            var engine = new PrecompiledMvcEngine(typeof (RazorGeneratorMvcStart).Assembly)
+            var engine = new PrecompiledMvcEngine(typeof(RazorGeneratorMvcStart).Assembly)
             {
                 UsePhysicalViewsIfNewer = HttpContext.Current.Request.IsLocal
             };

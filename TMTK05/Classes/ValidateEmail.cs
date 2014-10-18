@@ -19,17 +19,19 @@ namespace TMTK05.Classes
         #region Public Methods
 
         /// <summary>
-        ///     Validate email (also cases that HTML5 verification doesn't catch)
+        /// Validate email (also cases that HTML5 verification doesn't catch) 
         /// </summary>
-        /// <param name="strIn"></param>
-        /// <returns></returns>
+        /// <param name="strIn">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static bool IsValidEmail(string strIn)
         {
             _invalid = false;
             if (String.IsNullOrEmpty(strIn))
                 return false;
 
-            // Use IdnMapping class to convert Unicode domain names.
+            // Use IdnMapping class to convert Unicode domain names. 
             try
             {
                 strIn = Regex.Replace(strIn, @"(@)(.+)$", DomainMapper,
@@ -43,7 +45,7 @@ namespace TMTK05.Classes
             if (_invalid)
                 return false;
 
-            // Return true if strIn is in valid e-mail format.
+            // Return true if strIn is in valid e-mail format. 
             try
             {
                 return Regex.IsMatch(strIn,
@@ -63,7 +65,7 @@ namespace TMTK05.Classes
 
         private static string DomainMapper(Match match)
         {
-            // IdnMapping class with default property values.
+            // IdnMapping class with default property values. 
             var idn = new IdnMapping();
 
             var domainName = match.Groups[2].Value;

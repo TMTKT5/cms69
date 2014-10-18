@@ -20,7 +20,6 @@
  */
 
 ;(function ( $, window, document, undefined ) {
-
   // This is the default calendar template. This can be overridden.
   var clndrTemplate = "<div class='clndr-controls'>" +
     "<div class='clndr-control-button'><p class='clndr-previous-button'>previous</p></div><div class='month'><%= month %> <%= year %></div><div class='clndr-control-button rightalign'><p class='clndr-next-button'>next</p></div>" +
@@ -204,7 +203,6 @@
     this.eventsNextMonth = [];
 
     if(this.options.events.length) {
-
       // MULTI-DAY EVENT PARSING
       // if we're using multi-day events, the start or end must be in the current month
       if(this.options.multiDayEvents) {
@@ -337,7 +335,6 @@
        this.month.year() === day.year()
            ? extraClasses += " last-month"
            : extraClasses += " next-month";
-
     } else if(this.month.month() < day.month()) {
        extraClasses += " adjacent-month";
 
@@ -442,7 +439,6 @@
         this.element.find('.' + this.options.targets.today).toggleClass('inactive', true);
       }
     }
-
 
     if(this.options.doneRendering) {
       this.options.doneRendering.apply(this, []);
@@ -829,5 +825,4 @@
       return clndr_instance;
     }
   }
-
 })( jQuery, window, document );

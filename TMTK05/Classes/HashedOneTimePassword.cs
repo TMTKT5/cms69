@@ -13,12 +13,16 @@ namespace TMTK05.Classes
         #region Public Methods
 
         /// <summary>
-        ///     Generate TFA code
+        /// Generate TFA code 
         /// </summary>
-        /// <param name="secret"></param>
-        /// <param name="iterationNumber"></param>
-        /// <param name="digits"></param>
-        /// <returns></returns>
+        /// <param name="secret">
+        /// </param>
+        /// <param name="iterationNumber">
+        /// </param>
+        /// <param name="digits">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static string GeneratePassword(string secret, long iterationNumber, int digits = 6)
         {
             var counter = BitConverter.GetBytes(iterationNumber);
@@ -42,7 +46,7 @@ namespace TMTK05.Classes
                 | (hash[offset + 3]);
 
             // Limit the number of digits 
-            var password = binary%(int) Math.Pow(10, digits);
+            var password = binary % (int)Math.Pow(10, digits);
 
             // Pad to required digits 
             return password.ToString(new string('0', digits));

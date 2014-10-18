@@ -1,7 +1,6 @@
 // Morris.js Charts sample data for SB Admin template
 
 $(function() {
-
     // Area Chart
     Morris.Area({
         element: 'morris-area-chart',
@@ -222,6 +221,4 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-
-
 });

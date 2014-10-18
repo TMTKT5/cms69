@@ -25,7 +25,7 @@
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="large-4 columns">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+            @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control", @placeholder = "Name"}})
         </div>
         <div id="nameError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Name is required
@@ -40,7 +40,7 @@
             @Html.LabelFor(model => model.Email)
         </div>
         <div class="large-4 columns end">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+            @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control", @placeholder = "Email"}})
         </div>
         <div id="emailError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Email is required
@@ -58,7 +58,7 @@
             @Html.LabelFor(model => model.Subject)
         </div>
         <div class="large-4 columns end">
-            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
+            @Html.EditorFor(model => model.Subject, new {htmlAttributes = new {@class = "form-control", @placeholder = "Subject"}})
         </div>
         <div id="subjectError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Subject is required
@@ -73,7 +73,7 @@
             @Html.LabelFor(model => model.Message)
         </div>
         <div class="large-4 columns end">
-            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @placeholder = "Message..." } })
+            @Html.EditorFor(model => model.Message, new {htmlAttributes = new {@class = "form-control", @placeholder = "Message..."}})
         </div>
         <div id="messageError" data-alert class="large-3 columns alert-box alert round end" style="margin-top: 8px;">
             Message is required
@@ -155,7 +155,7 @@
             checkMail();
         });
     </script>
-    
+
     @if (Model.Done)
     {
         <script type="text/javascript">

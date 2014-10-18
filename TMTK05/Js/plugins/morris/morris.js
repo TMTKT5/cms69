@@ -4,7 +4,6 @@ Copyright 2014 Olly Smith All rights reserved.
 Licensed under the BSD-2-Clause License.
 */
 
-
 (function() {
   var $, Morris, minutesSpecHelper, secondsSpecHelper,
     __slice = [].slice,
@@ -46,7 +45,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return EventEmitter;
-
   })();
 
   Morris.commas = function(num) {
@@ -587,7 +585,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return Grid;
-
   })(Morris.EventEmitter);
 
   Morris.parseDate = function(date) {
@@ -709,7 +706,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return Hover;
-
   })();
 
   Morris.Line = (function(_super) {
@@ -1132,7 +1128,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return Line;
-
   })(Morris.Grid);
 
   Morris.labelSeries = function(dmin, dmax, pxwidth, specName, xLabelFormat) {
@@ -1373,7 +1368,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return Area;
-
   })(Morris.Line);
 
   Morris.Bar = (function(_super) {
@@ -1624,7 +1618,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return Bar;
-
   })(Morris.Grid);
 
   Morris.Donut = (function(_super) {
@@ -1791,7 +1784,6 @@ Licensed under the BSD-2-Clause License.
     };
 
     return Donut;
-
   })(Morris.EventEmitter);
 
   Morris.DonutSegment = (function(_super) {
@@ -1886,7 +1878,5 @@ Licensed under the BSD-2-Clause License.
     };
 
     return DonutSegment;
-
   })(Morris.EventEmitter);
-
 }).call(this);

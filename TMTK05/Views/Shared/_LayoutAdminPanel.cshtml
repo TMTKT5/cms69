@@ -22,7 +22,6 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
 
     <body>
@@ -134,7 +133,6 @@
                             }
                             if (PluginModel.PluginStatus("4"))
                             {
-
                                 <li class="@((string) ViewContext.RouteData.Values["action"] == "MediaUpload" ? "active" : "")">
                                     <a href="@Url.Action("MediaUpload", "Admin")"><i class="fa fa-fw fa-picture-o"></i> Upload media</a>
                                 </li>
@@ -184,17 +182,14 @@
                     </div>
                     <!-- /.row -->
                     @RenderBody()
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- /#page-wrapper -->
-
         </div>
         <!-- /#wrapper -->
         @Scripts.Render("~/Bundles/AdminPanelScripts")
-                @RenderSection("Scripts", false)
+        @RenderSection("Scripts", false)
         <script type="text/javascript">
             function addMonster() {
                 var url = "/Admin/Monster";
@@ -205,5 +200,4 @@
             }
         </script>
     </body>
-
 </html>

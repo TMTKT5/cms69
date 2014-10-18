@@ -2,7 +2,6 @@
 var calendars = {};
 
 $(document).ready( function() {
-
   // assuming you've got the appropriate language files,
   // clndr will respect whatever moment's language is set to.
   // moment.lang('ru');
@@ -86,5 +85,4 @@ $(document).ready( function() {
       calendars.clndr2.forward();
     }
   });
-
 });

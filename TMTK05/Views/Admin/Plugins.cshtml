@@ -1,6 +1,6 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Models
-@model SettingsModel
+@model TMTK05.Models.SettingsModel
 @{
     ViewBag.Title = "Plugin Settings";
     ViewBag.HeaderTitle = "Plugin Settings";
@@ -41,23 +41,23 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 1; i <= pluginInfo.Count / 6; i++)
+            @for (var i = 1; i <= pluginInfo.Count/6; i++)
             {
                 <tr style="height: 51px">
                     <td style="vertical-align: middle">
-                        @pluginInfo[i * 6 - 6]
+                        @pluginInfo[i*6 - 6]
                     </td>
                     <td style="vertical-align: middle">
-                        @pluginInfo[i * 6 - 5]
+                        @pluginInfo[i*6 - 5]
                     </td>
                     <td style="vertical-align: middle">
-                        @pluginInfo[i * 6 - 4]
+                        @pluginInfo[i*6 - 4]
                     </td>
                     <td style="vertical-align: middle">
-                        @pluginInfo[i * 6 - 3]
+                        @pluginInfo[i*6 - 3]
                     </td>
                     <td style="vertical-align: middle">
-                        <button id="plugin_@pluginInfo[i * 6 - 6]" class="btn btn-primary" onclick="EnableDisable(@pluginInfo[i * 6 - 6])"></button>
+                        <button id="plugin_@pluginInfo[i * 6 - 6]" class="btn btn-primary" onclick=" EnableDisable(@pluginInfo[i*6 - 6]) "></button>
                     </td>
                     <td style="vertical-align: middle">
                         @if (Convert.ToInt16(pluginInfo[i*6 - 1]) == 1)
@@ -74,7 +74,7 @@
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
     @Scripts.Render("~/Bundles/SortableScripts")
-    @for (var i = 1; i <= pluginInfo.Count / 6; i++)
+    @for (var i = 1; i <= pluginInfo.Count/6; i++)
     {
         <script type="text/javascript">
             var value = @i + "";
@@ -100,18 +100,18 @@
             });
         }
 
-        $('#settings_2').click(function () {
+        $('#settings_2').click(function() {
             var url = "/ContactPlugin/GetEmail";
-            $.get(url, function (mail) {
+            $.get(url, function(mail) {
                 alertify.dialog('prompt')
                     .setting({
                         'labels': { ok: 'Save', cancel: 'Close' },
                         'title': 'Contact plugin',
                         'message': 'What\'s your email address?',
                         'value': mail,
-                        'onok': function (evt, value) {
+                        'onok': function(evt, value) {
                             var url2 = "/ContactPlugin/SaveEmail";
-                            $.get(url2, { input: value }, function (data) {
+                            $.get(url2, { input: value }, function(data) {
                                 if (data == "True") {
                                     alertify.success("Your email has been saved!");
                                 } else {

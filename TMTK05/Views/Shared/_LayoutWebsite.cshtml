@@ -30,11 +30,12 @@
                         </ul>
                         <section class="top-bar-section">
                             <ul class="right">
-                                @for (var i = 1; i <= pageInfo.Count / 5; i++)
+                                @for (var i = 1; i <= pageInfo.Count/5; i++)
                                 {
-                                    if (@pageInfo[i * 5 - 1] == "1") {
+                                    if (@pageInfo[i*5 - 1] == "1")
+                                    {
                                         <li>
-                                            @Html.ActionLink(@pageInfo[i * 5 - 4], "Page", "Home", new {id = pageInfo[i * 5 - 5]}, new {@id = "page_@pageInfo[i * 5 - 5]"})
+                                            @Html.ActionLink(@pageInfo[i*5 - 4], "Page", "Home", new {id = pageInfo[i*5 - 5]}, new {@id = "page_@pageInfo[i * 5 - 5]"})
                                         </li>
                                     }
                                 }
@@ -69,7 +70,7 @@
         <div id="Content" class="section gray">
             <div class="row">
                 <div class="large-12 columns">
-                    @RenderBody() 
+                    @RenderBody()
                 </div>
             </div>
         </div>

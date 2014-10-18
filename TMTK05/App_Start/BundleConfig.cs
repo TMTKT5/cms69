@@ -23,109 +23,110 @@ namespace TMTK05
             // transformations of the corresponding bundle
             BundleResolver.Current = new CustomBundleResolver();
 
-            // Admin panel styles
+            // Admin panel styles 
             var adminPanelStylesBundle = new CustomStyleBundle("~/Bundles/AdminPanelStyles");
             adminPanelStylesBundle.Include(
-                "~/Css/bootstrap.css",
-                "~/Css/sb-admin.css",
+                "~/Css/bootstrap.min.css",
+                "~/Css/sb-admin.min.css",
                 "~/font-awesome-4.1.0/css/font-awesome.min.css");
             adminPanelStylesBundle.Orderer = nullOrderer;
             bundles.Add(adminPanelStylesBundle);
 
-            // Admin panel scripts
+            // Admin panel scripts 
             var adminPanelScriptsBundle = new CustomScriptBundle("~/Bundles/AdminPanelScripts");
             adminPanelScriptsBundle.Include(
-                "~/Js/jquery-1.11.0.js",
-                "~/Js/bootstrap.js");
+                "~/Js/jquery-1.11.0.min.js",
+                "~/Js/bootstrap.min.js");
             adminPanelScriptsBundle.Orderer = nullOrderer;
             bundles.Add(adminPanelScriptsBundle);
 
             //Admin panel widgets
             var widgetScriptsBundle = new CustomScriptBundle("~/Bundles/AdminPanelWidgets");
             widgetScriptsBundle.Include(
-                "~/Js/jquery.simpleWeather.js",
-                "~/Js/weather.js",
-                "~/Js/clockwidget.js",
-                "~/Js/underscore-min.js",
-                "~/Js/moment-2.2.1.js",
-                "~/Js/clndr.js",
-                "~/Js/site.js");
+                "~/Js/jquery.simpleWeather.min.js",
+                "~/Js/weather.min.js",
+                "~/Js/clockwidget.min.js",
+                "~/Js/underscore.min.js",
+                "~/Js/moment-2.2.1.min.js",
+                "~/Js/clndr.min.js",
+                "~/Js/site.min.js");
             widgetScriptsBundle.Orderer = nullOrderer;
             bundles.Add(widgetScriptsBundle);
 
-            // Website styles
+            // Website styles 
             var websiteStylesBundle = new CustomStyleBundle("~/Bundles/WebsiteStyles");
             websiteStylesBundle.Include(
-                "~/Css/normalize.css",
-                "~/Css/foundation.css",
-                "~/Css/style.css",
-                "~/Css/ie.css");
+                "~/Css/normalize.min.css",
+                "~/Css/foundation.min.css",
+                "~/Css/style.min.css",
+                "~/Css/ie.min.css");
             websiteStylesBundle.Orderer = nullOrderer;
             bundles.Add(websiteStylesBundle);
 
-            // Website scripts
+            // Website scripts 
             var websiteScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteScripts");
             websiteScriptsBundle.Include(
-                "~/Js/functions.js",
-                "~/Js/custom.modernizr.js",
+                "~/Js/functions.min.js",
+                "~/Js/custom.modernizr.min.js",
                 "~/Js/headroom.min.js",
                 "~/Js/foundation.min.js");
             websiteScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteScriptsBundle);
 
-            // Alertify styles
+            // Alertify styles 
             var websiteAlertifyStyleBundle = new CustomStyleBundle("~/Bundles/WebsiteAlertifyStyles");
             websiteAlertifyStyleBundle.Include(
-                "~/Css/alertify.css",
-                "~/Css/themes/default.css");
+                "~/Css/alertify.min.css",
+                "~/Css/themes/default.min.css");
             websiteAlertifyStyleBundle.Orderer = nullOrderer;
             bundles.Add(websiteAlertifyStyleBundle);
 
-            // Alertify script
+            // Alertify script 
             var websiteAlertifyScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteAlertifyScripts");
             websiteAlertifyScriptsBundle.Include(
-                "~/Js/alertify.js");
+                "~/Js/alertify.min.js");
             websiteAlertifyScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteAlertifyScriptsBundle);
 
-            // Image crop style
+            // Image crop style 
             var websiteCropStyleBundle = new CustomStyleBundle("~/Bundles/WebsiteCropStyles");
             websiteCropStyleBundle.Include(
-                "~/Css/imgareaselect-animated.css");
+                "~/Css/imgareaselect-animated.min.css");
             websiteCropStyleBundle.Orderer = nullOrderer;
             bundles.Add(websiteCropStyleBundle);
 
-            // Image crop script
+            // Image crop script 
             var websiteImageCropScriptsBundle = new CustomScriptBundle("~/Bundles/WebsiteImageCropScripts");
             websiteImageCropScriptsBundle.Include(
-                "~/Js/jquery.imgareaselect.pack.js");
+                "~/Js/jquery.imgareaselect.pack.min.js");
             websiteImageCropScriptsBundle.Orderer = nullOrderer;
             bundles.Add(websiteImageCropScriptsBundle);
 
-            // Sortable tables script
+            // Sortable tables script 
             var sortableScriptsBundle = new CustomScriptBundle("~/Bundles/SortableScripts");
             sortableScriptsBundle.Include(
-                "~/Js/sorttable.js");
+                "~/Js/sorttable.min.js");
             sortableScriptsBundle.Orderer = nullOrderer;
             bundles.Add(sortableScriptsBundle);
 
-            // WYSIWYG style
+            // WYSIWYG style 
             var alohaStyleBundle = new CustomStyleBundle("~/Bundles/AlohaStyles");
             alohaStyleBundle.Include(
-                "~/Css/aloha-ui.css");
+                "~/Css/aloha-ui.min.css");
             alohaStyleBundle.Orderer = nullOrderer;
             bundles.Add(alohaStyleBundle);
 
-            // WYSIWYG scripts
+            // WYSIWYG scripts 
             var alohaScriptsBundle = new CustomScriptBundle("~/Bundles/AlohaScripts");
             alohaScriptsBundle.Include(
                 "~/Js/aloha.min.js",
-                "~/Js/aloha-ui.js",
-                "~/Js/aloha-ui-links.js");
+                "~/Js/aloha-ui.min.js",
+                "~/Js/aloha-ui-links.min.js");
             alohaScriptsBundle.Orderer = nullOrderer;
             bundles.Add(alohaScriptsBundle);
         }
 
         #endregion Public Methods
+
     }
 }

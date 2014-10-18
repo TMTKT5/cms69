@@ -1,13 +1,13 @@
 ﻿#region
 
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Controls;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using Gma.QrCodeNet.Encoding;
-using Gma.QrCodeNet.Encoding.Windows.Controls;
 
 #endregion
 
@@ -18,11 +18,14 @@ namespace TMTK05.Classes
         #region Public Methods
 
         /// <summary>
-        ///     Generates an img tag with a data uri encoded image of the QR code from the content given.
+        /// Generates an img tag with a data uri encoded image of the QR code from the content given. 
         /// </summary>
-        /// <param name="html">   </param>
-        /// <param name="content"></param>
-        /// <returns></returns>
+        /// <param name="html">
+        /// </param>
+        /// <param name="content">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static IHtmlString QrCode(this HtmlHelper html, string content)
         {
             var enc = new QrEncoder(ErrorCorrectionLevel.H);

@@ -178,23 +178,58 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Css\alertify.css" />
+    <Content Include="Css\alertify.min.css">
+      <DependentUpon>alertify.css</DependentUpon>
+    </Content>
     <Content Include="Css\aloha-ui.css" />
+    <Content Include="Css\aloha-ui.min.css">
+      <DependentUpon>aloha-ui.css</DependentUpon>
+    </Content>
     <Content Include="Css\bootstrap.css" />
+    <Content Include="Css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Css\border-anim-h.gif" />
     <Content Include="Css\border-anim-v.gif" />
     <Content Include="Css\border-h.gif" />
     <Content Include="Css\border-v.gif" />
     <Content Include="Css\foundation.css" />
+    <Content Include="Css\foundation.min.css">
+      <DependentUpon>foundation.css</DependentUpon>
+    </Content>
     <Content Include="Css\ie.css" />
+    <Content Include="Css\ie.min.css">
+      <DependentUpon>ie.css</DependentUpon>
+    </Content>
     <Content Include="Css\imgareaselect-animated.css" />
+    <Content Include="Css\imgareaselect-animated.min.css">
+      <DependentUpon>imgareaselect-animated.css</DependentUpon>
+    </Content>
     <Content Include="Css\normalize.css" />
+    <Content Include="Css\normalize.min.css">
+      <DependentUpon>normalize.css</DependentUpon>
+    </Content>
     <Content Include="Css\plugins\morris.css" />
+    <Content Include="Css\plugins\morris.min.css">
+      <DependentUpon>morris.css</DependentUpon>
+    </Content>
     <Content Include="Css\sb-admin.css" />
+    <Content Include="Css\sb-admin.min.css">
+      <DependentUpon>sb-admin.css</DependentUpon>
+    </Content>
     <Content Include="Css\style.css" />
+    <Content Include="Css\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="Css\themes\default.css" />
+    <Content Include="Css\themes\default.min.css">
+      <DependentUpon>default.css</DependentUpon>
+    </Content>
     <Content Include="EmailTemplate.html" />
     <Content Include="Font-awesome-4.1.0\css\font-awesome.css" />
-    <Content Include="Font-awesome-4.1.0\css\font-awesome.min.css" />
+    <Content Include="Font-awesome-4.1.0\css\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
     <Content Include="Font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -212,35 +247,98 @@
     <Content Include="Img\tweets.png" />
     <Content Include="Img\users.png" />
     <Content Include="Js\alertify.js" />
+    <Content Include="Js\alertify.min.js">
+      <DependentUpon>alertify.js</DependentUpon>
+    </Content>
     <Content Include="Js\aloha-ui-links.js" />
+    <Content Include="Js\aloha-ui-links.min.js">
+      <DependentUpon>aloha-ui-links.js</DependentUpon>
+    </Content>
     <Content Include="Js\aloha-ui.js" />
+    <Content Include="Js\aloha-ui.min.js">
+      <DependentUpon>aloha-ui.js</DependentUpon>
+    </Content>
     <Content Include="Js\aloha.min.js" />
     <Content Include="Js\bootstrap.js" />
+    <Content Include="Js\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
     <Content Include="Js\clndr.js" />
+    <Content Include="Js\clndr.min.js">
+      <DependentUpon>clndr.js</DependentUpon>
+    </Content>
     <Content Include="Js\clockwidget.js" />
+    <Content Include="Js\clockwidget.min.js">
+      <DependentUpon>clockwidget.js</DependentUpon>
+    </Content>
     <Content Include="Js\custom.modernizr.js" />
+    <Content Include="Js\custom.modernizr.min.js">
+      <DependentUpon>custom.modernizr.js</DependentUpon>
+    </Content>
     <Content Include="Js\foundation.min.js" />
     <Content Include="Js\foundation.reveal.js" />
+    <Content Include="Js\foundation.reveal.min.js">
+      <DependentUpon>foundation.reveal.js</DependentUpon>
+    </Content>
     <Content Include="Js\functions.js" />
+    <Content Include="Js\functions.min.js">
+      <DependentUpon>functions.js</DependentUpon>
+    </Content>
     <Content Include="Js\headroom.min.js" />
     <Content Include="Js\jquery-1.11.0.js" />
+    <Content Include="Js\jquery-1.11.0.min.js">
+      <DependentUpon>jquery-1.11.0.js</DependentUpon>
+    </Content>
     <Content Include="Js\jquery.imgareaselect.pack.js" />
+    <Content Include="Js\jquery.imgareaselect.pack.min.js">
+      <DependentUpon>jquery.imgareaselect.pack.js</DependentUpon>
+    </Content>
     <Content Include="Js\jquery.simpleWeather.js" />
+    <Content Include="Js\jquery.simpleWeather.min.js">
+      <DependentUpon>jquery.simpleWeather.js</DependentUpon>
+    </Content>
     <Content Include="Js\moment-2.2.1.js" />
+    <Content Include="Js\moment-2.2.1.min.js">
+      <DependentUpon>moment-2.2.1.js</DependentUpon>
+    </Content>
     <Content Include="Js\plugins\flot\excanvas.min.js" />
     <Content Include="Js\plugins\flot\flot-data.js" />
+    <Content Include="Js\plugins\flot\flot-data.min.js">
+      <DependentUpon>flot-data.js</DependentUpon>
+    </Content>
     <Content Include="Js\plugins\flot\jquery.flot.js" />
+    <Content Include="Js\plugins\flot\jquery.flot.min.js">
+      <DependentUpon>jquery.flot.js</DependentUpon>
+    </Content>
     <Content Include="Js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Js\plugins\flot\jquery.flot.pie.min.js">
+      <DependentUpon>jquery.flot.pie.js</DependentUpon>
+    </Content>
     <Content Include="Js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Js\plugins\flot\jquery.flot.resize.min.js">
+      <DependentUpon>jquery.flot.resize.js</DependentUpon>
+    </Content>
     <Content Include="Js\plugins\flot\jquery.flot.tooltip.min.js" />
     <Content Include="Js\plugins\morris\morris-data.js" />
+    <Content Include="Js\plugins\morris\morris-data.min.js">
+      <DependentUpon>morris-data.js</DependentUpon>
+    </Content>
     <Content Include="Js\plugins\morris\morris.js" />
     <Content Include="Js\plugins\morris\morris.min.js" />
     <Content Include="Js\plugins\morris\raphael.min.js" />
     <Content Include="Js\site.js" />
+    <Content Include="Js\site.min.js">
+      <DependentUpon>site.js</DependentUpon>
+    </Content>
     <Content Include="Js\sorttable.js" />
-    <Content Include="Js\underscore-min.js" />
+    <Content Include="Js\sorttable.min.js">
+      <DependentUpon>sorttable.js</DependentUpon>
+    </Content>
+    <Content Include="Js\underscore.min.js" />
     <Content Include="Js\weather.js" />
+    <Content Include="Js\weather.min.js">
+      <DependentUpon>weather.js</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -262,6 +360,72 @@
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Js\plugins\morris\morris.min.js.map">
+      <DependentUpon>morris.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\alertify.min.js.map">
+      <DependentUpon>alertify.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\aloha-ui-links.min.js.map">
+      <DependentUpon>aloha-ui-links.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\aloha-ui.min.js.map">
+      <DependentUpon>aloha-ui.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\clndr.min.js.map">
+      <DependentUpon>clndr.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\clockwidget.min.js.map">
+      <DependentUpon>clockwidget.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\custom.modernizr.min.js.map">
+      <DependentUpon>custom.modernizr.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\foundation.reveal.min.js.map">
+      <DependentUpon>foundation.reveal.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\functions.min.js.map">
+      <DependentUpon>functions.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\jquery-1.11.0.min.js.map">
+      <DependentUpon>jquery-1.11.0.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\jquery.imgareaselect.pack.min.js.map">
+      <DependentUpon>jquery.imgareaselect.pack.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\jquery.simpleWeather.min.js.map">
+      <DependentUpon>jquery.simpleWeather.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\moment-2.2.1.min.js.map">
+      <DependentUpon>moment-2.2.1.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\site.min.js.map">
+      <DependentUpon>site.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\sorttable.min.js.map">
+      <DependentUpon>sorttable.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\weather.min.js.map">
+      <DependentUpon>weather.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\plugins\flot\flot-data.min.js.map">
+      <DependentUpon>flot-data.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\plugins\flot\jquery.flot.min.js.map">
+      <DependentUpon>jquery.flot.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\plugins\flot\jquery.flot.pie.min.js.map">
+      <DependentUpon>jquery.flot.pie.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\plugins\flot\jquery.flot.resize.min.js.map">
+      <DependentUpon>jquery.flot.resize.min.js</DependentUpon>
+    </Content>
+    <Content Include="Js\plugins\morris\morris-data.min.js.map">
+      <DependentUpon>morris-data.min.js</DependentUpon>
+    </Content>
     <None Include="Views\Admin\AllPages.cshtml" />
     <None Include="Views\Admin\AllPosts.cshtml" />
     <None Include="Views\Admin\EditPage.cshtml" />

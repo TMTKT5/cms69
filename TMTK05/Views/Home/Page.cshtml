@@ -1,8 +1,7 @@
 ﻿@using TMTK05.Models
-
 @{
     var pageInfo = PageModel.GetSinglePageStaticList(Convert.ToInt16(Url.RequestContext.RouteData.Values["id"]));
-    
+
     ViewBag.Title = pageInfo[0];
     ViewBag.HeaderTitle = pageInfo[0];
     ViewBag.HeaderSubHeading = pageInfo[1];

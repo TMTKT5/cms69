@@ -1,7 +1,6 @@
 ﻿@using System.Web.Optimization
 @using TMTK05.Attributes
-@using TMTK05.Models
-@model UploadImageModel
+@model TMTK05.Models.UploadImageModel
 @{
     ViewBag.Title = "Media Upload";
     ViewBag.HeaderTitle = "Media Upload";
@@ -42,7 +41,7 @@
             @Html.LabelFor(m => m.Url)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(m => m.Url, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(m => m.Url, new {htmlAttributes = new {@class = "form-control"}})
         </p>
     </div>
     <div class="row">
@@ -51,7 +50,7 @@
             @Html.LabelFor(model => model.Flickr)
         </p>
         <p class="col-lg-2">
-            @Html.Editor("FlickrQuery", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.Editor("FlickrQuery", new {htmlAttributes = new {@class = "form-control"}})
         </p>
     </div>
     <div class="row">
@@ -69,7 +68,7 @@
         </p>
         <div class="col-lg-11" style="text-align: center;">
             <div id="upload-cut">
-                <img alt="" id="preview" style="display:block;max-width:1520px;max-height:550px;width:auto;height:auto;margin-bottom:10px;" src="@Url.Content("~/Img/empty.png")" />
+                <img alt="" id="preview" style="display: block; max-width: 1520px; max-height: 550px; width: auto; height: auto; margin-bottom: 10px;" src="@Url.Content("~/Img/empty.png")" />
             </div>
         </div>
     </div>
@@ -90,7 +89,7 @@
     <script type="text/javascript">
         var boxes = $('input[type=checkbox]').attr('disabled', true);
 
-        var preview = $('#preview').load(function () {
+        var preview = $('#preview').load(function() {
             setPreview();
             ias.setOptions({
                 x1: 0,
@@ -128,12 +127,12 @@
 
         setPreview(0, 0, 1, 1);
 
-        var fetchImages = function (query) {
+        var fetchImages = function(query) {
             $.getJSON('http://www.flickr.com/services/feeds/photos_public.gne?jsoncallback=?', {
                 tags: query,
                 tagmode: "any",
                 format: "json"
-            }, function (data) {
+            }, function(data) {
                 alertify.alert()
                     .setting({
                         'label': 'Close',
@@ -142,8 +141,8 @@
                     }).show();
                 $('.ajs-content').html('');
                 var box = $('<div />').appendTo($('.ajs-content'));
-                $.each(data.items, function (i, v) {
-                    $('<img />').addClass('flickrImage').attr('src', data.items[i].media.m).click(function () {
+                $.each(data.items, function(i, v) {
+                    $('<img />').addClass('flickrImage').attr('src', data.items[i].media.m).click(function() {
                         $('#Flickr').val(this.src).change();
                         $('.ajs-ok').click();
                     }).appendTo(box);
@@ -152,21 +151,21 @@
             });
         };
 
-        $('#FlickrQuery').change(function () {
+        $('#FlickrQuery').change(function() {
             fetchImages(this.value);
         });
 
-        $('#Flickr').change(function () {
+        $('#Flickr').change(function() {
             setBox('#IsFlickr');
             preview.attr('src', this.value);
         });
 
-        $('#Url').on('change keyup paste', function () {
+        $('#Url').on('change keyup paste', function() {
             setBox('#IsUrl');
             preview.attr('src', this.value);
         });
 
-        $('#File').change(function (evt) {
+        $('#File').change(function(evt) {
             var f = evt.target.files[0];
             var reader = new FileReader();
 
@@ -176,17 +175,17 @@
             }
 
             setBox('#IsFile');
-            reader.onload = function (e) { preview.attr('src', e.target.result); };
+            reader.onload = function(e) { preview.attr('src', e.target.result); };
             reader.readAsDataURL(f);
         });
 
-        boxes.change(function () {
+        boxes.change(function() {
             setBox(this);
             $('#' + this.id.substr(2)).change();
         });
 
         $('button').attr('disabled', true);
-        $('form').submit(function () {
+        $('form').submit(function() {
             $('button').attr('disabled', true).text('Please wait ...');
         });
     </script>
