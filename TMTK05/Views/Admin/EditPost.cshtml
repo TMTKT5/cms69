@@ -2,14 +2,15 @@
 @using TMTK05.Models
 @model PostModel
 @{
-    ViewBag.Title = "New Post";
-    ViewBag.HeaderTitle = "New Post";
+    ViewBag.Title = "Edit Post";
+    ViewBag.HeaderTitle = "Edit Post";
     ViewBag.HeaderSubHeading = String.Empty;
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
 }
 
 @section Styles {
     @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
+    @Styles.Render("~/Bundles/AlohaStyles")
 }
 
 @section Breadcrumb {
@@ -20,22 +21,25 @@
         <li class="active">
             <i class="fa fa-edit"></i> Blog
         </li>
+        <li>
+            <i class="fa fa-edit"></i> @Html.ActionLink("All Posts", "AllPosts", "Admin")
+        </li>
         <li class="active">
-            <i class="fa fa-edit"></i> New Post
+            <i class="fa fa-edit"></i> Edit Post
         </li>
     </ol>
 }
 
-@using (Html.BeginForm("NewPost", "Admin",
-    new { ViewBag.ReturnUrl },
-    FormMethod.Post, new { @id = "newPostForm", @autocomplete = "off" }))
+@using (Html.BeginForm("EditPost", "Admin",
+    new {ViewBag.ReturnUrl},
+    FormMethod.Post, new {@id = "editPostForm", @autocomplete = "off"}))
 {
     <div class="row">
         <p class="col-lg-1">
             @Html.LabelFor(model => model.Title)
         </p>
         <p class="col-lg-2">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control"}})
         </p>
         <p id="titleError" class="col-lg-2 alert-small alert-danger">
             Title is required
@@ -75,6 +79,14 @@
             </div>
         </div>
     </div>
+    <div class="aloha-3d aloha-ui">
+        <div class="aloha-link-toolbar btn-toolbar" role="toolbar" style="background-color: #000">
+            <input type="text" name="href" placeholder="http://TMTK-05.ict-lab.nl"/ value="">
+            <a class="aloha-link-follow btn btn-default" href="#" target="_blank" rel="noreferrer" title="Follow this link">
+                <span class="glyphicon glyphicon-share-alt" style="color: #FFF"></span>
+            </a>
+        </div>
+    </div>
     <div class="row">
         <p class="col-lg-1">
             <label>Content:</label>
@@ -88,33 +100,31 @@
             <!-- Boo hoo, so bad, so sad -->
         </p>
         <div class="col-lg-1">
-            <input type="submit" name="submit" value="Add Post" class="btn btn-primary">
+            <input type="submit" name="submit" value="Save" class="btn btn-primary">
         </div>
     </div>
 }
 
 @section Scripts {
     @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
-    @Scripts.Render("~/Bundles/SortableScripts")
     @Scripts.Render("~/Bundles/AlohaScripts")
 
     <script type="text/javascript">
-        $("#newPostForm").submit(function(event) {
+        $.get("/Admin/GetContentPost", { pageId: @Url.RequestContext.RouteData.Values["id"] }, function(data) {
+            $('#aloha').html(data);
+        });
+
+        $("#editPostForm").submit(function(event) {
             var error = false;
             if ($('#Title').val() == "") {
                 error = true;
                 $('#titleError').show(500);
             }
-
-            if ($('.aloha-editable').html().trim().length == 0) {
-                error = true;
-            }
-
             if (error) {
                 event.preventDefault();
             } else {
                 $('#Content').val($('.aloha-editable').html().trim());
-                $("#newPostForm").submit();
+                $("#editPostForm").submit();
             }
         });
         aloha.dom.query('.aloha-editable', document).forEach(aloha);
@@ -122,8 +132,7 @@
     @if (Model.Done)
     {
         <script type="text/javascript">
-            $('#Title').val("");
-            alertify.success('The post has been added!');
+            alertify.success('The post has been saved!');
         </script>
     }
 }

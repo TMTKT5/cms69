@@ -1,24 +1,90 @@
-﻿@{
+﻿@using System.Web.Optimization
+@using TMTK05.Models
+@{
     ViewBag.Title = "All Posts";
     ViewBag.HeaderTitle = "All Posts";
     ViewBag.HeaderSubHeading = String.Empty;
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+
+    var postInfo = PostModel.AllPosts();
+}
+
+@section Styles {
+    @Styles.Render("~/Bundles/WebsiteAlertifyStyles")
 }
 
 @section Breadcrumb {
-    <ol class="breadcrumb">
-        <li>
-            <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
-        </li>
-        <li class="active">
-            <i class="fa fa-edit"></i> Blog
-        </li>
-        <li class="active">
-            <i class="fa fa-edit"></i> All Posts
-        </li>
-    </ol>
+<ol class="breadcrumb">
+    <li>
+        <i class="fa fa-dashboard"></i> @Html.ActionLink("Dashboard", "Index", "Admin")
+    </li>
+    <li class="active">
+        <i class="fa fa-edit"></i> Blog
+    </li>
+    <li class="active">
+        <i class="fa fa-edit"></i> All Posts
+    </li>
+</ol>
 }
 
-@section Scripts {
+<div class="table-responsive">
+    <table class="table table-hover sortable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                @if (IdentityModel.CurrentUserOwner)
+                {
+                    <th>Edit</th>
+                    <th>Delete</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i <= postInfo.Count / 2; i++)
+            {
+                <tr style="height: 51px" id="@postInfo[i * 2 - 2]">
+                    <td style="vertical-align: middle">
+                        @postInfo[i * 2 - 2]
+                    </td>
+                    <td style="vertical-align: middle">
+                        @postInfo[i * 2 - 1]
+                    </td>
+                    @if (IdentityModel.CurrentUserOwner)
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "EditPost", "Admin", new { id = postInfo[i * 2 - 2] }, new { @class = "btn btn-primary" })
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" onclick=" confirmdelete(@postInfo[i * 2 - 2], '@postInfo[i * 2 - 1]' ) ">Delete</button>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
+@section Scripts {
+    @Scripts.Render("~/Bundles/WebsiteAlertifyScripts")
+    @Scripts.Render("~/Bundles/SortableScripts")
+    @if (IdentityModel.CurrentUserOwner)
+    {
+        <script type="text/javascript">
+            function confirmdelete(pageId, postName) {
+                alertify.confirm("Delete", "Are you sure you want to delete " + postName + "?",
+                    function() {
+                        var url = "/Admin/DeletePost";
+                        $.get(url, { input: pageId }, function(data) {
+                            if (data == "True") {
+                                alertify.success(postName + " deleted!");
+                                $('#' + pageId).hide(500);
+                            } else {
+                                alertify.error("Oops something went wrong!");
+                            }
+                        });
+                    }, null).setting({ 'labels': { ok: 'Yes', cancel: 'No' }, 'movable': false });
+            }
+        </script>
+    }
 }

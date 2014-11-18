@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using Gma.QrCodeNet.Encoding.DataEncodation;
 using TMTK05.Attributes;
 using TMTK05.Classes;
 using TMTK05.Models;
@@ -100,6 +101,15 @@ namespace TMTK05.Controllers
 
         //
         // AJAX:
+        // GET: /Admin/DeletePost/
+        [EnableCompression]
+        public bool DeletePost(int input)
+        {
+            return PostModel.DeletePost(input);
+        }
+
+        //
+        // AJAX:
         // GET: /Admin/DeleteUser/
         [EnableCompression]
         public bool DeleteUser(int input)
@@ -145,12 +155,56 @@ namespace TMTK05.Controllers
         }
 
         //
+        // GET: /Admin/EditPost/
+        public ActionResult EditPost(String id)
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
+            var model = new PostModel();
+            model.GetSinglePost(x);
+
+            return View(model);
+        }
+
+        //
+        // POST: /Admin/EditPage/
+        [HttpPost]
+        public ActionResult EditPost(String id, PostModel model)
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+
+            int x;
+            if (!Int32.TryParse(id, out x)) return RedirectToAction("Login", "Admin");
+            model.SavePost(x);
+            return View(model);
+        }
+
+        //
         // AJAX:
         // GET: /Admin/GetContent/
         [EnableCompression]
         public string GetContent(int pageId)
         {
             return PageModel.GetContent(pageId);
+        }
+
+        //
+        // AJAX:
+        // GET: /Admin/GetContentPost/
+        [EnableCompression]
+        public string GetContentPost(int pageId)
+        {
+            return PostModel.GetContent(pageId);
         }
 
         //
@@ -205,7 +259,6 @@ namespace TMTK05.Controllers
 
         //
         // POST: /Logged/ProfilePicture
-        // TODO: Fix
         [HttpPost]
         [EnableCompression]
         public ActionResult MediaUpload(UploadImageModel model)
@@ -240,40 +293,7 @@ namespace TMTK05.Controllers
                 var fn = Server.MapPath("~/database/" + pictureName + ".png");
                 img.Save(fn, ImageFormat.Png);
 
-                /*const string result = "UPDATE gebruiker " +
-                                      "SET profielfoto = ? " +
-                                      "WHERE id = ?";
-
-                var user = User.Identity as FormsIdentity;
-                // ReSharper disable PossibleNullReferenceException
-                var ticket = user.Ticket;
-                // ReSharper restore PossibleNullReferenceException
-
-                var id = ticket.UserData;
-
-                using (var empConnection = DatabaseConnection.DatabaseConnect())
-                {
-                    using (var showresult = new MySqlCommand(result, empConnection))
-                    {
-                        showresult.Parameters.Add("profielfoto", MySqlDbType.VarChar).Value = pictureName + ".png";
-                        showresult.Parameters.Add("id", MySqlDbType.Int16).Value = id;
-
-                        try
-                        {
-                            DatabaseConnection.DatabaseOpen(empConnection);
-                            showresult.ExecuteNonQuery(); */
-                model = new UploadImageModel { Done = true }; /*
-                        }
-                        catch (MySqlException)
-                        {
-                            model.Wrong = false;
-                        }
-                        finally
-                        {
-                            DatabaseConnection.DatabaseClose(empConnection);
-                        }
-                    }
-                } */
+                model = new UploadImageModel { Done = true };
             }
             else
             {
@@ -347,7 +367,21 @@ namespace TMTK05.Controllers
             {
                 return RedirectToAction("Index", "Admin");
             }
-            return View();
+            return View(new PostModel());
+        }
+
+        //
+        // POST: /Admin/NewPost/
+        [HttpPost]
+        public ActionResult NewPost(PostModel model)
+        {
+            // Redirect if the user isn't logged in
+            if (!IdentityModel.CurrentUserLoggedIn || !IdentityModel.CurrentUserOwner)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            model.NewPost();
+            return View(model);
         }
 
         //

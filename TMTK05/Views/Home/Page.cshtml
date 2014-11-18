@@ -8,4 +8,20 @@
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
 
-@Html.Raw(HttpUtility.HtmlDecode(pageInfo[3]))
+@if (pageInfo[2] == "1")
+{
+    var postInfo = PostModel.AllPostsStatic();
+
+
+    for (var i = 1; i <= postInfo.Count / 3; i++)
+    {
+        <h2>@postInfo[i * 3 - 3]</h2>
+        @Html.Raw(HttpUtility.HtmlDecode(postInfo[i * 3 - 2]))<br />
+        <small style="float: right">Author: @postInfo[i * 3 - 1]</small>
+        <hr/>
+    }
+}
+else
+{
+    @Html.Raw(HttpUtility.HtmlDecode(pageInfo[3]))
+}
